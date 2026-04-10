@@ -191,7 +191,7 @@
 
   <script>
     (function() {
-      // 包含你专属地图 ID 的深色模式切换脚本
+      // 1. 地图和深浅色模式切换
       const themeToggle = document.getElementById('themeToggle');
       const icon = themeToggle.querySelector('i');
       
@@ -239,6 +239,22 @@
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) setTheme(e.matches);
       });
+
+      // 2. 就是这里！之前漏掉的“淡入动画”触发器
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(function(el) {
+          observer.observe(el);
+        });
+      }
     })();
   </script>
 
