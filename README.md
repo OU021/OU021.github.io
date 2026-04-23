@@ -54,5 +54,3 @@
 ## 📄 许可证
 本项目采用 [MIT License](LICENSE.md) 开源。
 
----
-由 [Yuheng Yang](https://github.com/wzsyyh) 维护。
