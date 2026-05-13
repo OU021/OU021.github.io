@@ -56,6 +56,25 @@
       text-decoration: none !important;
       border-bottom: none !important;
     }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    
+    .activity-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    
+    .activity-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
   </style>
 
 </head>
@@ -224,30 +243,28 @@
       <div class="section" id="activities">
         <h3 class="section-title">Academic Activities</h3>
         <div class="section-body">
-          <div class="awards-grid">
       
-            <div class="award-item">
-              <span class="award-icon">🌐</span>
-              <div class="award-text">
-                <strong>Sino-Japanese Academic Exchange Workshop</strong>, 
-                <a href="https://www.mxdlab.net/" target="_blank">
-                  Media Experience Design Lab, Ritsumeikan University
-                </a>, March 2025
-              </div>
+          <div class="activity-item">
+            <img src="assets/img/ritsumeikan_logo.png" alt="Ritsumeikan University" class="activity-logo">
+            <div class="activity-text">
+              <strong>Sino-Japanese Academic Exchange Workshop</strong>, 
+              <a href="https://www.mxdlab.net/" target="_blank">
+                Media Experience Design Lab, Ritsumeikan University
+              </a>, March 2025
             </div>
-      
-            <div class="award-item">
-              <span class="award-icon">🏙️</span>
-              <div class="award-text">
-                <strong>
-                  <a href="https://mp.weixin.qq.com/s/rCzDuUPyb_3eSmGsk19jPg" target="_blank">
-                    Urban Space Friendly Coexistence & New Technology Workshop
-                  </a>
-                </strong>, Future Lab, Tsinghua University, December 2024
-              </div>
-            </div>
-      
           </div>
+      
+          <div class="activity-item">
+            <img src="assets/img/tsinghua_logo.png" alt="Tsinghua University" class="activity-logo">
+            <div class="activity-text">
+              <strong>
+                <a href="https://mp.weixin.qq.com/s/rCzDuUPyb_3eSmGsk19jPg" target="_blank">
+                  Urban Space Friendly Coexistence & New Technology Workshop
+                </a>
+              </strong>, Future Lab, Tsinghua University, December 2024
+            </div>
+          </div>
+      
         </div>
       </div>
       
