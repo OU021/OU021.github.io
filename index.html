@@ -1,496 +1,371 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Zhilin OU(欧芝麟) - Homepage</title>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Zhilin OU, 欧芝麟, is a final-year undergraduate student at Dalian University of Technology, focusing on Multimodal Machine Learning, AI for Medicine, and Computer Vision, a member of SSDUT-AI4SE Lab advised by Prof. Zhihui Wang.">
 
-  <meta name="keywords" content="Zhilin OU, 欧芝麟, Dalian University of Technology, Ritsumeikan University, Multimodal Machine Learning, Computer Vision, AI for Medicine & Healthcare">
+  <title>Zhilin OU (欧芝麟) — Multimodal AI Researcher</title>
+  <meta name="description" content="Zhilin OU is a recent Digital Media Technology graduate from Dalian University of Technology and an incoming MPhil student in Artificial Intelligence at CUHK-Shenzhen, working across multimodal AI, healthcare, omics, computer vision, embodied intelligence, and 3D scene generation.">
+  <meta name="author" content="Zhilin OU">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ou021.github.io/">
 
-  <link rel="canonical" href="https://ouzhilin.github.io/" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Zhilin OU">
+  <meta property="og:title" content="Zhilin OU — Multimodal AI Researcher">
+  <meta property="og:description" content="Incoming MPhil student in Artificial Intelligence researching multimodal learning across healthcare, omics, visual understanding, and interactive 3D environments.">
+  <meta property="og:url" content="https://ou021.github.io/">
+  <meta property="og:locale" content="en_US">
 
-  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zhilin OU — Multimodal AI Researcher">
+  <meta name="twitter:description" content="Multimodal AI across healthcare, omics, visual understanding, embodied intelligence, and 3D environments.">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
 
-  <!-- Icons -->
-  <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css
-    integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
-  <script src="https://kit.fontawesome.com/a860a211d3.js" crossorigin="anonymous"></script>
-
-  <!-- Base CSS (preserved) -->
-  <link rel="stylesheet" href="./assets/css/font_sans_serif.css">
-  <link rel="stylesheet" href="./assets/css/style-no-dark-mode_old.css">
-  <link rel="stylesheet" href="./assets/css/publications-no-dark-mode_old.css">
-
-  <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme-claude.css">
-  
-  <style>
-    /* Remove default blue underline style for links in main content */
-    .content a,
-    .section-body a,
-    .experience-content a,
-    .exp-title a,
-    .exp-detail a,
-    .award-text a {
-      color: inherit !important;
-      text-decoration: none !important;
-      border-bottom: none !important;
-    }
-  
-    .content a:hover,
-    .section-body a:hover,
-    .experience-content a:hover,
-    .exp-title a:hover,
-    .exp-detail a:hover,
-    .award-text a:hover {
-      color: #c2714f !important;
-      text-decoration: none !important;
-      border-bottom: none !important;
-    }
-
-    .activity-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    
-    .activity-logo {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    
-    .activity-text {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-  </style>
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Zhilin OU",
+    "alternateName": "欧芝麟",
+    "url": "https://ou021.github.io/",
+    "image": "https://ou021.github.io/assets/img/avatar.jpg",
+    "email": "mailto:ouuzhilin@gmail.com",
+    "description": "A recent Digital Media Technology graduate from Dalian University of Technology and an incoming MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen.",
+    "sameAs": [
+      "https://github.com/OU021",
+      "https://www.linkedin.com/in/zhilin-ou-348603366/"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Dalian University of Technology"
+    },
+    "knowsAbout": [
+      "Multimodal machine learning",
+      "AI for medicine and healthcare",
+      "AI for omics",
+      "Computer vision",
+      "Embodied intelligence",
+      "3D scene generation"
+    ]
+  }
+  </script>
 </head>
 
-<body class="theme-claude">
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Top Navigation Bar -->
-  <nav class="top-nav">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="/">Home</a>
-        <a href="photography.html" style="margin-left: 20px;">Photography</a>
-      </div>
-      <div class="nav-right">
-        <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
-          <i class="fa-solid fa-moon"></i>
+  <header class="site-header" data-site-header>
+    <nav class="site-nav page-shell" aria-label="Primary navigation">
+      <a class="wordmark" href="./index.html" aria-label="Zhilin OU, home">
+        <span>Zhilin OU</span>
+        <span class="wordmark-mark" aria-hidden="true">欧芝麟</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+        <span class="sr-only">Open navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <div class="site-menu" id="site-menu" data-site-menu>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="./photography.html">Photography</a>
+        <!-- CV link intentionally omitted until a verified Zhilin OU CV is added. -->
+        <button class="theme-toggle" type="button" data-theme-toggle>
+          <span class="theme-symbol" aria-hidden="true"></span>
+          <span data-theme-label>Dark</span>
         </button>
       </div>
-    </div>
-  </nav>
-  
+    </nav>
+  </header>
 
-  <div class="wrapper">
-    <!-- Sidebar / Header -->
-    <header class="sidebar">
-      <div class="profile-card">
-        <a class="image avatar"><img src="assets/img/avatar.png" alt="avatar" onerror="this.src='assets/img/avatar.jpg'" /></a>
-
-        <h1 class="site-name">Zhilin OU</h1>
-
-        <p class="site-email">ouuzhilin [at] gmail.com</p>
-
-        <div class="social-icons">
-          <a href="mailto:ouuzhilin@gmail.com" title="Email">
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-          <!-- <a href="https://scholar.google.com/citations?user=BlTtSUkAAAAJ&hl=zh-CN" title="Google Scholar">
-            <i class="ai ai-google-scholar"></i>
-          </a> -->
-          <a href="https://github.com/OU021" title="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/zhilin-ou-348603366/" title="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-          </a> 
-          <!-- <a href="https://wzsyyh-github-io.vercel.app/" title="Blog">
-            <i class="fa-solid fa-rss"></i>
-          </a> -->
+  <main id="main-content">
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Incoming MPhil · Artificial Intelligence · 2026–2028</p>
+        <h1 id="hero-title">
+          <span>Zhilin OU</span>
+          <span class="hero-name-cn">欧芝麟</span>
+        </h1>
+        <p class="hero-role">Incoming MPhil Student in Artificial Intelligence</p>
+        <div class="hero-actions" aria-label="Contact and social links">
+          <a class="button button-primary" href="mailto:ouuzhilin@gmail.com">Email</a>
+          <a class="button" href="https://github.com/OU021" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/zhilin-ou-348603366/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
 
-        <!-- <div class="visitor-map sidebar-map">
-          <img id="clustrmap-sidebar" src="https://www.clustrmaps.com/map_v2.png?cl=c2714f&w=240&t=tt&d=oN3PSbXCenJjht4NP1fUil5uQCRTebhjB3D_MTyaXHA&co=faf9f7&ct=3d3929" alt="ClustrMaps" />
-        </div> -->
-
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <section class="content">
-
-      <!-- About Me -->
-      <div class="section" id="about-me">
-        <h3 class="section-title">About Me</h3>
-        <div class="section-body">
-          <p>Hi, my name is Zhilin OU (欧芝麟). I am a final-year undergraduate student at Dalian University of Technology in a joint program with Ritsumeikan University, majoring in Digital Media Technology. My research interests focus on Multimodal Machine Learning (Analysis & Generation), AI for Medicine & Healthcare, AI for Omics and Computer Vision.</p>
-          
-          <p>Currently, I am a member of the SSDUT-AI4SE Lab, advised by <strong><a href="https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&hl=en">Prof. Zhihui Wang</a></strong>. I will be joining the School of Artificial Intelligence at CUHK-Shenzhen for an MPhil program in Fall 2026, advised by <strong><a href="https://marvinquiet.github.io/"> Prof. Wenjing Ma</a></strong>.</p>          
-
-          <!-- <p><strong><a href="assets/cv/ZhilinOU_CV.pdf" target="_blank">Download my CV</a></strong> (Updated: February 2026)</p> -->
-        </div>
+        <dl class="hero-meta">
+          <div>
+            <dt>Now</dt>
+            <dd>Recently graduated from Dalian University of Technology</dd>
+          </div>
+          <div>
+            <dt>Next</dt>
+            <dd>School of Artificial Intelligence, CUHK-Shenzhen</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Education -->
-      <div class="section" id="education">
-        <h3 class="section-title">Education</h3>
-        <div class="section-body">
-          <div class="card">
-            <div class="experience-item">
-              <img src="assets/img/cuhk_logo.png" alt="The Chinese University of Hong Kong, Shenzhen" class="institution-logo">
-              <div class="experience-content">
-                <p class="exp-title"><strong>The Chinese University of Hong Kong, Shenzhen</strong></p>
-                <p class="exp-detail">Master of Philosophy (MPhil) in Artificial Intelligence</p>
-                <p class="exp-period">2026 - 2028</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="experience-item">
-              <img src="assets/img/dut_logo.png" alt="Dalian University of Technology" class="institution-logo">
-              <div class="experience-content">
-                <p class="exp-title"><strong>Dalian University of Technology</strong></p>
-                <p class="exp-detail">Bachelor's Degree in Digital Media Technology (Joint Program with Ritsumeikan University)</p>
-                <p class="exp-period">2022 - 2026</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-visual" aria-label="Selected photography by Zhilin OU">
+        <figure class="hero-frame hero-frame-wide">
+          <img src="assets/img/digital1.jpg" width="1439" height="1080" alt="Two people sitting beside a blue seaside promenade" fetchpriority="high">
+          <figcaption>Digital · 01</figcaption>
+        </figure>
+        <figure class="hero-frame hero-frame-left">
+          <img src="assets/img/digital3.jpg" width="1439" height="1080" alt="A distant mountain silhouetted against an orange sunset">
+          <figcaption>Digital · 03</figcaption>
+        </figure>
+        <figure class="hero-frame hero-frame-right">
+          <img src="assets/img/digital16.jpg" width="1439" height="1080" alt="A flowering branch overlooking a blue bay">
+          <figcaption>Digital · 16</figcaption>
+        </figure>
       </div>
-          
-          
-      <!-- Experience  -->
-      <div class="section" id="experience">
-        <h3 class="section-title">Research Experience</h3>
-        <div class="section-body">
-
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <img src="assets/img/uiuc-logo.png" alt="University of Illinois Urbana-Champaign" class="institution-logo">
-              <div class="experience-content">
-                <p class="exp-title">
-                  <strong>University of Illinois Urbana-Champaign</strong>
-                </p>
-      
-                <p class="exp-detail">Research Intern</p>
-      
-                <!-- <p class="exp-detail">
-                  Supervised by 
-                  <a href="https://rehg.org/" target="_blank">
-                    <strong>Prof. James M. Rehg</strong>
-                  </a>
-                </p> -->
-      
-                <p class="exp-period">May 2026 - Present</p>
-              </div>
-            </div>
-          </div> 
-      
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <img src="assets/img/dut_logo.png" alt="Dalian University of Technology" class="institution-logo">
-              <div class="experience-content">
-                <p class="exp-title">
-                  <strong>SSDUT-AI4SE Lab, Dalian University of Technology</strong>
-                </p>
-      
-                <p class="exp-detail">Research Assistant</p>
-      
-                <p class="exp-detail">
-                  Supervised by 
-                  <a href="https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&hl=en" target="_blank">
-                    <strong>Prof. Zhihui Wang</strong>
-                  </a>
-                </p>
-      
-                <p class="exp-period">July 2025 - Present</p>
-              </div>
-            </div>
-          </div>
-      
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <img src="assets/img/tsinghua_logo.png" alt="Tsinghua University" class="institution-logo">
-              <div class="experience-content">
-                <p class="exp-title">
-                  <strong>
-                    <a href="https://thfl.tsinghua.edu.cn/" target="_blank">
-                      Future Lab, Tsinghua University
-                    </a>
-                  </strong>
-                </p>
-      
-                <p class="exp-detail">Research Collaborator</p>
-      
-                <p class="exp-detail">
-                  Project advised by 
-                  <a href="https://thfl.tsinghua.edu.cn/yjdw/xy_bys/zxjg/gzyysyjzx/lmy.htm" target="_blank">
-                    <strong>Dr. Mengyao Li</strong>
-                  </a>
-                  and
-                  <a href="https://thfl.tsinghua.edu.cn/yjdw/yjs/zxjg/gzyysyjzx/zz.htm" target="_blank">
-                    <strong>Zheng Zhang</strong>
-                  </a>
-                </p>
-      
-                <p class="exp-detail">
-                  Project: 2.5D Animation and AI-generated 3D Animation Cognition Study
-                </p>
-      
-                <p class="exp-period">March 2025 - April 2025</p>
-              </div>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-
-      <!-- Academic Activities -->
-      <div class="section" id="activities">
-        <h3 class="section-title">Academic Activities</h3>
-        <div class="section-body">
-      
-          <div class="activity-item">
-            <img src="assets/img/ritsumeikan_logo.png" alt="Ritsumeikan University" class="activity-logo">
-            <div class="activity-text">
-              <strong>Sino-Japanese Academic Exchange Workshop</strong>, 
-              <a href="https://www.mxdlab.net/" target="_blank">
-                Media Experience Design Lab, Ritsumeikan University
-              </a>, March 2025
-            </div>
-          </div>
-      
-          <div class="activity-item">
-            <img src="assets/img/tsinghua_logo.png" alt="Tsinghua University" class="activity-logo">
-            <div class="activity-text">
-              <strong>
-                <a href="https://mp.weixin.qq.com/s/rCzDuUPyb_3eSmGsk19jPg" target="_blank">
-                  Urban Space Friendly Coexistence & New Technology Workshop
-                </a>
-              </strong>, Future Lab, Tsinghua University, December 2024
-            </div>
-          </div>
-      
-        </div>
-      </div>
-      
-
-      <!-- Projects 
-      <div class="section" id="projects">
-        <h3 class="section-title">Projects</h3>
-        <div class="section-body">
-          <div class="card project-card">
-            <a href="https://auto-slides.github.io/" style="font-weight: 500">Auto-Slides</a> <a href="https://github.com/Westlake-AGI-Lab/Auto-Slides" target="_blank" style="text-decoration: none; margin-left: 8px;"><img src="https://img.shields.io/github/stars/Westlake-AGI-Lab/Auto-Slides?style=social&logo=github" alt="GitHub stars" style="vertical-align: middle;"></a>: An interactive multi-agent system for creating and customizing research presentations from academic papers, leveraging cognitive science principles and interactive optimization.
-          </div>
-        </div>
-      </div> -->
-
-      <!-- Publications
-      <div class="section" id="publications">
-        <h3 class="section-title">Publications</h3>
-        <div class="section-body">
-          <div class="publications">
-            <ol class="bibliography">
-
-              <li>
-                <div class="pub-row">
-                  <div class="pub-content">
-                    <div class="title">Probing the Knowledge Boundary: An Interactive Agentic Framework for Deep Knowledge Extraction</div>
-                    <div class="author"><strong>Yuheng Yang</strong>, Siqi Zhu, Tao Feng, Ge Liu, Jiaxuan You</div>
-                    <div class="periodical"><em><strong>arXiv preprint</strong></em></div>
-                    <div class="links">
-                      <a href="https://arxiv.org/abs/2602.00959">Paper</a> / <a href="https://github.com/ulab-uiuc/KnowledgeExtraction">Code</a> / <a href="https://ulab-uiuc.github.io/KnowledgeExtraction/">Project</a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <div class="pub-row">
-                  <div class="pub-content">
-                    <div class="title">Auto-Slides: An Interactive Multi-Agent System for Creating and Customizing Research Presentations</div>
-                    <div class="author"><strong>Yuheng Yang</strong>, Wenjia Jiang, Yang Wang, Yiwei Wang, Chi Zhang</div>
-                    <div class="periodical"><em><strong>ICME 2026</strong></em></div>
-                    <div class="links">
-                      <a href="https://arxiv.org/abs/2509.11062">Paper</a> / <a href="https://github.com/Westlake-AGI-Lab/Auto-Slides">Code</a> / <a href="https://auto-slides.github.io/">Project</a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-            </ol>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- Awards -->
-      <div class="section" id="awards">
-        <h3 class="section-title">Awards</h3>
-        <div class="section-body">
-          <div class="awards-grid">
-      
-            <div class="award-item">
-              <span class="award-icon">🎓</span>
-              <div class="award-text">
-                <strong>Dalian University of Technology Academic Excellence Scholarship</strong> (2025)
-              </div>
-            </div>
-      
-            <div class="award-item">
-              <span class="award-icon">🎓</span>
-              <div class="award-text">
-                <strong>Dalian University of Technology Outstanding Student Scholarship</strong> (2024)
-              </div>
-            </div>
-      
-            <div class="award-item">
-              <span class="award-icon">🥇</span>
-              <div class="award-text">
-                <strong>First Prize</strong>, 2025 
-                <a href="https://aigc.vivo.com.cn/#/home" target="_blank">
-                  China Collegiate Computing Contest (4C) - AIGC Competition
-                </a>
-              </div>
-            </div>
-      
-            <div class="award-item">
-              <span class="award-icon">🏅</span>
-              <div class="award-text">
-                <strong>Provincial-Level Bronze Award</strong>, 2025 China International College Students’ Innovation Competition
-              </div>
-            </div>
-      
-          </div>
-        </div>
-      </div>
-
-      <div class="section" id="skills">
-      <h3 class="section-title">Interests</h3>
-      <div class="section-body">
-        <div class="awards-grid">
-    
-          <div class="award-item">
-            <span class="award-icon">📷</span>
-            <div class="award-text">
-              <strong>Photography Enthusiast:</strong> 3+ years of experience in digital and film photography.
-            </div>
-          </div>
-    
-          <div class="award-item">
-            <span class="award-icon">📚</span>
-            <div class="award-text">
-              <strong>Reading:</strong> Interested in literature, novels, and psychology.
-            </div>
-          </div>
-    
-        </div>
-      </div>
-    </div>
-
     </section>
 
-    <footer class="site-footer">
-      <p>&copy; 2026 Zhilin OU. All rights reserved.</p>
-    </footer>
-  </div>
+    <section class="section page-shell about-layout" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="section-index">01</p>
+        <h2 id="about-title">About</h2>
+      </div>
 
-  <script src="./assets/js/scale.fix.js"></script>
-  <script>
-    (function() {
-      // Theme Management
-      const themeToggle = document.getElementById('themeToggle');
-      const icon = themeToggle.querySelector('i');
-      
-      // Function to update map based on current theme
-      function updateMap(isDark) {
-        const MAP_BASE = 'https://www.clustrmaps.com/map_v2.png?w=240&t=tt&d=oN3PSbXCenJjht4NP1fUil5uQCRTebhjB3D_MTyaXHA';
-        const co = isDark ? '1a1917' : 'faf9f7';
-        const cl = isDark ? 'e28a67' : 'c2714f';
-        const ct = isDark ? 'd1cec7' : '3d3929';
-        
-        const img = document.getElementById('clustrmap-sidebar');
-        if (img) {
-          img.src = MAP_BASE + '&cl=' + cl + '&co=' + co + '&ct=' + ct;
-          // 确保图片被包裹在链接中
-          if (!img.parentElement || img.parentElement.tagName !== 'A') {
-            const link = document.createElement('a');
-            link.href = 'https://clustrmaps.com/site/1c9ot';
-            link.title = 'ClustrMaps';
-            img.parentNode.insertBefore(link, img);
-            link.appendChild(img);
-          }
-        }
-      }
+      <figure class="about-portrait">
+        <img src="assets/img/avatar.jpg" width="5028" height="7542" loading="lazy" decoding="async" alt="Portrait of Zhilin OU in graduation attire">
+        <figcaption>Zhilin OU · 欧芝麟</figcaption>
+      </figure>
 
-      function setTheme(isDark) {
-        if (isDark) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          icon.classList.replace('fa-moon', 'fa-sun');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-          icon.classList.replace('fa-sun', 'fa-moon');
-          localStorage.setItem('theme', 'light');
-        }
-        updateMap(isDark);
-      }
+      <div class="about-copy prose">
+        <p>Hi, I am Zhilin OU (欧芝麟). I recently graduated from Dalian University of Technology with a bachelor’s degree in Digital Media Technology through a joint program with Ritsumeikan University. In Fall 2026, I will join the School of Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen as an MPhil student, advised by <a href="https://marvinquiet.github.io/" target="_blank" rel="noopener noreferrer">Prof. Wenjing Ma</a>.</p>
+        <p>My research interests include multimodal machine learning, AI for medicine and healthcare, AI for omics, computer vision, embodied intelligence, and 3D scene generation.</p>
+        <p>I am also a member of the SSDUT-AI4SE Lab, advised by <a href="https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Zhihui Wang</a>.</p>
+      </div>
 
-      // Initial theme setup
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        setTheme(true);
-      } else {
-        setTheme(false);
-      }
+      <aside class="focus-note" aria-labelledby="focus-title">
+        <p class="note-kicker" id="focus-title">Current focus</p>
+        <ul>
+          <li>Multimodal learning for healthcare</li>
+          <li>AI for omics and biomedical discovery</li>
+          <li>Embodied intelligence and 3D scene generation</li>
+        </ul>
+      </aside>
+    </section>
 
-      themeToggle.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        setTheme(!isDark);
-      });
+    <section class="section research-section" id="research" aria-labelledby="research-title">
+      <div class="page-shell">
+        <div class="section-heading section-heading-wide">
+          <div>
+            <p class="section-index">02</p>
+            <h2 id="research-title">Selected Research</h2>
+          </div>
+          <p>Research areas I am currently interested in exploring.</p>
+        </div>
 
-      // Listen for system theme changes if no saved preference
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-          setTheme(e.matches);
-        }
-      });
+        <div class="research-list">
+          <article class="research-item">
+            <p class="research-number" aria-hidden="true">R/01</p>
+            <h3>Multimodal AI for Healthcare</h3>
+            <p>I am interested in multimodal learning methods for medical and healthcare applications.</p>
+            <!-- Add verified Paper / Code / Project links here when available. -->
+          </article>
 
-      // Intersection Observer for fade-in animations
-      if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
+          <article class="research-item">
+            <p class="research-number" aria-hidden="true">R/02</p>
+            <h3>AI for Omics</h3>
+            <p>I am interested in machine learning for omics data and biomedical discovery.</p>
+            <!-- Add verified Paper / Code / Project links here when available. -->
+          </article>
 
-        document.querySelectorAll('.section').forEach(function(el) {
-          observer.observe(el);
-        });
-      }
-    })();
-  </script>
+          <article class="research-item">
+            <p class="research-number" aria-hidden="true">R/03</p>
+            <h3>Embodied AI and 3D Scene Generation</h3>
+            <p>I am interested in embodied intelligence, 3D scene generation, and interactive environments.</p>
+            <!-- Add verified Paper / Code / Project links here when available. -->
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="section page-shell" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading section-heading-wide">
+        <div>
+          <p class="section-index">03</p>
+          <h2 id="experience-title">Education &amp; Experience</h2>
+        </div>
+        <p>A timeline of academic training and research collaborations.</p>
+      </div>
+
+      <div class="timeline-group" aria-labelledby="education-heading">
+        <h3 id="education-heading">Education</h3>
+
+        <article class="timeline-entry">
+          <div class="timeline-date">2026–2028</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="logo-frame"><img src="assets/img/cuhk_logo.png" width="500" height="396" alt="CUHK-Shenzhen logo"></div>
+            <div>
+              <p class="timeline-status">Incoming · Fall 2026</p>
+              <h4>The Chinese University of Hong Kong, Shenzhen</h4>
+              <p>Master of Philosophy (MPhil) in Artificial Intelligence</p>
+              <p>Advisor: <a href="https://marvinquiet.github.io/" target="_blank" rel="noopener noreferrer">Prof. Wenjing Ma</a></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry">
+          <div class="timeline-date">2022–2026</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="logo-frame"><img src="assets/img/dut_logo.png" width="500" height="500" alt="Dalian University of Technology logo"></div>
+            <div>
+              <p class="timeline-status">Completed</p>
+              <h4>Dalian University of Technology</h4>
+              <p>Bachelor’s Degree in Digital Media Technology</p>
+              <p>Joint program with Ritsumeikan University</p>
+              <p>Undergraduate research with the SSDUT-AI4SE Lab, advised by <a href="https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Zhihui Wang</a></p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="timeline-group" aria-labelledby="research-experience-heading">
+        <h3 id="research-experience-heading">Research Experience</h3>
+
+        <article class="timeline-entry">
+          <div class="timeline-date">May 2026–<br>Present</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="logo-frame"><img src="assets/img/uiuc-logo.png" width="500" height="500" alt="University of Illinois Urbana-Champaign logo"></div>
+            <div>
+              <p class="timeline-status">Research Intern</p>
+              <h4>University of Illinois Urbana-Champaign</h4>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry">
+          <div class="timeline-date">July 2025–<br>Present</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="logo-frame"><img src="assets/img/dut_logo.png" width="500" height="500" alt="Dalian University of Technology logo"></div>
+            <div>
+              <p class="timeline-status">Research Assistant</p>
+              <h4>SSDUT-AI4SE Lab, Dalian University of Technology</h4>
+              <p>Supervised by <a href="https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Prof. Zhihui Wang</a></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry">
+          <div class="timeline-date">March–<br>April 2025</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="logo-frame"><img src="assets/img/tsinghua_logo.png" width="500" height="501" alt="Tsinghua University logo"></div>
+            <div>
+              <p class="timeline-status">Research Collaborator</p>
+              <h4><a href="https://thfl.tsinghua.edu.cn/" target="_blank" rel="noopener noreferrer">Future Lab, Tsinghua University</a></h4>
+              <p>Project advised by <a href="https://thfl.tsinghua.edu.cn/yjdw/xy_bys/zxjg/gzyysyjzx/lmy.htm" target="_blank" rel="noopener noreferrer">Dr. Mengyao Li</a> and <a href="https://thfl.tsinghua.edu.cn/yjdw/yjs/zxjg/gzyysyjzx/zz.htm" target="_blank" rel="noopener noreferrer">Zheng Zhang</a></p>
+              <p>Project: 2.5D Animation and AI-generated 3D Animation Cognition Study</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact-section" aria-labelledby="activities-title">
+      <div class="page-shell compact-grid">
+        <div>
+          <div class="section-heading compact-heading">
+            <p class="section-index">04</p>
+            <h2 id="activities-title">Academic Activities</h2>
+          </div>
+
+          <ul class="editorial-list activity-list">
+            <li>
+              <time datetime="2025-03">2025.03</time>
+              <div>
+                <strong>Sino-Japanese Academic Exchange Workshop</strong>
+                <p><a href="https://www.mxdlab.net/" target="_blank" rel="noopener noreferrer">Media Experience Design Lab, Ritsumeikan University</a></p>
+              </div>
+            </li>
+            <li>
+              <time datetime="2024-12">2024.12</time>
+              <div>
+                <strong><a href="https://mp.weixin.qq.com/s/rCzDuUPyb_3eSmGsk19jPg" target="_blank" rel="noopener noreferrer">Urban Space Friendly Coexistence &amp; New Technology Workshop</a></strong>
+                <p>Future Lab, Tsinghua University</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="section-heading compact-heading">
+            <p class="section-index">05</p>
+            <h2 id="awards-title">Awards</h2>
+          </div>
+
+          <ul class="editorial-list award-list" aria-labelledby="awards-title">
+            <li><time datetime="2025">2025</time><strong>Dalian University of Technology Academic Excellence Scholarship</strong></li>
+            <li><time datetime="2025">2025</time><strong>First Prize, <a href="https://aigc.vivo.com.cn/#/home" target="_blank" rel="noopener noreferrer">China Collegiate Computing Contest (4C) — AIGC Competition</a></strong></li>
+            <li><time datetime="2025">2025</time><strong>Provincial-Level Bronze Award, China International College Students’ Innovation Competition</strong></li>
+            <li><time datetime="2024">2024</time><strong>Dalian University of Technology Outstanding Student Scholarship</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-shell photography-preview" aria-labelledby="photography-title">
+      <div class="section-heading section-heading-wide">
+        <div>
+          <p class="section-index">06</p>
+          <h2 id="photography-title">Photography Notes</h2>
+        </div>
+        <p>A quieter way of studying light, place, and small gestures.</p>
+      </div>
+
+      <div class="preview-grid">
+        <a class="preview-photo preview-photo-wide" href="./photography.html#digital">
+          <img src="assets/img/digital1.jpg" width="1439" height="1080" loading="lazy" decoding="async" alt="Two people sitting beside a blue seaside promenade">
+          <span>Digital · 01</span>
+        </a>
+        <a class="preview-photo" href="./photography.html#digital">
+          <img src="assets/img/digital11.jpg" width="1620" height="1080" loading="lazy" decoding="async" alt="A ginger-and-white cat looking toward the camera">
+          <span>Digital · 11</span>
+        </a>
+        <a class="preview-photo" href="./photography.html#digital">
+          <img src="assets/img/digital17.jpg" width="1439" height="1080" loading="lazy" decoding="async" alt="A small bell ornament hanging from a bare branch">
+          <span>Digital · 17</span>
+        </a>
+        <a class="preview-photo preview-photo-tall" href="./photography.html#digital">
+          <img src="assets/img/digital2.jpg" width="1439" height="1081" loading="lazy" decoding="async" alt="Small groups of people casting long shadows on a sunlit beach">
+          <span>Digital · 02</span>
+        </a>
+        <a class="preview-photo" href="./photography.html#digital">
+          <img src="assets/img/digital15.jpg" width="1439" height="1080" loading="lazy" decoding="async" alt="A calm blue bay viewed from a rocky hillside">
+          <span>Digital · 15</span>
+        </a>
+      </div>
+
+      <a class="text-link" href="./photography.html">View the complete photography archive <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-layout">
+      <div>
+        <p>© 2026 Zhilin OU</p>
+        <p>Built and maintained by Zhilin OU</p>
+      </div>
+      <nav aria-label="Footer links">
+        <a href="mailto:ouuzhilin@gmail.com">Email</a>
+        <a href="https://github.com/OU021" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/zhilin-ou-348603366/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
 </body>
-
 </html>
