@@ -1396,68 +1396,54 @@ dd {
   }
 }
 
-/* Selected work inside research interests */
-
-.research-topic,
-.research-details {
-  min-width: 0;
-}
-
-.research-topic h3 {
-  margin-top: 0;
-}
+/* Align the selected paper information in AI for Omics */
 
 .research-paper-title {
-  display: inline-block;
-  margin-top: 2rem;
-  color: var(--text-primary);
-  font-size: 1rem;
-  line-height: 1.65;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  display: block;
 }
 
-.research-paper-title:hover {
-  color: var(--accent);
+/* Make the top content on the left and right occupy the same height */
+@media (min-width: 701px) {
+  .research-topic h3,
+  .research-details > p:first-child {
+    min-height: 3.6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .research-topic .research-paper-title,
+  .research-details .research-paper-authors {
+    margin-top: 1rem;
+  }
 }
 
-.research-paper-title:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 0.25rem;
+/* Reduce the space between authors and publication links */
+.research-details .research-paper-authors {
+  margin-bottom: 0;
 }
 
-.research-details > p:first-child {
-  margin-top: 0;
+.research-details .research-paper-meta {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+  line-height: 1.5;
 }
 
-.research-paper-authors {
-  margin-top: 2rem;
-  color: var(--text-primary);
-  line-height: 1.7;
-}
-
-.research-paper-authors strong {
-  font-weight: 650;
-}
-
-.research-paper-meta {
-  margin-top: 0.75rem;
-  color: var(--text-secondary);
-}
-
-.research-paper-meta a {
-  color: inherit;
-  text-underline-offset: 0.18em;
-}
-
-.research-paper-meta a:hover {
-  color: var(--accent);
-}
-
+/* Mobile layout does not need forced row alignment */
 @media (max-width: 700px) {
-  .research-paper-title,
-  .research-paper-authors {
-    margin-top: 1.25rem;
+  .research-topic h3,
+  .research-details > p:first-child {
+    min-height: 0;
+  }
+
+  .research-topic .research-paper-title {
+    margin-top: 0.75rem;
+  }
+
+  .research-details .research-paper-authors {
+    margin-top: 1rem;
+  }
+
+  .research-details .research-paper-meta {
+    margin-top: 0.35rem;
   }
 }
