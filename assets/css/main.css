@@ -1501,22 +1501,6 @@ dd {
   color: var(--accent);
 }
 
-@media (max-width: 700px) {
-  .research-publication {
-    grid-column: 1 / -1;
-    padding: 1.2rem;
-  }
-
-  .publication-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .publication-meta {
-    margin-top: 0.45rem;
-  }
-}
-
 /* Mobile layout for AI for Omics publication */
 @media (max-width: 760px) {
   .research-item--with-publication {
