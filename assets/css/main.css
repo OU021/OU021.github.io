@@ -1395,3 +1395,69 @@ dd {
     color: #000;
   }
 }
+
+/* Selected work inside research interests */
+
+.research-topic,
+.research-details {
+  min-width: 0;
+}
+
+.research-topic h3 {
+  margin-top: 0;
+}
+
+.research-paper-title {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.65;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.research-paper-title:hover {
+  color: var(--accent);
+}
+
+.research-paper-title:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0.25rem;
+}
+
+.research-details > p:first-child {
+  margin-top: 0;
+}
+
+.research-paper-authors {
+  margin-top: 2rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.research-paper-authors strong {
+  font-weight: 650;
+}
+
+.research-paper-meta {
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.research-paper-meta a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.research-paper-meta a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 700px) {
+  .research-paper-title,
+  .research-paper-authors {
+    margin-top: 1.25rem;
+  }
+}
