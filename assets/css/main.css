@@ -1516,3 +1516,99 @@ dd {
     margin-top: 0.45rem;
   }
 }
+
+/* Mobile layout for AI for Omics publication */
+@media (max-width: 760px) {
+  .research-item--with-publication {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .research-item--with-publication > .research-number,
+  .research-item--with-publication > .research-topic,
+  .research-item--with-publication > .research-details,
+  .research-item--with-publication > .research-publication {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .research-item--with-publication > .research-number {
+    margin: 0 0 0.8rem;
+  }
+
+  .research-item--with-publication > .research-topic h3 {
+    margin: 0;
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    line-height: 1.1;
+  }
+
+  .research-item--with-publication > .research-details {
+    margin-top: 1rem;
+  }
+
+  .research-item--with-publication > .research-details > p {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .research-item--with-publication > .research-publication {
+    grid-column: 1;
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+    padding: 1.15rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+  }
+
+  .research-item--with-publication .publication-kicker {
+    margin: 0 0 0.85rem;
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .research-item--with-publication .publication-grid {
+    display: block;
+  }
+
+  .research-item--with-publication .publication-title {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.5;
+  }
+
+  .research-item--with-publication .publication-title a {
+    overflow-wrap: anywhere;
+  }
+
+  .research-item--with-publication .publication-information {
+    margin-top: 1rem;
+  }
+
+  .research-item--with-publication .publication-authors {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .research-item--with-publication .publication-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.65rem;
+    margin-top: 0.7rem;
+  }
+
+  .research-item--with-publication .publication-status {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .research-item--with-publication .publication-footer a {
+    font-size: 0.88rem;
+  }
+}
