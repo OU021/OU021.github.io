@@ -1,0 +1,262 @@
+{
+  "name": "Zhilin Ou",
+  "url": "https://ou021.github.io",
+  "role": "MPhil Student in Artificial Intelligence",
+  "affiliation": "The Chinese University of Hong Kong, Shenzhen",
+  "interests": [
+    "Embodied AI",
+    "Robot Learning",
+    "3D Vision"
+  ],
+  "links": {
+    "Email": "mailto:ouuzhilin@gmail.com",
+    "GitHub": "https://github.com/OU021"
+  },
+  "about": [
+    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in embodied AI, robot learning, and 3D vision.",
+    "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I conducted research with Prof. Zhihui Wang on computer vision and multimodal learning.",
+    "I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research."
+  ],
+  "papers": [
+    {
+      "title": "TCellAlign: Cross-study T-cell Populations Alignment with Nomenclature-Guided Multi-Agent Workflow",
+      "authors": [
+        "Pengyu Xie",
+        "Rongjia Zhou",
+        "Zhilin Ou",
+        "Junyuan Zhang",
+        "Xiang Zhou",
+        "Xiaobo Sun",
+        "Jiaying Lu",
+        "Wenjing Ma"
+      ],
+      "source": "arXiv",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2607.24093",
+      "public": true,
+      "figure": {
+        "src": "assets/papers/tcellalign-framework.png",
+        "width": 2027,
+        "height": 1225,
+        "alt": "TCellAlign framework: search, information extraction, nomenclature-guided mapping, and evidence-based adjudication agents.",
+        "source": "https://arxiv.org/html/2607.24093v1#S1.F1",
+        "caption": "TCellAlign · Framework overview"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "institution": "University of Illinois Urbana-Champaign",
+      "role": "Research Collaborator · PLAN Lab",
+      "dates": "May 2026 – Sep 2026",
+      "detail": "Embodied AI and 3D vision research"
+    },
+    {
+      "institution": "Dalian University of Technology",
+      "role": "Research Assistant · SSDUT-AI4SE Lab",
+      "dates": "Nov 2025 – Jun 2026",
+      "detail": "Computer vision and multimodal learning"
+    }
+  ],
+  "education": [
+    {
+      "institution": "The Chinese University of Hong Kong, Shenzhen",
+      "degree": "MPhil in Artificial Intelligence",
+      "dates": "2026–2028"
+    },
+    {
+      "institution": "Dalian University of Technology",
+      "degree": "B.Eng. in Digital Media Technology",
+      "dates": "2022–2026"
+    }
+  ],
+  "awards": [
+    {
+      "year": 2025,
+      "title": "Academic Excellence Scholarship, Dalian University of Technology"
+    },
+    {
+      "year": 2025,
+      "title": "First Prize, China Collegiate Computing Contest (4C) — AIGC Competition"
+    },
+    {
+      "year": 2025,
+      "title": "Provincial-Level Bronze Award, China International College Students’ Innovation Competition"
+    },
+    {
+      "year": 2024,
+      "title": "Outstanding Student Scholarship, Dalian University of Technology"
+    }
+  ],
+  "news": {
+    "enabled": false,
+    "items": []
+  },
+  "photographs": [
+    {
+      "src": "assets/photos/digital3.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A distant mountain silhouetted beneath an orange sunset"
+    },
+    {
+      "src": "assets/photos/digital1.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "Two people sitting beside a blue seaside promenade"
+    },
+    {
+      "src": "assets/photos/digital2.webp",
+      "width": 1439,
+      "height": 1081,
+      "alt": "Small groups casting long shadows on a sunlit beach"
+    },
+    {
+      "src": "assets/photos/digital4.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A mountain and cloud reflected in a still lake"
+    },
+    {
+      "src": "assets/photos/digital16.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A flowering branch overlooking a blue bay"
+    },
+    {
+      "src": "assets/photos/digital15.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A calm blue bay viewed from a rocky hillside"
+    },
+    {
+      "src": "assets/photos/digital11.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "A ginger-and-white cat looking toward the camera"
+    },
+    {
+      "src": "assets/photos/digital14.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "Two golden-furred monkeys sitting behind glass"
+    },
+    {
+      "src": "assets/photos/digital13.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A primate behind glass reaching toward a visitor’s hand"
+    },
+    {
+      "src": "assets/photos/digital6.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "Two red tomatoes held in a garden"
+    },
+    {
+      "src": "assets/photos/digital7.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "A person holding a red flower outdoors"
+    },
+    {
+      "src": "assets/photos/digital9.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "Hands cradling small white flowers"
+    },
+    {
+      "src": "assets/photos/digital10.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "Green lotus leaves reflected in pond water"
+    },
+    {
+      "src": "assets/photos/digital17.webp",
+      "width": 1439,
+      "height": 1080,
+      "alt": "A small bell ornament hanging from a bare branch"
+    },
+    {
+      "src": "assets/photos/digital5.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "Tall green grasses beneath utility wires and a pale sky"
+    },
+    {
+      "src": "assets/photos/digital12.webp",
+      "width": 1500,
+      "height": 844,
+      "alt": "Two long shadows, one holding an umbrella, across a running track"
+    },
+    {
+      "src": "assets/photos/digital8.webp",
+      "width": 1500,
+      "height": 1000,
+      "alt": "A small winged insect against a sunlit wall"
+    },
+    {
+      "src": "assets/photos/film1.webp",
+      "width": 1500,
+      "height": 994,
+      "alt": "An open book, camera, drink, and pastry on a table"
+    },
+    {
+      "src": "assets/photos/film2.webp",
+      "width": 1500,
+      "height": 994,
+      "alt": "A sunlit curved road seen from inside a vehicle"
+    },
+    {
+      "src": "assets/photos/film8.webp",
+      "width": 1500,
+      "height": 1030,
+      "alt": "A quiet urban street with traffic lights"
+    },
+    {
+      "src": "assets/photos/film4.webp",
+      "width": 1500,
+      "height": 994,
+      "alt": "A quiet interior table seen through a stairwell"
+    },
+    {
+      "src": "assets/photos/film3.webp",
+      "width": 1500,
+      "height": 994,
+      "alt": "White geese beside a shaded fence"
+    },
+    {
+      "src": "assets/photos/film5.webp",
+      "width": 1500,
+      "height": 1058,
+      "alt": "Two dark swans on a reflective pond"
+    },
+    {
+      "src": "assets/photos/film6.webp",
+      "width": 1500,
+      "height": 1003,
+      "alt": "Alpacas in a sunlit paddock"
+    },
+    {
+      "src": "assets/photos/film7.webp",
+      "width": 1500,
+      "height": 1003,
+      "alt": "A white alpaca outside a rustic wooden building"
+    },
+    {
+      "src": "assets/photos/film9.webp",
+      "width": 1500,
+      "height": 1030,
+      "alt": "A small boat in a wintry rocky cove"
+    }
+  ],
+  "portrait": {
+    "src": "assets/portrait-official.jpg",
+    "width": 480,
+    "height": 480,
+    "alt": "Zhilin Ou — white-background portrait"
+  },
+  "researchLinks": {
+    "planLab": "https://plan-lab.github.io/"
+  }
+}
