@@ -432,14 +432,31 @@ h1 span {
   align-items:center;
   gap:12px;
 }
+.scene-caption-group {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:2px 14px;
+  min-width:0;
+}
 .scene-caption {
   font-size:12px;
   line-height:1.5;
   color:#796958;
   letter-spacing:.015em;
 }
+.scene-hometown {
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
+}
+.scene-caption,.scene-hometown {
+  margin:0;
+  white-space:nowrap;
+}
 .motion-toggle[hidden] { display:none; }
 .motion-toggle {
+  flex-shrink:0;
   width:30px;
   height:30px;
   border:1px solid rgba(255,255,255,.94);
@@ -1030,6 +1047,10 @@ h1 span {
     bottom:24px;
   }
   .scene-view {inset:0 0 75px;}
+  .scene-caption-group {
+    flex-direction:column;
+    align-items:flex-start;
+  }
   .hero-copy {
     padding:24px;
   }
