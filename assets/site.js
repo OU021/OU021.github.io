@@ -23,6 +23,48 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const previous = figureDialog.querySelector('[data-photo-previous]');
   const next = figureDialog.querySelector('[data-photo-next]');
   let album = [], current = 0, opener = null, backdropDown = false;
+  const photoTones = new Map();
+  const photoTone = image => {
+    if (!image?.complete || !image.naturalWidth) return null;
+    const source = image.currentSrc || image.src;
+    if (photoTones.has(source)) return photoTones.get(source);
+    try {
+      // A tiny, local colour sample only; the displayed photograph stays untouched.
+      const sample = document.createElement('canvas');
+      sample.width = sample.height = 24;
+      const context = sample.getContext('2d',{willReadFrequently:true});
+      if (!context) return null;
+      context.drawImage(image,0,0,24,24);
+      const pixels = context.getImageData(0,0,24,24).data;
+      const tones = Array.from({length:12},()=>({weight:0,r:0,g:0,b:0}));
+      for (let i=0;i<pixels.length;i+=4) {
+        const [r,g,b] = [pixels[i],pixels[i+1],pixels[i+2]];
+        const max = Math.max(r,g,b), min = Math.min(r,g,b), chroma = max-min;
+        if (pixels[i+3]<128 || max<35 || min>225 || chroma<18) continue;
+        let hue = max===r ? (g-b)/chroma : max===g ? (b-r)/chroma+2 : (r-g)/chroma+4;
+        hue = (hue+6)%6;
+        const tone = tones[Math.floor(hue*2)];
+        const weight = Math.min(chroma/max,.65);
+        tone.weight += weight;
+        tone.r += r*weight; tone.g += g*weight; tone.b += b*weight;
+      }
+      const dominant = tones.reduce((a,b)=>b.weight>a.weight?b:a);
+      const colour = dominant.weight>3
+        ? ['r','g','b'].map((channel,i)=>Math.round(dominant[channel]/dominant.weight*.34+[40,37,34][i]*.66))
+        : [50,45,40];
+      const tone = `rgb(${colour.join(' ')} / .68)`;
+      photoTones.set(source,tone);
+      return tone;
+    } catch { return null; }
+  };
+  const updatePhotoLight = () => {
+    const link = album[current];
+    if (!link?.dataset.album) { figureDialog.style.removeProperty('--photo-backdrop'); return; }
+    const tone = photoTone(link.querySelector('img')) || (dialogImage.src===link.href ? photoTone(dialogImage) : null);
+    if (tone) figureDialog.style.setProperty('--photo-backdrop',tone);
+    else figureDialog.style.removeProperty('--photo-backdrop');
+  };
+  dialogImage.addEventListener('load',updatePhotoLight);
   let language = page ? 'zh' : 'en';
   try {
     const saved = localStorage.getItem('zhilin-photography-language');
@@ -34,6 +76,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     const preview = link.querySelector('img');
     const isPhoto = !!link.dataset.album;
     dialogImage.src = link.href;
+    updatePhotoLight();
     dialogImage.alt = isPhoto ? textFor(link,'alt') : preview.alt;
     dialogImage.width = Number(preview.getAttribute('width'));
     dialogImage.height = Number(preview.getAttribute('height'));

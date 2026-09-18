@@ -180,21 +180,39 @@ h3 {
 }
 .brand-mark .baymax-head-motion {
   transform-origin:47px 36px;
-  transition:transform .38s cubic-bezier(.2,.7,.25,1);
 }
-.wordmark:hover .baymax-head-motion,.wordmark:focus-visible .baymax-head-motion {
-  transform:rotate(-5deg) translateY(-1px);
+.brand-mark .baymax-camera-motion {transform-origin:48px 65px;}
+.wordmark:is(:hover,:focus-visible) .baymax-head-motion {
+  animation:baymax-notices-you 1.25s ease-in-out;
+}
+.wordmark:is(:hover,:focus-visible) .baymax-camera-motion {
+  animation:baymax-lifts-camera 1.25s ease-in-out;
+}
+.wordmark:is(:hover,:focus-visible) .baymax-arms-motion {
+  animation:baymax-lifts-arms 1.25s ease-in-out;
+}
+@keyframes baymax-notices-you {
+  0%,100% {transform:none;}
+  24%,58% {transform:rotate(-7deg) translateY(-1px);}
+  78% {transform:rotate(-2deg);}
+}
+@keyframes baymax-lifts-camera {
+  0%,14%,100% {transform:none;}
+  38%,62% {transform:translateY(-5px) rotate(-3deg);}
+}
+@keyframes baymax-lifts-arms {
+  0%,14%,100% {transform:none;}
+  38%,62% {transform:translateY(-2.5px);}
 }
 .camera-glint {
   transform-origin:45px 63px;
 }
 .wordmark:hover .camera-glint,.wordmark:focus-visible .camera-glint {
-  animation:lens-catchlight .7s ease-out both;
+  animation:lens-catchlight 1.25s ease-in-out;
 }
 @keyframes lens-catchlight {
-  0% {opacity:0;transform:scale(.5);}
-  38% {opacity:.75;transform:scale(1);}
-  100% {opacity:0;transform:scale(1.5);}
+  0%,25%,100% {opacity:0;}
+  48%,60% {opacity:.3;}
 }
 .wordmark .wordmark-dot {
   color:var(--accent);
@@ -1022,8 +1040,10 @@ h1 {
   overflow:auto;
 }
 .figure-dialog::backdrop {
-  background:#32271f9c;
+  background:var(--photo-backdrop,#32271f9c);
   backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  transition:background-color .4s ease;
 }
 .figure-dialog>img {
   width:auto;
@@ -1501,6 +1521,10 @@ h1 {
 }
 @media(prefers-reduced-motion:reduce) {
   .site-header::after {display:none;}
+  .figure-dialog::backdrop {transition:none;}
+  .wordmark:is(:hover,:focus-visible) .baymax-head-motion,
+  .wordmark:is(:hover,:focus-visible) .baymax-camera-motion,
+  .wordmark:is(:hover,:focus-visible) .baymax-arms-motion {animation:none;}
   .wordmark:hover .camera-glint,.wordmark:focus-visible .camera-glint {
     animation:none;
     opacity:0;

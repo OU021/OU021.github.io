@@ -24,6 +24,8 @@ Original, dependency-free academic homepage, photography gallery, and personal b
 
 Homepage book covers open the same bilingual book details in place. Their `/bookshelf/#book-<id>` links remain available without JavaScript, or when opening in another tab. Hover and keyboard focus lift only the selected cover and reveal its title.
 
+Hovering or keyboard-focusing the Baymax logo plays one brief head tilt and camera lift, then returns to rest. Reduced motion disables it. Photo previews sample a tiny version of the local image to tint only the backdrop; changing photos updates the tint, while paper previews retain the neutral backdrop. No photograph pixels or files are modified, and unavailable colour sampling falls back to neutral.
+
 - `scripts/build.mjs`: page generator, including the dormant News component.
 - `scripts/bookshelf.mjs`: bookshelf markup and individual book previews.
 - `scripts/photography.mjs`: bilingual photography page, image labels, and story metadata.
