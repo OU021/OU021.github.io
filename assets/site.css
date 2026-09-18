@@ -414,14 +414,17 @@ h1 span {
 }
 .hero-art {
   position:relative;
+  display:flex;
+  flex-direction:column;
   align-self:stretch;
   min-width:0;
   margin-right:-24px;
   isolation:isolate;
 }
 .scene-view {
-  position:absolute;
-  inset:0 0 82px;
+  position:relative;
+  flex:1;
+  min-height:260px;
 }
 #point-field,.scene-fallback {
   width:100%;
@@ -460,42 +463,37 @@ h1 span {
   border:0;
 }
 .art-footer {
-  position:absolute;
-  left:8%;
-  right:5%;
-  bottom:13px;
+  flex:none;
+  margin:8px 5% 10px 8%;
   display:grid;
   grid-template-columns:minmax(0,1fr) 30px;
-  align-items:center;
-  gap:5px 12px;
+  align-items:start;
+  gap:8px 12px;
 }
 .scene-caption-group {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:2px 14px;
+  display:grid;
+  gap:5px;
   min-width:0;
 }
 .scene-caption {
-  font-size:12px;
+  font-size:13px;
+  font-weight:600;
   line-height:1.5;
-  color:#796958;
+  color:var(--ink);
   letter-spacing:.015em;
 }
-.scene-hometown {
-  font-size:11px;
-  line-height:1.5;
+.scene-photo-story {
+  font-size:12px;
+  line-height:1.6;
   color:var(--muted);
 }
 .scene-note {
   grid-column:1 / -1;
+  padding-top:8px;
+  border-top:1px solid var(--line);
   font-size:11px;
   line-height:1.6;
   color:var(--muted);
-}
-.scene-caption,.scene-hometown {
-  margin:0;
-  white-space:nowrap;
 }
 .motion-toggle[hidden] { display:none; }
 .motion-toggle {
@@ -1002,8 +1000,7 @@ h1 span {
     font-size:12px;
   }
   .art-footer {
-    left:5%;
-    right:2%;
+    margin-inline:5% 2%;
   }
   .paper {
     gap:23px;
@@ -1077,19 +1074,15 @@ h1 span {
     min-height:0;
   }
   .hero-art {
-    height:340px;
-    margin:0 -9px -18px;
-    min-height:340px;
+    margin:0 -9px 14px;
   }
   .art-footer {
-    left:20px;
-    right:20px;
-    bottom:24px;
+    margin:8px 20px 0;
   }
-  .scene-view {inset:0 0 110px;}
-  .scene-caption-group {
-    flex-direction:column;
-    align-items:flex-start;
+  .scene-view {
+    flex:none;
+    height:230px;
+    min-height:0;
   }
   .hero-copy {
     padding:24px;
@@ -1268,9 +1261,8 @@ h1 span {
   .hero-copy {
     padding:21px 18px;
   }
-  .hero-art {
-    height:320px;
-    min-height:320px;
+  .scene-view {
+    height:210px;
   }
   .nav-links {
     font-size:10px;

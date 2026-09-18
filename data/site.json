@@ -3,7 +3,6 @@
   "url": "https://ou021.github.io",
   "role": "MPhil Student in Artificial Intelligence",
   "affiliation": "The Chinese University of Hong Kong, Shenzhen",
-  "hometownCaption": "Panzhihua, my hometown",
   "interests": [
     "Embodied AI",
     "Robot Learning",
@@ -261,5 +260,8 @@
   "researchLinks": {
     "planLab": "https://plan-lab.github.io/"
   },
-  "sceneNote": "Baymax is a small reminder of the kind of robot I hope to help build."
+  "sceneNote": "Baymax is a small reminder of the kind of robot I hope to help build.",
+  "photographerCaption": "I’m also a photographer.",
+  "photoStory": "Picking up fallen kapok flowers with my mother in Panzhihua, my hometown.",
+  "photoStoryAlt": "A red kapok flower, from a moment gathering fallen flowers with my mother in Panzhihua"
 }
