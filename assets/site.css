@@ -421,6 +421,14 @@ h1 {
   margin:0 6px;
   color:#a69581;
 }
+.research-vision {
+  margin-top:17px;
+  max-width:48ch;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--ink);
+  text-wrap:pretty;
+}
 .hero-actions {
   display:grid;
   grid-template-columns:repeat(var(--action-count,3),minmax(0,1fr));
@@ -1367,6 +1375,10 @@ h1 {
     white-space:normal;
     font-size:12px;
     margin-top:13px;
+  }
+  .research-vision {
+    margin-top:14px;
+    font-size:13px;
   }
   .hero-actions {
     margin-top:22px;

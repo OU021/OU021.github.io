@@ -14,7 +14,7 @@ Original, dependency-free academic homepage, photography gallery, and personal b
 
 `researchLinks.planLab` sets the PLAN Lab link used in About and Experience. Each item of `about` is a separate paragraph. Experience and Education appear as separate chronological lists with dates in a dedicated column on desktop.
 
-`sceneStory` states the continual-learning and self-improvement aspiration below the animation. `sceneReference` follows in the same paragraph, using Baymax to illustrate the ideal. `sceneCaption` is a brief photography note with a gallery link. The text uses no box or disclosure. About retains the academic background, with institutions and advisor links given a little more weight for scanning.
+`researchVision` states the continual-learning and self-improvement aspiration once, inside the profile panel between research interests and contact links. `sceneReference` briefly explains Baymax beneath the animation; `sceneCaption` is a photography note with a gallery link. These passages use no additional box or disclosure. About retains the academic background, with institutions and advisor links given a little more weight for scanning.
 
 `links` controls the contact links. A verified Google Scholar profile can be added here when available. All photographs and the portrait belong to Zhilin Ou and were migrated from the previous personal homepage, resized and re-encoded without embedded metadata. Add images to `assets/photos/` and entries with `src`, `width`, `height`, and descriptive `alt` text to `photographs`.
 
