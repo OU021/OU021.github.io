@@ -1,4 +1,4 @@
-const more = document.querySelector('details');
+const more = document.querySelector('.nav-links details');
 if (more) {
   document.addEventListener('click', event => { if (!more.contains(event.target)) more.open = false; });
   document.addEventListener('keydown', event => {

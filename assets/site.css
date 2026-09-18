@@ -323,7 +323,7 @@ details[open] summary::after {
   grid-template-columns:1.14fr 1fr;
   position:relative;
   min-height:440px;
-  align-items:center;
+  align-items:start;
   gap:18px;
   margin:36px 0 40px;
 }
@@ -572,12 +572,18 @@ h1 {
 .chapter-track::after {content:'';display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--chapter-progress,0));}
 .scene-chapters button[aria-current] .chapter-track {background:#d6c3ad;}
 .scene-chapters button:hover .chapter-track {background:#bda68a;}
-.scene-caption {font-size:10px;line-height:1.7;color:var(--muted);margin-top:11px;}
 .scene-story {
   min-width:0;
-  font-size:12px;
+  font-size:13px;
   line-height:1.75;
+  color:var(--ink);
+  text-wrap:pretty;
+}
+.scene-caption {
+  margin-top:3px;
   color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
   text-wrap:pretty;
 }
 .scene-photography-link {
@@ -648,6 +654,7 @@ h1 {
 .about-copy p+p {
   margin-top:12px;
 }
+.about-copy strong,.about-copy a {font-weight:600;}
 .about-copy a {
   color:var(--accent);
   text-decoration:underline;

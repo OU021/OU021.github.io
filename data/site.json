@@ -14,7 +14,7 @@
     "LinkedIn": "https://www.linkedin.com/in/zhilin-ou-348603366/"
   },
   "about": [
-    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in embodied AI, robot learning, and 3D vision. Through this work, I hope to build robots that learn from experience, adapt to new situations, and support people with care.",
+    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in embodied AI, robot learning, and 3D vision.",
     "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I conducted research with Prof. Zhihui Wang on computer vision and multimodal learning. I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research."
   ],
   "papers": [
@@ -515,8 +515,9 @@
     "planLab": "https://plan-lab.github.io/"
   },
   "photoStoryAlt": "A red kapok flower from a day picking panzhihua with my mother in Panzhihua, my hometown",
-  "sceneStory": "I’m a photographer, drawn to the quiet warmth of everyday life. It’s also what I hope for in robots: the ability to learn and adapt, with care for the people around them.",
-  "sceneCaption": "Picking panzhihua—kapok flowers—with my mother in Panzhihua.",
+  "sceneStory": "I hope to build robots that continually learn and improve themselves through experience, while supporting people with warmth and care.",
+  "sceneReference": "Baymax gives that ideal a familiar face.",
+  "sceneCaption": "From my photography: picking panzhihua with my mother in Panzhihua.",
   "greeting": "Hello, I’m",
   "photographyPreview": [
     "assets/photos/digital3.webp",
