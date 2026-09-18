@@ -25,6 +25,6 @@ for(const file of files.filter(f=>f.endsWith('.html'))){
   assert(existsSync(target),`${file}: missing ${url}`);
   if(hash)assert(readFileSync(target,'utf8').includes(`id="${hash}"`),`Missing anchor ${url}`);
  }
- for(const tag of html.matchAll(/<img\b[^>]+>/g)){assert(/alt="[^"]+"/.test(tag[0]));assert(/width="\d+"/.test(tag[0]));assert(/height="\d+"/.test(tag[0]));}
+ for(const tag of html.matchAll(/<img\b[^>]+>/g)){assert(/alt="[^"]+"/.test(tag[0]) || (/alt=""/.test(tag[0]) && /aria-hidden="true"/.test(tag[0])));assert(/width="\d+"/.test(tag[0]));assert(/height="\d+"/.test(tag[0]));}
 }
 console.log(`Passed: ${files.length} files; public papers, hidden News, required sections, links, image dimensions and alt text.`);
