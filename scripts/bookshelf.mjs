@@ -67,7 +67,7 @@ export function renderBookshelf(books) {
 ${renderBookDialog()}`;
 }
 
-const renderBookDialog = () => `<dialog class="bookshelf-dialog" ${localizedLabel('書籍資料','Book details')} data-lang="zh" lang="zh-Hant">${languageToggle()}<button class="bookshelf-close" type="button" ${localizedLabel('關閉書籍資料','Close book details')} autofocus><span>${bilingual('關閉','Close')}</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button><div data-book-content></div></dialog>`;
+const renderBookDialog = () => `<dialog class="bookshelf-dialog" ${localizedLabel('書籍資料','Book details')} data-lang="zh" lang="zh-Hant">${languageToggle()}<button class="bookshelf-close" type="button" ${localizedLabel('放回書架','Back to the shelf')} autofocus><span>${bilingual('放回書架','Back to the shelf')}</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button><div data-book-content></div></dialog>`;
 
 export function renderBookPreviews(books) {
  return `<div class="book-strip" data-book-preview role="group" aria-label="Selected books">${books.map((book,index)=>renderBook(book,index,true)).join('')}</div>${renderBookDialog()}`;

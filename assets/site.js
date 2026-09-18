@@ -49,8 +49,9 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     counter.textContent = `${current + 1} / ${album.length}`;
     figureDialog.classList.toggle('has-caption',isPhoto);
     const chinese = isPhoto && language === 'zh';
-    closeButton.firstChild.textContent = chinese ? '關閉 ' : 'Close ';
-    closeButton.setAttribute('aria-label',chinese ? '關閉照片' : 'Close image preview');
+    const closeLabel = isPhoto ? (chinese ? '收起照片' : 'Put the photo away') : 'Close';
+    closeButton.firstChild.textContent = closeLabel + ' ';
+    closeButton.setAttribute('aria-label',isPhoto ? closeLabel : 'Close framework preview');
     previous.setAttribute('aria-label',chinese ? '上一張照片' : 'Previous photograph');
     next.setAttribute('aria-label',chinese ? '下一張照片' : 'Next photograph');
     paging.setAttribute('aria-label',chinese ? '翻閱照片' : 'Photograph navigation');

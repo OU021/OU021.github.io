@@ -996,6 +996,20 @@ h1 {
 .footer a:hover {
   color:var(--accent);
 }
+.footer-home {display:block;}
+.footer-invitation {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  margin-bottom:24px;
+  font-size:13px;
+  line-height:1.7;
+}
+.footer-invitation a {color:var(--accent);white-space:nowrap;}
+.footer-invitation .icon {transform:rotate(-45deg);}
+.footer-meta {display:flex;justify-content:space-between;align-items:center;gap:16px;}
 .figure-dialog {
   border:1px solid #ffffffbf;
   border-radius:12px;
