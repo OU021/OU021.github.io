@@ -332,3 +332,15 @@ html.bookshelf-modal-open {overflow:hidden;}
   .book-jacket {transition:none;}
   .book-link:hover .book-jacket,.book-link:focus-visible .book-jacket {transform:none;}
 }
+
+.book-personal-note {
+  position:relative;
+  margin-top:24px;
+  padding:17px 18px;
+  background:#f1e8d95c;
+  border:1px solid #d9c8ac55;
+  font-size:13px;
+  line-height:1.8;
+}
+.book-personal-note::before {content:'';position:absolute;top:-1px;right:17px;width:8px;height:18px;background:#b99875;clip-path:polygon(0 0,100% 0,100% 100%,50% 77%,0 100%);}
+.book-note-label {color:var(--accent);font-size:10px;margin-bottom:8px;}

@@ -30,6 +30,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   } catch {}
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
   const showImage = link => {
+    window.previewMotion?.cancel(figureDialog);
     const preview = link.querySelector('img');
     const isPhoto = !!link.dataset.album;
     dialogImage.src = link.href;
@@ -87,9 +88,12 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
       showImage(link);
       figureDialog.showModal();
       document.body.classList.add('modal-open');
+      window.previewMotion?.open(figureDialog,link.querySelector('img'),dialogImage);
     });
   });
-  closeButton.addEventListener('click', () => figureDialog.close());
+  const closeFigure = () => window.previewMotion ? window.previewMotion.close(figureDialog,album[current]?.querySelector('img'),dialogImage) : figureDialog.close();
+  closeButton.addEventListener('click',closeFigure);
+  figureDialog.addEventListener('cancel',event => { event.preventDefault(); closeFigure(); });
   previous.addEventListener('click', () => step(-1));
   next.addEventListener('click', () => step(1));
   figureDialog.addEventListener('keydown', event => {
@@ -98,6 +102,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     }
   });
   figureDialog.addEventListener('close', () => {
+    window.previewMotion?.cancel(figureDialog);
     document.body.classList.remove('modal-open');
     if (opener?.isConnected) opener.focus({preventScroll:true});
     backdropDown = false;
@@ -108,7 +113,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   };
   figureDialog.addEventListener('pointerdown', event => { backdropDown = event.target === figureDialog && outside(event); });
   figureDialog.addEventListener('click', event => {
-    if (backdropDown && event.target === figureDialog && outside(event)) figureDialog.close();
+    if (backdropDown && event.target === figureDialog && outside(event)) closeFigure();
     backdropDown = false;
   });
 }

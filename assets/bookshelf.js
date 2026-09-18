@@ -1,7 +1,8 @@
 (() => {
-  const page = document.querySelector('.bookshelf-page');
+  const page = document.querySelector('.bookshelf-page') || document.querySelector('[data-book-preview]');
+  const homepage = page?.hasAttribute('data-book-preview');
   const dialog = document.querySelector('.bookshelf-dialog');
-  const shelf = document.querySelector('.bookshelf-grid');
+  const shelf = homepage ? page : document.querySelector('.bookshelf-grid');
   if (!page) return;
   const regions = [page,dialog].filter(Boolean);
   let language = 'zh';
@@ -46,6 +47,7 @@
     if (!link || !shelf.contains(link)) return false;
     const template = document.getElementById(link.dataset.bookTemplate);
     if (!(template instanceof HTMLTemplateElement) || !template.content.firstElementChild) return false;
+    window.previewMotion?.cancel(dialog);
     content.replaceChildren(template.content.cloneNode(true));
     updateRegion(dialog);
     const title = content.querySelector('h2[id]');
@@ -57,6 +59,7 @@
     }
     opener = link;
     document.documentElement.classList.add('bookshelf-modal-open');
+    window.previewMotion?.open(dialog,link.querySelector('img'),content.querySelector('.book-detail-cover img'));
     return true;
   };
   shelf.addEventListener('click', event => {
@@ -65,13 +68,16 @@
     if (openBook(link)) event.preventDefault();
   });
 
-  closeButton.addEventListener('click', () => dialog.close());
+  const closeBook = () => window.previewMotion ? window.previewMotion.close(dialog,opener?.querySelector('img'),content.querySelector('.book-detail-cover img')) : dialog.close();
+  closeButton.addEventListener('click',closeBook);
+  dialog.addEventListener('cancel',event => { event.preventDefault(); closeBook(); });
   dialog.addEventListener('close', () => {
+    window.previewMotion?.cancel(dialog);
     document.documentElement.classList.remove('bookshelf-modal-open');
     dialog.removeAttribute('aria-labelledby');
     content.replaceChildren();
     if (opener?.isConnected) {
-      if (location.hash === '#' + opener.closest('[data-book-id]').id) {
+      if (!homepage && location.hash === '#' + opener.closest('[data-book-id]').id) {
         history.replaceState(null,'',location.pathname + location.search);
       }
       opener.focus({preventScroll:true});
@@ -88,7 +94,7 @@
     backdropPointerDown = event.target === dialog && outsideDialog(event);
   });
   dialog.addEventListener('click', event => {
-    if (backdropPointerDown && event.target === dialog && outsideDialog(event)) dialog.close();
+    if (backdropPointerDown && event.target === dialog && outsideDialog(event)) closeBook();
     backdropPointerDown = false;
   });
   const openLinkedBook = () => {
@@ -97,6 +103,8 @@
     if (book && shelf.contains(book)) openBook(book.querySelector('[data-book-template]'));
     else if (dialog.open) dialog.close();
   };
-  window.addEventListener('hashchange',openLinkedBook);
-  openLinkedBook();
+  if (!homepage) {
+    window.addEventListener('hashchange',openLinkedBook);
+    openLinkedBook();
+  }
 })();

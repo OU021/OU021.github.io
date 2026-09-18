@@ -14,6 +14,11 @@ export function photoAttributes(p) {
  };
  return Object.entries(attributes).map(([key,value])=>`${key}="${esc(value)}"`).join(' ');
 }
+export function photoStamp(p) {
+ if (!p.date) return '';
+ const date = new Intl.DateTimeFormat('en',{year:'numeric',month:'short',timeZone:'UTC'}).format(new Date(`${p.date}-01T00:00:00Z`));
+ return `<span class="photo-stamp" lang="en"><time datetime="${esc(p.date)}">${esc(date)}</time>${p.printLocation ? `<span aria-hidden="true"> · </span><span>${esc(p.printLocation)}</span>` : ''}</span>`;
+}
 export function renderPhotography(photos,icon) {
- return `<section class="photography-page" data-photo-region data-lang="zh" lang="zh-Hant"><header class="photo-heading"><a class="back" href="../">${icon('arrow')}${bilingual('學術主頁','Academic homepage')}</a><div class="photo-heading-row"><h1>${bilingual('攝影','Photography')}</h1>${photoLanguageToggle()}</div><p>${bilingual('一些風景，和留在照片裡的日子。','Places, people, and days I want to remember.')}</p></header><div class="gallery">${photos.map((p,i)=>`<figure class="photo" id="photo-${esc(p.id)}"><a href="../${p.src}" data-figure data-album="gallery" ${photoAttributes(p)} aria-label="查看照片：${esc(p.titleZh)}"><img src="../${p.src}" width="${p.width}" height="${p.height}" alt="${esc(p.altZh)}" ${i<2?'fetchpriority="high"':'loading="lazy"'} decoding="async"></a></figure>`).join('')}</div></section>`;
+ return `<section class="photography-page" data-photo-region data-lang="zh" lang="zh-Hant"><header class="photo-heading"><a class="back" href="../">${icon('arrow')}${bilingual('學術主頁','Academic homepage')}</a><div class="photo-heading-row"><h1>${bilingual('攝影','Photography')}</h1>${photoLanguageToggle()}</div><p>${bilingual('一些風景，和留在照片裡的日子。','Places, people, and days I want to remember.')}</p><p class="preview-hint">${bilingual('點開照片，讀讀它的故事。','Click a photo for its story.')}</p></header><div class="gallery">${photos.map((p,i)=>`<figure class="photo" id="photo-${esc(p.id)}"><a href="../${p.src}" data-figure data-album="gallery" ${photoAttributes(p)} aria-label="查看照片：${esc(p.titleZh)}"><img src="../${p.src}" width="${p.width}" height="${p.height}" alt="${esc(p.altZh)}" ${i<2?'fetchpriority="high"':'loading="lazy"'} decoding="async">${photoStamp(p)}</a></figure>`).join('')}</div></section>`;
 }
