@@ -7,13 +7,13 @@
   <path d="M71 45C82 47 90 63 86 75C83 85 74 84 65 78L59 74C55 71 58 66 64 66L70 68C73 60 68 53 71 45Z" fill="#fffdf9"/>
   <path d="M71 45C82 47 90 63 86 75C83 85 74 84 65 78" stroke="#b5aa9d" stroke-width="1.2" stroke-linecap="round"/>
   <path d="M84 69C85 77 81 81 74 79L65 75L65 78C74 84 83 85 86 75C87 72 86 70 84 69Z" fill="#eae4db"/>
-  <g transform="rotate(-8 47 24)">
+  <g class="baymax-head-motion"><g transform="rotate(-8 47 24)">
     <path d="M20 24C20 14 31 8 46 8C61 8 74 12 75 22C76 34 63 40 48 40C32 40 20 35 20 24Z" fill="#fffdf9" stroke="#b5aa9d" stroke-width="1.2"/>
     <path d="M22 28C28 35 44 38 58 34C66 32 71 28 74 24C73 34 62 40 48 40C34 40 25 36 22 28Z" fill="#ece7df" opacity=".65"/>
     <path d="M34 25H59" stroke="#33332f" stroke-width="1.9" stroke-linecap="round"/>
     <circle cx="34" cy="25" r="3" fill="#33332f"/>
     <circle cx="59" cy="25" r="3" fill="#33332f"/>
-  </g>
+  </g></g>
   <g transform="rotate(5 48 65)">
     <path d="M29 54V50C29 48.3 30.3 47 32 47H41C42.7 47 44 48.3 44 50V54" fill="#74665a"/>
     <path d="M64 51H69" stroke="#74665a" stroke-width="3" stroke-linecap="round"/>
