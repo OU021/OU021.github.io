@@ -1,13 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
-  <path d="M26 32C31 28 49 28 54 32C64 36 71 46 71 57C71 63 67 67 63 66L64 75C49 79 31 79 16 75L17 66C13 67 9 63 9 57C9 46 16 36 26 32Z" fill="#fffdf8" stroke="#a39789" stroke-width="2.4" stroke-linejoin="round"/>
-  <ellipse cx="40" cy="19" rx="19" ry="12" fill="#fffdf8" stroke="#a39789" stroke-width="2.4"/>
-  <path d="M31 20H49" stroke="#37332f" stroke-width="2.2"/>
-  <circle cx="31" cy="20" r="2.8" fill="#37332f"/>
-  <circle cx="49" cy="20" r="2.8" fill="#37332f"/>
-  <path d="M27 48V44H40V48" fill="#65584e"/>
-  <rect x="20" y="47" width="40" height="25" rx="5" fill="#65584e"/>
-  <circle cx="40" cy="60" r="9" fill="#d0c3b0"/>
-  <circle cx="40" cy="60" r="6" fill="#383734"/>
-  <path d="M17 56C19 53 24 55 27 58C29 61 27 65 23 65C18 65 15 61 17 56Z" fill="#fffdf8" stroke="#a39789" stroke-width="2"/>
-  <path d="M63 56C61 53 56 55 53 58C51 61 53 65 57 65C62 65 65 61 63 56Z" fill="#fffdf8" stroke="#a39789" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <path d="M30 39C40 34 60 35 71 43C82 46 90 63 86 75C84 81 81 83 77 82L79 86C61 92 36 92 19 87L21 71C16 73 12 70 11 64C9 53 18 43 30 39Z" fill="#fffdf9" stroke="#a89b8b" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M69 44C77 56 74 76 69 89L79 86C79 62 77 51 69 44Z" fill="#e9e2d8"/>
+  <g transform="rotate(-8 47 24)">
+    <path d="M20 24C20 14 31 8 46 8C61 8 74 12 75 22C76 34 63 40 48 40C32 40 20 35 20 24Z" fill="#fffdf9" stroke="#a89b8b" stroke-width="2"/>
+    <path d="M33 25H60" stroke="#33332f" stroke-width="2.5"/>
+    <circle cx="33" cy="25" r="3.7" fill="#33332f"/>
+    <circle cx="60" cy="25" r="3.7" fill="#33332f"/>
+  </g>
+  <g transform="rotate(5 48 65)">
+    <path d="M29 54V47H44V54" fill="#706156"/>
+    <rect x="23" y="52" width="51" height="31" rx="6" fill="#706156"/>
+    <circle cx="49" cy="67" r="12" fill="#d0bea5"/>
+    <circle cx="49" cy="67" r="8.5" fill="#363b39"/>
+  </g>
+  <path d="M25 51C27 46 34 43 39 45C43 46 45 51 42 54C40 56 36 56 32 57C27 58 23 56 25 51Z" fill="#fffdf9" stroke="#a89b8b" stroke-width="1.8"/>
+  <path d="M70 73C75 72 80 74 78 79C76 84 68 86 62 84C57 83 54 80 56 77C58 74 62 77 66 76L70 73Z" fill="#fffdf9" stroke="#a89b8b" stroke-width="1.8"/>
 </svg>
