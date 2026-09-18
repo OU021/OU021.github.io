@@ -494,8 +494,15 @@
   "sceneStory": "I’m also a photographer. This photo recalls picking panzhihua—kapok flowers—with my mother in Panzhihua, my hometown. The flower and the city share a Chinese name. Here, that memory meets Baymax and the warmth I hope robots can offer.",
   "greeting": "Hello, I’m",
   "photographyPreview": [
-    "assets/photos/digital7.webp",
+    "assets/photos/digital3.webp",
     "assets/photos/digital1.webp",
     "assets/photos/digital11.webp"
+  ],
+  "bookshelfPreview": [
+    "bright-night",
+    "flatland",
+    "kitchen",
+    "animal-farm",
+    "taipei-people"
   ]
 }
