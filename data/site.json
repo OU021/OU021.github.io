@@ -16,7 +16,8 @@
   "about": [
     "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in embodied AI, robot learning, and 3D vision.",
     "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I conducted research with Prof. Zhihui Wang on computer vision and multimodal learning.",
-    "I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research."
+    "I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research.",
+    "My long-term hope is to build robots that continually learn from experience, adapt to new situations, and support people with care."
   ],
   "papers": [
     {
@@ -259,5 +260,6 @@
   },
   "researchLinks": {
     "planLab": "https://plan-lab.github.io/"
-  }
+  },
+  "sceneNote": "Baymax is a small reminder of the kind of robot I hope to help build."
 }

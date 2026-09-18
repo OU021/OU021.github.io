@@ -421,7 +421,7 @@ h1 span {
 }
 .scene-view {
   position:absolute;
-  inset:0 0 66px;
+  inset:0 0 82px;
 }
 #point-field,.scene-fallback {
   width:100%;
@@ -464,10 +464,10 @@ h1 span {
   left:8%;
   right:5%;
   bottom:13px;
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 30px;
   align-items:center;
-  gap:12px;
+  gap:5px 12px;
 }
 .scene-caption-group {
   display:flex;
@@ -485,6 +485,12 @@ h1 span {
 .scene-hometown {
   font-size:11px;
   line-height:1.5;
+  color:var(--muted);
+}
+.scene-note {
+  grid-column:1 / -1;
+  font-size:11px;
+  line-height:1.6;
   color:var(--muted);
 }
 .scene-caption,.scene-hometown {
@@ -1071,16 +1077,16 @@ h1 span {
     min-height:0;
   }
   .hero-art {
-    height:305px;
+    height:340px;
     margin:0 -9px -18px;
-    min-height:305px;
+    min-height:340px;
   }
   .art-footer {
     left:20px;
     right:20px;
     bottom:24px;
   }
-  .scene-view {inset:0 0 75px;}
+  .scene-view {inset:0 0 110px;}
   .scene-caption-group {
     flex-direction:column;
     align-items:flex-start;
@@ -1263,8 +1269,8 @@ h1 span {
     padding:21px 18px;
   }
   .hero-art {
-    height:285px;
-    min-height:285px;
+    height:320px;
+    min-height:320px;
   }
   .nav-links {
     font-size:10px;
