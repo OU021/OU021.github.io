@@ -26,6 +26,10 @@ Homepage book covers open the same bilingual book details in place. Their `/book
 
 Hovering or keyboard-focusing the Baymax logo plays one brief head tilt and camera lift, then returns to rest. Reduced motion disables it. Photo previews sample a tiny version of the local image to tint only the backdrop; changing photos updates the tint, while paper previews retain the neutral backdrop. No photograph pixels or files are modified, and unavailable colour sampling falls back to neutral.
 
+On touch screens, swipe horizontally on an opened photograph to move through the album. Vertical scrolling, pinch zoom, short taps, and the paper framework retain their normal behaviour; arrow buttons and keyboard navigation remain available.
+
+`assets/social-card.png` is the 1200 × 630 link-preview card, referenced by Open Graph and Twitter metadata. To regenerate after changing the name, portrait, role, or research interests, run `node scripts/render-social-card.mjs` in an environment with `@napi-rs/canvas`, then build the site. The committed PNG is used directly, so ordinary builds remain dependency-free. The 404 page reuses the existing Baymax logo with root-relative links and assets, including when the missing URL has several path segments.
+
 - `scripts/build.mjs`: page generator, including the dormant News component.
 - `scripts/bookshelf.mjs`: bookshelf markup and individual book previews.
 - `scripts/photography.mjs`: bilingual photography page, image labels, and story metadata.

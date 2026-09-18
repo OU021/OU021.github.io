@@ -572,6 +572,7 @@ h1 {
 .chapter-track::after {content:'';display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--chapter-progress,0));}
 .scene-chapters button[aria-current] .chapter-track {background:#d6c3ad;}
 .scene-chapters button:hover .chapter-track {background:#bda68a;}
+.scene-caption {font-size:10px;line-height:1.7;color:var(--muted);margin-top:11px;}
 .scene-story {
   min-width:0;
   font-size:12px;
@@ -1056,6 +1057,7 @@ h1 {
 }
 .figure-dialog.has-caption {width:min(880px,94vw);}
 .figure-dialog.has-caption>img {max-height:max(160px,calc(94dvh - 250px));}
+.figure-dialog.has-caption>img {touch-action:pan-y pinch-zoom;}
 .figure-bottom[hidden],.figure-paging[hidden] {display:none;}
 .figure-bottom {display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:15px 8px 3px;}
 .figure-caption {font-size:13px;line-height:1.7;color:var(--ink);text-wrap:pretty;min-width:0;}
@@ -1145,11 +1147,30 @@ h1 {
 .photo a:focus-visible {outline:none;}
 .photo:not(:has(.photo-stamp)) {padding-bottom:5px;}
 .error-page {
-  padding:100px 0 180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:38px;
+  min-height:65vh;
+  padding:76px 0 100px;
 }
-.error-page p {
-  margin-top:24px;
+.error-mascot {width:112px;height:112px;flex:none;}
+.error-page .error-code {font:12px var(--sans);letter-spacing:.2em;color:var(--muted);margin-bottom:16px;}
+.error-page h1 {font-size:clamp(32px,4vw,48px);line-height:1.15;letter-spacing:-.025em;text-wrap:balance;}
+.error-page .error-note {margin-top:15px;color:var(--muted);font-size:15px;}
+.error-home {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:28px;
   color:var(--accent);
+  font-size:13px;
+}
+.error-home .icon {width:16px;height:16px;transform:rotate(180deg);}
+.error-home:hover {text-decoration:underline;text-underline-offset:4px;}
+@media(max-width:600px) {
+  .error-page {flex-direction:column;text-align:center;gap:24px;padding:54px 0 76px;}
+  .error-mascot {width:88px;height:88px;}
 }
 .reveal {
   opacity:0;

@@ -22,7 +22,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const counter = figureDialog.querySelector('[data-photo-counter]');
   const previous = figureDialog.querySelector('[data-photo-previous]');
   const next = figureDialog.querySelector('[data-photo-next]');
-  let album = [], current = 0, opener = null, backdropDown = false;
+  let album = [], current = 0, opener = null, backdropDown = false, swipe = null;
   const photoTones = new Map();
   const photoTone = image => {
     if (!image?.complete || !image.naturalWidth) return null;
@@ -72,6 +72,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   } catch {}
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
   const showImage = link => {
+    swipe = null;
     window.previewMotion?.cancel(figureDialog);
     const preview = link.querySelector('img');
     const isPhoto = !!link.dataset.album;
@@ -121,6 +122,29 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     current = (current + offset + album.length) % album.length;
     showImage(album[current]);
   };
+  // Swiping belongs to the photo surface; text, vertical scrolling and pinch zoom stay native.
+  const zoomed = () => (window.visualViewport?.scale || 1)>1.01;
+  dialogImage.addEventListener('pointerdown',event => {
+    if (event.pointerType!=='touch') return;
+    swipe = event.isPrimary && figureDialog.open && album.length>1 && !zoomed()
+      ? {id:event.pointerId,x:event.clientX,y:event.clientY,time:event.timeStamp} : null;
+  },{passive:true});
+  figureDialog.addEventListener('pointerdown',event => {
+    if (event.pointerType==='touch' && !event.isPrimary) swipe = null;
+  },{passive:true});
+  dialogImage.addEventListener('pointermove',event => {
+    if (!swipe || event.pointerId!==swipe.id) return;
+    const dx=Math.abs(event.clientX-swipe.x), dy=Math.abs(event.clientY-swipe.y);
+    if (zoomed() || (dy>12 && dy>dx)) swipe=null;
+  },{passive:true});
+  dialogImage.addEventListener('pointerup',event => {
+    const start=swipe; swipe=null;
+    if (!start || event.pointerId!==start.id || zoomed() || !figureDialog.open) return;
+    const dx=event.clientX-start.x, dy=event.clientY-start.y;
+    const threshold=Math.max(42,Math.min(90,dialogImage.clientWidth*.14));
+    if (Math.abs(dx)>=threshold && Math.abs(dx)>Math.abs(dy)*1.5 && event.timeStamp-start.time<1000) step(dx<0?1:-1);
+  },{passive:true});
+  for (const event of ['pointercancel','lostpointercapture']) dialogImage.addEventListener(event,()=>{swipe=null;},{passive:true});
   links.forEach(link => {
     link.setAttribute('aria-haspopup','dialog');
     link.addEventListener('click', event => {
@@ -146,6 +170,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     }
   });
   figureDialog.addEventListener('close', () => {
+    swipe = null;
     window.previewMotion?.cancel(figureDialog);
     document.body.classList.remove('modal-open');
     if (opener?.isConnected) opener.focus({preventScroll:true});
