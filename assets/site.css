@@ -470,30 +470,12 @@ h1 span {
   align-items:start;
   gap:8px 12px;
 }
-.scene-caption-group {
-  display:grid;
-  gap:5px;
+.scene-story {
   min-width:0;
-}
-.scene-caption {
-  font-size:13px;
-  font-weight:600;
-  line-height:1.5;
-  color:var(--ink);
-  letter-spacing:.015em;
-}
-.scene-photo-story {
   font-size:12px;
-  line-height:1.6;
+  line-height:1.75;
   color:var(--muted);
-}
-.scene-note {
-  grid-column:1 / -1;
-  padding-top:8px;
-  border-top:1px solid var(--line);
-  font-size:11px;
-  line-height:1.6;
-  color:var(--muted);
+  text-wrap:pretty;
 }
 .motion-toggle[hidden] { display:none; }
 .motion-toggle {
