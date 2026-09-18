@@ -22,7 +22,11 @@
       "height": 700
     },
     "coverSource": "Cover image supplied by Zhilin Ou.",
-    "bibliographySource": "https://www.readingtimes.com.tw/product/?pid=AIA0836"
+    "bibliographySource": "https://www.readingtimes.com.tw/product/?pid=AIA0836",
+    "personalNote": {
+      "zh": "如何面對死亡，是我們一生都在學習的一件事。",
+      "en": "We spend our whole lives learning how to face death."
+    }
   },
   {
     "id": "bright-night",
@@ -122,7 +126,11 @@
       "description": "After overthrowing their human rulers, farm animals establish a new order that gradually reproduces the power and privilege they sought to escape.",
       "sourceUrl": "https://www.penguinrandomhouse.com/books/124976/animal-farm-by-george-orwell-introduction-by-julian-symons/"
     },
-    "bibliographySource": "https://www.taaze.tw/products/11100981431.html"
+    "bibliographySource": "https://www.taaze.tw/products/11100981431.html",
+    "personalNote": {
+      "zh": "政治影響著每個人，它遠遠沒有我們想得那麼遠。",
+      "en": "Politics affects us all. It is far closer to us than we might think."
+    }
   },
   {
     "id": "white",
@@ -311,7 +319,11 @@
       "height": 700
     },
     "coverSource": "Cover image supplied by Zhilin Ou.",
-    "bibliographySource": "https://www.taaze.tw/products/11100976946.html"
+    "bibliographySource": "https://www.taaze.tw/products/11100976946.html",
+    "personalNote": {
+      "zh": "讀這本書的時候請不要預設主角的性別。",
+      "en": "When reading this book, please don’t assume the protagonists’ genders."
+    }
   },
   {
     "id": "good-days-oven",
