@@ -186,7 +186,7 @@ still.toggle.dispatch('click');
 assert.equal(still.frames.size, 1, 'A deliberate play action can enable motion');
 still.advance(10000);
 assert.equal(still.canvas.dataset.phase, 'photo');
-assert(Number(still.photograph.style.opacity) > .9, 'Particles resolve into the actual photograph');
+assert(Number(still.photograph.style.opacity) > .75 && Number(still.photograph.style.opacity) < .9, 'Particles resolve into a softly translucent photograph');
 still.media.dispatch('change');
 assert.equal(still.frames.size, 0);
 assert.equal(still.canvas.dataset.phase, 'camera', 'Reduced-motion preference returns to the camera');

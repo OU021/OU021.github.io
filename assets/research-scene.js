@@ -5,6 +5,7 @@
   const art=canvas.closest('.hero-art');
   const toggle=art.querySelector('.motion-toggle');
   const photograph=art.querySelector('.scene-photograph');
+  const photoOpacity=.82;
   const media=window.matchMedia('(prefers-reduced-motion: reduce)');
   let gl;
   try{gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false});}catch{return;}
@@ -99,7 +100,7 @@
     gl.uniform1f(locations.opacity,1-photoVisible);
     gl.drawArrays(gl.POINTS,0,count);
     if(photograph){
-      photograph.style.opacity=String(photoVisible);
+      photograph.style.opacity=String(photoVisible*photoOpacity);
       photograph.style.width=`${fit*1.86}px`;
       photograph.style.height=`${fit*1.24}px`;
       photograph.style.transform=`translate(-50%,-50%) scale(${1+photoVisible*.008})`;
