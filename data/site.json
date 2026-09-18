@@ -4,9 +4,9 @@
   "role": "MPhil Student in Artificial Intelligence",
   "affiliation": "The Chinese University of Hong Kong, Shenzhen",
   "interests": [
+    "3D Vision",
     "Embodied AI",
-    "Robot Learning",
-    "3D Vision"
+    "Robot Learning"
   ],
   "links": {
     "Email": "mailto:ouuzhilin@gmail.com",
@@ -14,7 +14,7 @@
     "LinkedIn": "https://www.linkedin.com/in/zhilin-ou-348603366/"
   },
   "about": [
-    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in embodied AI, robot learning, and 3D vision.",
+    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in 3D vision, embodied AI, and robot learning.",
     "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I conducted research with Prof. Zhihui Wang on computer vision and multimodal learning. I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research."
   ],
   "papers": [
@@ -515,9 +515,9 @@
     "planLab": "https://plan-lab.github.io/"
   },
   "photoStoryAlt": "A red kapok flower from a day picking panzhihua with my mother in Panzhihua, my hometown",
-  "researchVision": "I hope to build robots that continually learn and improve themselves through experience, while supporting people with warmth and care.",
-  "sceneReference": "Baymax captures the warmth and care I envision in robots.",
-  "sceneCaption": "From my photography: picking panzhihua with my mother in Panzhihua.",
+  "researchVision": "I hope to develop embodied agents that continually learn and improve themselves through experience, while supporting people with warmth and care.",
+  "sceneReference": "I’m also a photographer. This animation brings together my photography and my vision for embodied AI, with Baymax giving a familiar face to warmth and care.",
+  "sceneCaption": "In the photograph: picking panzhihua with my mother in Panzhihua.",
   "greeting": "Hello, I’m",
   "photographyPreview": [
     "assets/photos/digital3.webp",
