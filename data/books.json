@@ -1,0 +1,433 @@
+[
+  {
+    "id": "kitchen",
+    "title": "廚房",
+    "author": "吉本芭娜娜",
+    "publisher": "時報出版",
+    "year": 2017,
+    "isbn": "9789571372419",
+    "sourceUrl": "https://www.eslite.com/product/1001110932642068",
+    "description": "透過失去親人的年輕人與新建立的家人關係，描寫日常飲食、陪伴與悲傷中的重新生活。",
+    "translator": "劉子倩",
+    "edition": "廚房（三十週年紀念版）",
+    "en": {
+      "title": "Kitchen",
+      "author": "Banana Yoshimoto",
+      "description": "Through young people grieving lost relatives and forming new family bonds, these stories explore food, companionship, and finding a way to live after loss.",
+      "sourceUrl": "https://www.faber.co.uk/product/9780571342723-kitchen/"
+    },
+    "cover": {
+      "src": "assets/books/kitchen.webp",
+      "width": 449,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "bibliographySource": "https://www.readingtimes.com.tw/product/?pid=AIA0836"
+  },
+  {
+    "id": "bright-night",
+    "title": "朗夜",
+    "author": "崔恩榮",
+    "publisher": "馬可孛羅",
+    "year": 2024,
+    "isbn": "9786267356609",
+    "sourceUrl": "https://www.eslite.com/product/10012013192682543367000",
+    "alternateTitle": "明亮的夜晚",
+    "translator": "胡椒筒",
+    "description": "透過一名女子與外婆的重逢，小說串起四代女性在歷史變動中的生活、傷痛與相互扶持。",
+    "cover": {
+      "src": "assets/books/bright-night.webp",
+      "width": 353,
+      "height": 500
+    },
+    "coverSource": "https://www.airitibooks.com/BookCover/CompressRatio_JPG/149833.jpg",
+    "en": {
+      "title": "Bright Night",
+      "author": "Choi Eunyoung",
+      "description": "A woman's reunion with her grandmother traces four generations of women through historical upheaval, shared wounds, and mutual support.",
+      "sourceUrl": "https://library.ltikorea.or.kr/themes/411643"
+    },
+    "coverCatalog": "https://www.airitibooks.com/Publication/Details?publicationID=P20240416773",
+    "bibliographySource": "https://www.cite.com.tw/book?id=99318"
+  },
+  {
+    "id": "shoko-smile",
+    "title": "祥子的微笑",
+    "author": "崔恩榮",
+    "publisher": "臺灣商務印書館",
+    "year": 2018,
+    "isbn": "9789570531695",
+    "sourceUrl": "https://www.eslite.com/product/1001117012721802",
+    "translator": "杜彥文",
+    "description": "七篇小說透過友誼、親情與離別，描寫個人關係如何承受歷史與社會的重量。",
+    "cover": {
+      "src": "assets/books/shoko-smile.webp",
+      "width": 446,
+      "height": 630
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Shoko’s Smile",
+      "author": "Choi Eunyoung",
+      "description": "Seven stories of friendship, family, and parting explore how personal relationships bear the weight of history and society.",
+      "sourceUrl": "https://www.hachette.co.uk/titles/choi-eunyoung/shokos-smile/9781529376043/"
+    },
+    "bibliographySource": "https://www.cite.com.tw/book?id=86962"
+  },
+  {
+    "id": "flatland",
+    "title": "平面國",
+    "author": "愛德溫・A・艾勃特",
+    "publisher": "木馬文化",
+    "year": 2019,
+    "isbn": "9789863597339",
+    "sourceUrl": "https://www.eslite.com/product/1001128312809669",
+    "translator": "賴以威",
+    "edition": "平面國：向上而非向北",
+    "description": "一個正方形在接觸三維世界後重新理解自身的二維社會，故事藉幾何想像探問認知、階級與偏見。",
+    "cover": {
+      "src": "assets/books/flatland.webp",
+      "width": 352,
+      "height": 500
+    },
+    "coverSource": "https://img.pchome.com.tw/cs/items/DJBQ0HD900D0W43/000001_1641975193.jpg",
+    "en": {
+      "title": "Flatland",
+      "author": "Edwin A. Abbott",
+      "description": "A square's encounter with a three-dimensional world transforms his understanding of his own society, using geometry to question perception, class, and prejudice.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/313174/flatland-by-edwin-a-abbott/"
+    },
+    "coverCatalog": "https://24h.pchome.com.tw/books/prod/DJBQ0H-D900D0W43",
+    "bibliographySource": "https://www.cite.com.tw/book?id=82826"
+  },
+  {
+    "id": "animal-farm",
+    "title": "動物農莊",
+    "author": "喬治・歐威爾",
+    "publisher": "大智文化",
+    "year": 2022,
+    "isbn": "9786269572908",
+    "sourceUrl": "https://www.eslite.com/product/1001252872682157842009",
+    "alternateTitle": "動物農場",
+    "description": "農場動物推翻人類統治後建立新秩序，卻逐漸落入另一套權力與特權之中。",
+    "cover": {
+      "src": "assets/books/animal-farm.webp",
+      "width": 200,
+      "height": 270
+    },
+    "coverSource": "https://media.taaze.tw/showProdImage.html?sc=11100981431&width=200&height=283",
+    "en": {
+      "title": "Animal Farm",
+      "author": "George Orwell",
+      "description": "After overthrowing their human rulers, farm animals establish a new order that gradually reproduces the power and privilege they sought to escape.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/124976/animal-farm-by-george-orwell-introduction-by-julian-symons/"
+    },
+    "bibliographySource": "https://www.taaze.tw/products/11100981431.html"
+  },
+  {
+    "id": "white",
+    "title": "白",
+    "author": "韓江",
+    "publisher": "漫遊者文化",
+    "year": 2019,
+    "isbn": "9789864893607",
+    "sourceUrl": "https://www.eslite.com/product/1001180772791462",
+    "translator": "張雅眉",
+    "description": "從白色事物展開的六十五則片段，圍繞早夭的姊姊，凝視記憶、哀傷與生命的延續。",
+    "cover": {
+      "src": "assets/books/white.webp",
+      "width": 493,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "The White Book",
+      "author": "Han Kang",
+      "description": "Sixty-five fragments drawn from white things center on an elder sister who died in infancy, reflecting on memory, grief, and the continuation of life.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/566130/the-white-book-by-han-kang/"
+    },
+    "bibliographySource": "https://www.azothbooks.com/shop/%E7%99%BD"
+  },
+  {
+    "id": "human-acts",
+    "title": "少年來了",
+    "author": "韓江",
+    "publisher": "漫遊者文化",
+    "year": 2018,
+    "isbn": "9789864892341",
+    "sourceUrl": "https://www.eslite.com/product/1001180772645458",
+    "translator": "尹嘉玄",
+    "description": "以光州事件為背景，交織少年、倖存者與家屬的聲音，追問暴力之後如何記憶與生活。",
+    "cover": {
+      "src": "assets/books/human-acts.webp",
+      "width": 328,
+      "height": 468
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Human Acts",
+      "author": "Han Kang",
+      "description": "Set around the Gwangju Uprising, the novel brings together the voices of a boy, survivors, and bereaved families to ask how people remember and live after violence.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/536652/human-acts-by-han-kang/"
+    },
+    "bibliographySource": "https://www.azothbooks.com/shop/8819"
+  },
+  {
+    "id": "vegetarian",
+    "title": "素食者",
+    "author": "韓江",
+    "publisher": "漫遊者文化",
+    "year": 2023,
+    "isbn": "9789864897773",
+    "translator": "胡椒筒",
+    "sourceUrl": "https://www.eslite.com/product/1001180772682373834000",
+    "description": "英惠決定不再吃肉，這個選擇引發家人的衝突與控制，小說透過三種視角探討身體自主、暴力與疏離。",
+    "en": {
+      "title": "The Vegetarian",
+      "author": "Han Kang",
+      "description": "Yeong-hye’s decision to stop eating meat provokes conflict and control within her family, as three perspectives explore bodily autonomy, violence, and alienation.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/250333/the-vegetarian-by-han-kang/"
+    },
+    "cover": {
+      "src": "assets/books/vegetarian.webp",
+      "width": 486,
+      "height": 687
+    },
+    "coverSource": "https://tshop.r10s.com/ef0/45d/9dfd/7f0d/9034/42b9/58fa/1171eeb71e0242ac110004.jpg"
+  },
+  {
+    "id": "still-life-white",
+    "title": "白色畫像",
+    "author": "賴香吟",
+    "publisher": "印刻",
+    "year": 2022,
+    "isbn": "9789863875079",
+    "sourceUrl": "https://www.eslite.com/product/1001223352682121621005",
+    "description": "三位平凡人物的生命故事，描繪戰後臺灣戒嚴生活中無所不在的恐懼、妥協與記憶。",
+    "cover": {
+      "src": "assets/books/still-life-white.webp",
+      "width": 353,
+      "height": 514
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Portraits in White",
+      "author": "Kaori Lai",
+      "description": "The lives of three ordinary people reveal the fear, compromise, and memory woven into everyday life under martial law in postwar Taiwan.",
+      "sourceUrl": "https://cup.columbia.edu/book/portraits-in-white/9780231220118/"
+    },
+    "bibliographySource": "https://www.sanmin.com.tw/product/index/010203476"
+  },
+  {
+    "id": "death-literary-youth",
+    "title": "文青之死",
+    "author": "賴香吟",
+    "publisher": "印刻",
+    "year": 2016,
+    "isbn": "9789863870845",
+    "sourceUrl": "https://www.eslite.com/product/1001223352492805",
+    "description": "這部短篇小說集書寫愛情、疾病與理想的變化，以及人們在時間中面對的失落。",
+    "cover": {
+      "src": "assets/books/death-literary-youth.webp",
+      "width": 353,
+      "height": 502
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "The Death of a Literary Youth",
+      "author": "Kaori Lai",
+      "description": "This short-story collection explores love, illness, changing ideals, and the losses people face as time passes.",
+      "sourceUrl": "https://booksfromtaiwan.moc.gov.tw/images/download_img/Books%20from%20Taiwan%20Issue%2015.pdf"
+    },
+    "bibliographySource": "https://www.sanmin.com.tw/product/index/005694432"
+  },
+  {
+    "id": "island",
+    "title": "島",
+    "author": "賴香吟",
+    "publisher": "聯合文學",
+    "year": 2022,
+    "isbn": "9789863234685",
+    "sourceUrl": "https://www.eslite.com/product/1001133222682206858005",
+    "description": "這部跨越三十年創作的小說集，從日常生活與個人記憶映照臺灣解嚴前後的社會變化與世代經驗。",
+    "edition": "島（2022新版）",
+    "en": {
+      "title": "Island",
+      "author": "Kaori Lai",
+      "description": "Spanning thirty years of writing, this story collection traces Taiwan’s social changes and generational experiences around the end of martial law through everyday life and personal memory.",
+      "sourceUrl": "https://cup.columbia.edu/book/portraits-in-white/9780231220118/"
+    },
+    "cover": {
+      "src": "assets/books/island.webp",
+      "width": 352,
+      "height": 500
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "bibliographySource": "https://www.sanmin.com.tw/product/index/010623843"
+  },
+  {
+    "id": "afterwards",
+    "title": "其後",
+    "author": "賴香吟",
+    "publisher": "印刻",
+    "year": 2012,
+    "isbn": "9789866135859",
+    "sourceUrl": "https://www.eslite.com/product/1001223352136254",
+    "description": "敘事者在友人離世後回望青春、友情與書寫，探索記憶留下的傷痛，以及倖存者如何繼續生活。",
+    "edition": "其後それから",
+    "en": {
+      "title": "Afterwards",
+      "author": "Kaori Lai",
+      "description": "After a friend’s death, the narrator revisits youth, friendship, and writing, exploring the wounds of memory and how those left behind continue living.",
+      "sourceUrl": "https://cup.columbia.edu/book/portraits-in-white/9780231220118/"
+    },
+    "cover": {
+      "src": "assets/books/afterwards.webp",
+      "width": 501,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "bibliographySource": "https://www.taaze.tw/products/11100608898.html"
+  },
+  {
+    "id": "if-light-speed",
+    "title": "如果我們無法以光速前進",
+    "author": "金草葉",
+    "publisher": "聯經出版",
+    "year": 2022,
+    "isbn": "9789570862003",
+    "sourceUrl": "https://www.eslite.com/product/1001110712682136754002",
+    "description": "七篇科幻故事透過太空旅行、外星接觸與數位記憶，探問科技進步之中仍存在的孤獨、差異與相互理解。",
+    "translator": "胡椒筒",
+    "en": {
+      "title": "If We Cannot Go at the Speed of Light",
+      "author": "Kim Choyeop",
+      "description": "Seven science-fiction stories use space travel, alien encounters, and digital memory to explore loneliness, difference, and mutual understanding amid technological progress.",
+      "sourceUrl": "https://www.simonandschuster.com/books/If-We-Cannot-Go-at-the-Speed-of-Light/Kim-Choyeop/9781668049471"
+    },
+    "cover": {
+      "src": "assets/books/if-light-speed.webp",
+      "width": 493,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "bibliographySource": "https://www.taaze.tw/products/11100976946.html"
+  },
+  {
+    "id": "good-days-oven",
+    "title": "進烤箱的好日子",
+    "author": "李佳穎",
+    "publisher": "自轉星球文化",
+    "year": 2024,
+    "isbn": "9789869202176",
+    "sourceUrl": "https://www.eslite.com/product/10012030392682598702009",
+    "description": "一位寫作者轉而書寫回憶錄，在與家人和舊同學核對往事的過程中，追問成長記憶、事實與虛構之間的界線。",
+    "en": {
+      "title": "A Perfect Day to Put Your Head in the Oven",
+      "author": "Lee Chia-Ying",
+      "description": "Turning to memoir, a writer compares recollections with family and former classmates, questioning the boundaries between childhood memory, fact, and fiction.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/813900/a-perfect-day-to-put-your-head-in-the-oven-by-lee-chia-ying-translated-by-lin-king/"
+    },
+    "cover": {
+      "src": "assets/books/good-days-oven.webp",
+      "width": 479,
+      "height": 700
+    },
+    "coverSource": "Flat front cover from the official Readmoo product listing https://readmoo.com/book/210337485000101 ; image https://cdn.readmoo.com/cover/mz/gpoitzm.jpg?v=1751245900 . Original cover artwork preserved without cropping; resized to 700 pixels high and encoded as WebP."
+  },
+  {
+    "id": "taipei-people",
+    "title": "臺北人",
+    "author": "白先勇",
+    "sourceUrl": "https://www.eslite.com/product/1001116151424807",
+    "description": "小說描寫遷居臺北的人物，在故鄉記憶與現實生活之間呈現時代流轉與人生失落。",
+    "cover": {
+      "src": "assets/books/taipei-people.webp",
+      "width": 407,
+      "height": 640
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Taipei People",
+      "author": "Pai Hsien-yung",
+      "description": "Stories of people who have moved to Taipei explore historical change and personal loss through the tension between memories of home and everyday life.",
+      "sourceUrl": "https://cup.columbia.edu/book/taipei-people/9789882370067/"
+    },
+    "editionRegion": "unspecified",
+    "editionNote": "User-provided cover; edition unconfirmed. Source link identifies the literary work.",
+    "bibliographySource": "https://cup.columbia.edu/book/taipei-people/9789882370067/"
+  },
+  {
+    "id": "notes-crocodile",
+    "title": "鱷魚手記",
+    "author": "邱妙津",
+    "publisher": "印刻",
+    "year": 2025,
+    "isbn": "9789863877820",
+    "sourceUrl": "https://www.eslite.com/product/10012127332682858992003",
+    "edition": "鱷魚手記（增訂版）",
+    "description": "以私密手記與鱷魚寓言交錯敘事，描寫女大學生在愛情、人際關係與自我認同中的摸索。",
+    "cover": {
+      "src": "assets/books/notes-crocodile.webp",
+      "width": 328,
+      "height": 462
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Notes of a Crocodile",
+      "author": "Qiu Miaojin",
+      "description": "Interweaving intimate diary entries with crocodile fables, the novel follows a young woman’s search for love, connection, and identity during her university years.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/547269/notes-of-a-crocodile-by-qiu-miaojin-translated-from-the-chinese-by-bonnie-huie/"
+    },
+    "bibliographySource": "https://www.sanmin.com.tw/product/index/014110396"
+  },
+  {
+    "id": "last-words-montmartre",
+    "title": "蒙馬特遺書",
+    "author": "邱妙津",
+    "publisher": "印刻",
+    "year": 2025,
+    "isbn": "9789863878100",
+    "sourceUrl": "https://www.eslite.com/product/10012127332682912283009",
+    "edition": "蒙馬特遺書（增訂版）",
+    "description": "以書信形式展開異鄉中的情感告白，探索愛情失落、創作與生命意義之間的糾葛。",
+    "cover": {
+      "src": "assets/books/last-words-montmartre.webp",
+      "width": 496,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "Last Words from Montmartre",
+      "author": "Qiu Miaojin",
+      "description": "Through letters written abroad, the novel explores the ties between lost love, artistic creation, and the search for meaning.",
+      "sourceUrl": "https://penguinrandomhousehighereducation.com/book/?isbn=9781590177259"
+    },
+    "bibliographySource": "https://www.sanmin.com.tw/product/index/014381231"
+  },
+  {
+    "id": "bones",
+    "title": "我的骨頭知曉一切",
+    "author": "史蒂芬妮・胡",
+    "publisher": "二十張出版",
+    "year": 2023,
+    "isbn": "9786269705955",
+    "sourceUrl": "https://www.eslite.com/product/1001405192682354180003",
+    "alternateTitle": "我的骨頭沒有忘記",
+    "translator": "傅恩臨",
+    "description": "史蒂芬妮・胡從自身經歷出發，追溯童年創傷的長期影響，記錄理解複雜性創傷與尋求修復的過程。",
+    "cover": {
+      "src": "assets/books/bones.webp",
+      "width": 491,
+      "height": 700
+    },
+    "coverSource": "Cover image supplied by Zhilin Ou.",
+    "en": {
+      "title": "What My Bones Know",
+      "author": "Stephanie Foo",
+      "description": "Drawing on her own experiences, Stephanie Foo traces the lasting effects of childhood trauma and her efforts to understand complex trauma and find healing.",
+      "sourceUrl": "https://www.penguinrandomhouse.com/books/658389/what-my-bones-know-by-stephanie-foo/"
+    },
+    "bibliographySource": "https://www.bookrep.com.tw/?at=bookcontent&cl=book&id=17112&md=gwindex"
+  }
+]

@@ -5,6 +5,18 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const data=JSON.parse(readFileSync(resolve(root,'data/site.json')));
 const home=readFileSync(resolve(root,'index.html'),'utf8');
+const books=JSON.parse(readFileSync(resolve(root,'data/books.json')));
+const shelf=readFileSync(resolve(root,'bookshelf/index.html'),'utf8');
+assert(books.length>0,'Bookshelf has no books');
+assert.equal(new Set(books.map(b=>b.id)).size,books.length,'Book identifiers must be unique');
+for(const book of books){
+ assert(book.title && book.author && book.description,'Incomplete book entry');
+ if(book.editionRegion!=='unspecified')assert(book.publisher && book.year,'Missing edition metadata');
+ assert(book.en?.title && book.en?.author && book.en?.description,'Incomplete English book entry');
+ assert(/^https:\/\/www\.eslite\.com\/product\//.test(book.sourceUrl),'Book links must point to Eslite product pages');
+ assert(book.cover.src.startsWith('assets/books/'),'Book cover must be a local asset');
+ assert(shelf.includes(book.title),'A book is missing from the generated shelf');
+}
 const newsVisible=data.news.enabled && data.news.items.length>0;
 assert.equal(home.includes('id="news"'),newsVisible);
 assert.equal(home.includes('>News<'),newsVisible);

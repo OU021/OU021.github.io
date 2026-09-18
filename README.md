@@ -1,6 +1,6 @@
 # Zhilin Ou
 
-Original, dependency-free academic homepage and photography gallery. Static HTML is generated from `data/site.json` using Node.js 20 or later. The committed pages are ready for GitHub Pages (main branch, repository root).
+Original, dependency-free academic homepage, photography gallery, and personal bookshelf. Static HTML is generated from `data/site.json` and `data/books.json` using Node.js 20 or later. The committed pages are ready for GitHub Pages (main branch, repository root).
 
 ## Update content
 
@@ -16,16 +16,20 @@ Original, dependency-free academic homepage and photography gallery. Static HTML
 
 `links` controls the contact links. A verified Google Scholar profile can be added here when available. All photographs and the portrait belong to Zhilin Ou and were migrated from the previous personal homepage, resized and re-encoded without embedded metadata. Add images to `assets/photos/` and entries with `src`, `width`, `height`, and descriptive `alt` text to `photographs`.
 
+`data/books.json` controls the independent `/bookshelf/` page under More, with a small three-cover preview at the bottom of the homepage. Books are sorted by the displayed English author name, A–Z, keeping each author together in both languages. Each book has an `id`, `title`, `author`, a verified Eslite product page in `sourceUrl`, a short neutral `description`, and a local `cover` with `src`, `width`, and `height`. Verified edition metadata uses `publisher`, `year`, and optionally `edition`; use `editionRegion: "unspecified"` when a supplied cover cannot be tied confidently to one edition. Optional `alternateTitle` preserves another familiar Chinese title; `translator`, `isbn`, and `coverSource` document the edition. `en` supplies the English title, author spelling, synopsis, and its bibliographic source. The page offers a Chinese/English switch while keeping the selected covers and edition information. The language preference is saved locally in the browser. Descriptions introduce the books and are not attributed to Zhilin as personal reading notes. To add a book, verify its edition and cover, add the small cover asset under `assets/books/`, and rebuild. Covers link to their edition sources without JavaScript; with JavaScript, they open a keyboard-accessible book preview.
+
 ## Files
 
 - `scripts/build.mjs`: page generator, including the dormant News component.
+- `scripts/bookshelf.mjs`: bookshelf markup and individual book previews.
+- `assets/bookshelf.css`, `assets/bookshelf.js`: shelf layout and progressively enhanced book dialogs, loaded only on the bookshelf page.
 - `scripts/check.mjs`: content, asset, and internal-link checks.
 - `assets/site.css`: typography, layout, responsive styles.
 - `assets/baymax-camera.svg`, `assets/favicon.svg`: upper-body Baymax holding a camera, used beside the site name and as the browser icon.
 - `assets/site.js`: image lightbox, navigation, and subtle scroll reveals.
 - `assets/research-scene.js`: original, dependency-free WebGL point-cloud renderer. A 42-second particle story moves through an irregular camera, Zhilin’s kapok-flower photograph, an illustrated flower, Baymax, and Baymax examining the flower. Matched poses articulate his arms and the flower before the particles return to the camera. Motion pauses offscreen or in a background tab, respects reduced motion, and has a pause control. The self-hosted still works without JavaScript/WebGL or if data loading fails.
 - `assets/scene/`: story point data and static camera fallback. The generator documented in `assets/scene/README.md` creates the assets; it requires numpy/Pillow and is not needed to build the site.
-- `index.html`, `photography/index.html`: generated public pages.
+- `index.html`, `photography/index.html`, `bookshelf/index.html`: generated public pages.
 - `photography.html`: compatibility redirect for the previous gallery address.
 
 ## Preview
@@ -39,6 +43,7 @@ No framework, analytics, cookies, external font downloads, or client-side render
 Site implementation and point-cloud renderer written from scratch for Zhilin Ou. No previous template code or template-author assets are included. Personal content and photographs © Zhilin Ou. All rights reserved.
 
 - TCellAlign's framework preview is Figure 1 from the coauthored paper, [arXiv:2607.24093v1](https://arxiv.org/html/2607.24093v1#S1.F1). The original scientific figure is reproduced without alterations.
+- Book covers identify the selected editions; artwork remains the property of the respective publishers and rights holders. Edition pages and cover sources are recorded in `data/books.json`.
 - DM Sans and DM Serif Display are self-hosted under the SIL Open Font License. Their required notices are retained in `assets/fonts/`.
 - The GitHub mark is from Simple Icons (CC0); the remaining interface icons are original inline SVGs. Institution marks identify the relevant universities.
 
