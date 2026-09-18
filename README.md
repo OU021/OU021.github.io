@@ -16,25 +16,30 @@ Original, dependency-free academic homepage, photography gallery, and personal b
 
 `links` controls the contact links. A verified Google Scholar profile can be added here when available. All photographs and the portrait belong to Zhilin Ou and were migrated from the previous personal homepage, resized and re-encoded without embedded metadata. Add images to `assets/photos/` and entries with `src`, `width`, `height`, and descriptive `alt` text to `photographs`.
 
+`photographyPreview` selects the three homepage prints by image path. Each photograph has a stable `id`, English `title` / `caption` / `alt`, and Chinese `titleZh` / `note` / `altZh`. Optional `date` uses YYYY-MM, with `location` / `locationZh` and an explicitly confirmed `medium`. Missing dates or locations are omitted. The gallery and album share a Chinese/English toggle, saved locally as `zhilin-photography-language`. Captions and metadata appear when opening a photo, leaving the gallery itself uncluttered. Each print opens an album with previous/next buttons and arrow-key navigation. The main gallery uses the same controls. Only use personal anecdotes supplied by Zhilin.
+
 `data/books.json` controls the independent `/bookshelf/` page under More, with a small three-cover preview at the bottom of the homepage. Books are sorted by the displayed English author name, A–Z, keeping each author together in both languages. Each book has an `id`, `title`, `author`, a verified Eslite product page in `sourceUrl`, a short neutral `description`, and a local `cover` with `src`, `width`, and `height`. Verified edition metadata uses `publisher`, `year`, and optionally `edition`; use `editionRegion: "unspecified"` when a supplied cover cannot be tied confidently to one edition. Optional `alternateTitle` preserves another familiar Chinese title; `translator`, `isbn`, and `coverSource` document the edition. `en` supplies the English title, author spelling, synopsis, and its bibliographic source. The page offers a Chinese/English switch while keeping the selected covers and edition information. The language preference is saved locally in the browser. Descriptions introduce the books and are not attributed to Zhilin as personal reading notes. To add a book, verify its edition and cover, add the small cover asset under `assets/books/`, and rebuild. Covers link to their edition sources without JavaScript; with JavaScript, they open a keyboard-accessible book preview.
 
 ## Files
 
+Homepage book covers each link to `/bookshelf/#book-<id>`, which opens that book's bilingual details. Without JavaScript, the same link lands on the corresponding shelf entry. Hover and keyboard focus lift only the selected cover and reveal its title.
+
 - `scripts/build.mjs`: page generator, including the dormant News component.
 - `scripts/bookshelf.mjs`: bookshelf markup and individual book previews.
+- `scripts/photography.mjs`: bilingual photography page, image labels, and story metadata.
 - `assets/bookshelf.css`, `assets/bookshelf.js`: shelf layout and progressively enhanced book dialogs, loaded only on the bookshelf page.
 - `scripts/check.mjs`: content, asset, and internal-link checks.
 - `assets/site.css`: typography, layout, responsive styles.
 - `assets/baymax-camera.svg`, `assets/favicon.svg`: upper-body Baymax holding a camera, used beside the site name and as the browser icon.
-- `assets/site.js`: image lightbox, navigation, and subtle scroll reveals.
-- `assets/research-scene.js`: original, dependency-free WebGL point-cloud renderer. A 42-second particle story moves through an irregular camera, Zhilin’s kapok-flower photograph, an illustrated flower, Baymax, and Baymax examining the flower. Matched poses articulate his arms and the flower before the particles return to the camera. Motion pauses offscreen or in a background tab, respects reduced motion, and has a pause control. The self-hosted still works without JavaScript/WebGL or if data loading fails.
+- `assets/site.js`: photo album and paper image dialogs, navigation, and subtle scroll reveals.
+- `assets/research-scene.js`: original, dependency-free WebGL point-cloud renderer. A 42-second particle story moves through an irregular camera, Zhilin’s kapok-flower photograph, an illustrated flower, Baymax, and Baymax examining the flower. Matched poses articulate his arms and the flower before the particles return to the camera. Five chapter buttons show progress and replay a selected form while preserving the visitor's pause/reduced-motion preference. Motion pauses offscreen or in a background tab. The self-hosted still works without JavaScript/WebGL or if data loading fails.
 - `assets/scene/`: story point data and static camera fallback. The generator documented in `assets/scene/README.md` creates the assets; it requires numpy/Pillow and is not needed to build the site.
 - `index.html`, `photography/index.html`, `bookshelf/index.html`: generated public pages.
 - `photography.html`: compatibility redirect for the previous gallery address.
 
 ## Preview
 
-Run `python3 -m http.server 8765` and open `http://localhost:8765/`. On localhost only, `?scene=camera`, `photo`, `flower`, `baymax`, `hold`, or `hold2` freezes a chapter for visual review. Public pages always run the regular loop.
+Run `python3 -m http.server 8765` and open `http://localhost:8765/`. On localhost only, `?scene=camera`, `photo`, `flower`, `baymax`, `hold`, or `hold2` freezes a chapter for visual review. Public pages start the regular loop unless reduced motion is preferred.
 
 No framework, analytics, cookies, external font downloads, or client-side rendering dependencies. Main content remains readable without JavaScript.
 

@@ -61,6 +61,7 @@ function element() {
     ...eventTarget(), classes, dataset: {}, attrs: {}, hidden: false,
     style: {setProperty(key, value) { this[key] = value; }, removeProperty(key) { delete this[key]; }},
     setAttribute(key, value) { this.attrs[key] = String(value); },
+    removeAttribute(key) { delete this.attrs[key]; },
     getAttribute(key) { return this.attrs[key] ?? null; },
     classList: {
       add(...values) { values.forEach(value => classes.add(value)); },
@@ -77,8 +78,10 @@ function element() {
 
 async function scene({reduced = false, badData = false, failedFetch = false, noWebGL = false} = {}) {
   const toggle = {...element(), hidden: true};
+  const controls = {...element(), hidden: true};
+  const chapters = ['camera','photo','flower','baymax','hold'].map(name => ({...element(), dataset:{sceneChapter:name}}));
   const photograph = {...element(), complete: true, naturalWidth: 1500, naturalHeight: 1000};
-  const art = {...element(), querySelector: selector => selector === '.scene-photograph' ? photograph : toggle};
+  const art = {...element(), querySelector: selector => selector === '.scene-photograph' ? photograph : selector === '.scene-controls' ? controls : toggle, querySelectorAll: () => chapters};
   let drawings = 0, visibility, now = 0, nextId = 0;
   const frames = new Map(), fetched = new Set();
   const gl = new Proxy({
@@ -119,7 +122,7 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
   });
   await new Promise(resolve => setImmediate(resolve));
   return {
-    toggle, photograph, media, document, canvas, frames, fetched, art,
+    toggle, controls, chapters, photograph, media, document, canvas, frames, fetched, art,
     get drawings() { return drawings; },
     visible(value) { visibility([{isIntersecting: value}]); },
     advance(milliseconds, render = true) {
@@ -143,6 +146,7 @@ assert.equal(normal.fetched.size, names.length, 'All morph targets load');
 assert(normal.drawings > 0);
 assert.equal(normal.frames.size, 1);
 assert.equal(normal.canvas.dataset.phase, 'camera');
+assert(!normal.controls.hidden, 'Chapter controls appear only with a working renderer');
 
 const phases = [normal.canvas.dataset.phase];
 for (let elapsed = 0; elapsed < 60000 && phases.length < 6; elapsed += 40) {
@@ -150,6 +154,19 @@ for (let elapsed = 0; elapsed < 60000 && phases.length < 6; elapsed += 40) {
   if (normal.canvas.dataset.phase !== phases.at(-1)) phases.push(normal.canvas.dataset.phase);
 }
 assert.deepEqual(phases, ['camera', 'photo', 'flower', 'baymax', 'hold', 'camera'], 'Story completes its ordered loop');
+normal.toggle.dispatch('click');
+for (const chapter of normal.chapters) {
+  chapter.dispatch('click');
+  assert.equal(normal.canvas.dataset.phase,chapter.dataset.sceneChapter,'Selecting a chapter displays its recognizable form');
+  assert.equal(chapter.attrs['aria-current'],'step');
+  assert.equal(normal.chapters.filter(button => button.attrs['aria-current']).length,1,'Only one chapter is current');
+  assert.equal(normal.frames.size,0,'Chapter selection preserves an explicit pause');
+}
+normal.toggle.dispatch('click');
+normal.chapters[1].dispatch('click');
+assert.equal(normal.frames.size,1,'Chapter selection during playback keeps a single running loop');
+normal.advance(4000);
+assert.equal(normal.canvas.dataset.phase,'flower','Replay continues naturally into the next chapter');
 
 function assertSuspended(message, suspend, resume) {
   const phase = normal.canvas.dataset.phase, before = normal.drawings;
@@ -177,11 +194,16 @@ normal.canvas.dispatch('webglcontextlost');
 assert.equal(normal.frames.size, 0);
 assert(!normal.art.classes.has('scene-ready'), 'Lost graphics context restores the still');
 assert(normal.toggle.hidden);
+assert(normal.controls.hidden);
 
 const still = await scene({reduced: true});
 assert(still.drawings > 0);
 assert.equal(still.canvas.dataset.phase, 'camera');
 assert.equal(still.frames.size, 0, 'Reduced motion starts with a static camera');
+still.chapters[3].dispatch('click');
+assert.equal(still.canvas.dataset.phase,'baymax','Reduced motion permits a static chapter selection');
+assert.equal(still.frames.size,0,'Chapter navigation does not override reduced motion');
+still.chapters[0].dispatch('click');
 still.toggle.dispatch('click');
 assert.equal(still.frames.size, 1, 'A deliberate play action can enable motion');
 still.advance(10000);
@@ -196,6 +218,7 @@ for (const options of [{badData: true}, {failedFetch: true}, {noWebGL: true}]) {
   const fallback = await scene(options);
   assert(!fallback.art.classes.has('scene-ready'), 'Unavailable graphics/data preserves the still');
   assert(fallback.toggle.hidden);
+  assert(fallback.controls.hidden);
   assert.equal(fallback.frames.size, 0);
 }
-console.log('Passed: six point targets, irregular spatial sampling, complete story loop, pause/resume, offscreen/background suspension, reduced motion, and graphics/data fallback.');
+console.log('Passed: six point targets, irregular spatial sampling, complete story loop, chapter replay, pause/resume, offscreen/background suspension, reduced motion, and graphics/data fallback.');

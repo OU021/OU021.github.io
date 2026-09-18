@@ -112,10 +112,10 @@
     "description": "農場動物推翻人類統治後建立新秩序，卻逐漸落入另一套權力與特權之中。",
     "cover": {
       "src": "assets/books/animal-farm.webp",
-      "width": 200,
-      "height": 270
+      "width": 800,
+      "height": 1082
     },
-    "coverSource": "https://media.taaze.tw/showProdImage.html?sc=11100981431&width=200&height=283",
+    "coverSource": "https://media.taaze.tw/showProdImage.html?sc=11100981431&width=1000&height=1400",
     "en": {
       "title": "Animal Farm",
       "author": "George Orwell",

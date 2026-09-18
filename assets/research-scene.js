@@ -4,6 +4,9 @@
   if(!canvas)return;
   const art=canvas.closest('.hero-art');
   const toggle=art.querySelector('.motion-toggle');
+  const controls=art.querySelector('.scene-controls');
+  const chapters=[...art.querySelectorAll('[data-scene-chapter]')];
+  const chapterTimes={camera:0,photo:9200,flower:16200,baymax:23800,hold:31200};
   const photograph=art.querySelector('.scene-photograph');
   const photoOpacity=.82;
   const media=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -90,6 +93,14 @@
       bind('color',states[pose.from].color);bind('nextColor',states[pose.to].color);pair=key;
     }
     if(canvas.dataset.phase!==pose.phase)canvas.dataset.phase=pose.phase;
+    const t=time%42000;
+    const ranges={camera:t<5200?[0,5200]:[37400,42000],photo:[5200,12600],flower:[12600,20400],baymax:[20400,28600],hold:[28600,37400]};
+    const [start,end]=ranges[pose.phase];
+    chapters.forEach(button=>{
+      const active=button.dataset.sceneChapter===pose.phase;
+      if(active)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
+      button.style.setProperty('--chapter-progress',active?String(clamp((t-start)/(end-start))):'0');
+    });
     const photoVisible=photograph&&photograph.complete&&photograph.naturalWidth>0?pose.photo:0;
     const fit=Math.min(width/2.14,height/1.65);
     gl.viewport(0,0,canvas.width,canvas.height);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
@@ -152,17 +163,22 @@
       const seeds=new Float32Array(data[0].n);for(let i=0;i<seeds.length;i++){const x=Math.sin(i*127.1+311.7)*43758.5453;seeds[i]=x-Math.floor(x);}
       gl.bindBuffer(gl.ARRAY_BUFFER,buffer(seeds));gl.enableVertexAttribArray(locations.seed);gl.vertexAttribPointer(locations.seed,1,gl.FLOAT,false,0,0);
       gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
-      count=data[0].n;resize();art.classList.add('scene-ready');toggle.hidden=false;sync();
+      count=data[0].n;resize();art.classList.add('scene-ready');toggle.hidden=false;if(controls)controls.hidden=false;sync();
       new ResizeObserver(resize).observe(canvas);
       new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.05}).observe(canvas);
       toggle.addEventListener('click',()=>{paused=!paused;sync();});
+      chapters.forEach(button=>button.addEventListener('click',()=>{
+        const target=chapterTimes[button.dataset.sceneChapter];
+        if(!Number.isFinite(target))return;
+        time=target;mouseX=mouseY=targetX=targetY=0;draw();sync();
+      }));
       document.addEventListener('visibilitychange',sync);
       if(photograph)photograph.addEventListener('load',draw);
       media.addEventListener('change',()=>{paused=media.matches;if(paused){time=0;mouseX=mouseY=targetX=targetY=0;draw();}sync();});
       canvas.addEventListener('pointermove',e=>{if(paused||e.pointerType==='touch')return;const r=canvas.getBoundingClientRect();targetX=((e.clientX-r.left)/r.width-.5)*.05;targetY=((e.clientY-r.top)/r.height-.5)*.025;});
       canvas.addEventListener('pointerleave',()=>{targetX=targetY=0;});
-      canvas.addEventListener('webglcontextlost',()=>{count=0;sync();art.classList.remove('scene-ready');toggle.hidden=true;if(photograph)photograph.style.opacity='0';});
-    }catch{art.classList.remove('scene-ready');toggle.hidden=true;}
+      canvas.addEventListener('webglcontextlost',()=>{count=0;sync();art.classList.remove('scene-ready');toggle.hidden=true;if(controls)controls.hidden=true;if(photograph)photograph.style.opacity='0';});
+    }catch{art.classList.remove('scene-ready');toggle.hidden=true;if(controls)controls.hidden=true;}
   }
   init();
 })();

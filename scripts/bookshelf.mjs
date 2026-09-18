@@ -41,7 +41,7 @@ function renderBook(book, index) {
   ];
   const imageAlt = `alt="${escapeHtml(book.title)}，封面" data-alt-zh="${escapeHtml(book.title)}，封面" data-alt-en="${escapeHtml(enTitle)} — book cover"`;
   const description = book.description || en.description ? `<div class="book-description"><div data-book-lang="zh" lang="zh-Hant">${synopsis(book.description)}</div><div data-book-lang="en" lang="en">${synopsis(en.description || book.description)}</div></div>` : '';
-  return `<article class="bookshelf-book" role="listitem" data-book-id="${escapeHtml(book.id)}">
+  return `<article class="bookshelf-book" id="book-${escapeHtml(book.id)}" role="listitem" data-book-id="${escapeHtml(book.id)}">
   <a class="book-link" href="${source}" data-book-template="${templateId}" ${localizedLabel(`${book.title} — ${book.author}`,`${enTitle} — ${enAuthor}`)}>
     <span class="book-cover-stage"><span class="book-jacket" style="--cover-ratio:${cover.ratio}"><img src="${cover.src}" width="${cover.width}" height="${cover.height}" ${imageAlt} ${index < 4 ? 'decoding="async"' : 'loading="lazy" decoding="async"'}></span></span>
     <span class="book-label"><strong class="book-title">${bilingual(book.title,enTitle)}</strong><span class="book-author">${bilingual(book.author,enAuthor)}</span></span>

@@ -42,24 +42,27 @@
 
   shelf.querySelectorAll('[data-book-template]').forEach(link => link.setAttribute('aria-haspopup','dialog'));
 
-  shelf.addEventListener('click', event => {
-    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    const link = event.target.closest('[data-book-template]');
-    if (!link || !shelf.contains(link)) return;
+  const openBook = link => {
+    if (!link || !shelf.contains(link)) return false;
     const template = document.getElementById(link.dataset.bookTemplate);
-    if (!(template instanceof HTMLTemplateElement) || !template.content.firstElementChild) return;
+    if (!(template instanceof HTMLTemplateElement) || !template.content.firstElementChild) return false;
     content.replaceChildren(template.content.cloneNode(true));
     updateRegion(dialog);
     const title = content.querySelector('h2[id]');
     if (title) dialog.setAttribute('aria-labelledby',title.id);
     try {
-      dialog.showModal();
+      if (!dialog.open) dialog.showModal();
     } catch {
-      return;
+      return false;
     }
-    event.preventDefault();
     opener = link;
     document.documentElement.classList.add('bookshelf-modal-open');
+    return true;
+  };
+  shelf.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest('[data-book-template]');
+    if (openBook(link)) event.preventDefault();
   });
 
   closeButton.addEventListener('click', () => dialog.close());
@@ -67,7 +70,12 @@
     document.documentElement.classList.remove('bookshelf-modal-open');
     dialog.removeAttribute('aria-labelledby');
     content.replaceChildren();
-    if (opener?.isConnected) opener.focus({preventScroll:true});
+    if (opener?.isConnected) {
+      if (location.hash === '#' + opener.closest('[data-book-id]').id) {
+        history.replaceState(null,'',location.pathname + location.search);
+      }
+      opener.focus({preventScroll:true});
+    }
     opener = null;
     backdropPointerDown = false;
   });
@@ -83,4 +91,12 @@
     if (backdropPointerDown && event.target === dialog && outsideDialog(event)) dialog.close();
     backdropPointerDown = false;
   });
+  const openLinkedBook = () => {
+    const id = location.hash.slice(1);
+    const book = id.startsWith('book-') ? document.getElementById(id) : null;
+    if (book && shelf.contains(book)) openBook(book.querySelector('[data-book-template]'));
+    else if (dialog.open) dialog.close();
+  };
+  window.addEventListener('hashchange',openLinkedBook);
+  openLinkedBook();
 })();
