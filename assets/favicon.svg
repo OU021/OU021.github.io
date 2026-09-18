@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#8e6046"/><text x="32" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="35" fill="#fffaf2">Z</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <path d="M26 32C31 28 49 28 54 32C64 36 71 46 71 57C71 63 67 67 63 66L64 75C49 79 31 79 16 75L17 66C13 67 9 63 9 57C9 46 16 36 26 32Z" fill="#fffdf8" stroke="#a39789" stroke-width="2.4" stroke-linejoin="round"/>
+  <ellipse cx="40" cy="19" rx="19" ry="12" fill="#fffdf8" stroke="#a39789" stroke-width="2.4"/>
+  <path d="M31 20H49" stroke="#37332f" stroke-width="2.2"/>
+  <circle cx="31" cy="20" r="2.8" fill="#37332f"/>
+  <circle cx="49" cy="20" r="2.8" fill="#37332f"/>
+  <path d="M27 48V44H40V48" fill="#65584e"/>
+  <rect x="20" y="47" width="40" height="25" rx="5" fill="#65584e"/>
+  <circle cx="40" cy="60" r="9" fill="#d0c3b0"/>
+  <circle cx="40" cy="60" r="6" fill="#383734"/>
+  <path d="M17 56C19 53 24 55 27 58C29 61 27 65 23 65C18 65 15 61 17 56Z" fill="#fffdf8" stroke="#a39789" stroke-width="2"/>
+  <path d="M63 56C61 53 56 55 53 58C51 61 53 65 57 65C62 65 65 61 63 56Z" fill="#fffdf8" stroke="#a39789" stroke-width="2"/>
+</svg>

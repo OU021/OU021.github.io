@@ -147,11 +147,19 @@ h3 {
   gap:24px;
 }
 .wordmark {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
   font-family:var(--serif);
   font-size:24px;
   white-space:nowrap;
 }
-.wordmark span {
+.brand-mark {
+  width:48px;
+  height:48px;
+  flex:none;
+}
+.wordmark .wordmark-dot {
   color:var(--accent);
   margin-left:2px;
 }
@@ -1053,7 +1061,10 @@ h1 span {
   }
   .wordmark {
     font-size:22px;
-    display:inline-block;
+  }
+  .brand-mark {
+    width:42px;
+    height:42px;
   }
   .nav-links {
     gap:0;

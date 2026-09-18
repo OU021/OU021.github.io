@@ -21,6 +21,7 @@ Original, dependency-free academic homepage and photography gallery. Static HTML
 - `scripts/build.mjs`: page generator, including the dormant News component.
 - `scripts/check.mjs`: content, asset, and internal-link checks.
 - `assets/site.css`: typography, layout, responsive styles.
+- `assets/baymax-camera.svg`, `assets/favicon.svg`: upper-body Baymax holding a camera, used beside the site name and as the browser icon.
 - `assets/site.js`: image lightbox, navigation, and subtle scroll reveals.
 - `assets/research-scene.js`: original, dependency-free WebGL point-cloud renderer. A 42-second particle story moves through an irregular camera, Zhilin’s kapok-flower photograph, an illustrated flower, Baymax, and Baymax examining the flower. Matched poses articulate his arms and the flower before the particles return to the camera. Motion pauses offscreen or in a background tab, respects reduced motion, and has a pause control. The self-hosted still works without JavaScript/WebGL or if data loading fails.
 - `assets/scene/`: story point data and static camera fallback. The generator documented in `assets/scene/README.md` creates the assets; it requires numpy/Pillow and is not needed to build the site.
@@ -41,4 +42,4 @@ Site implementation and point-cloud renderer written from scratch for Zhilin Ou.
 - DM Sans and DM Serif Display are self-hosted under the SIL Open Font License. Their required notices are retained in `assets/fonts/`.
 - The GitHub mark is from Simple Icons (CC0); the remaining interface icons are original inline SVGs. Institution marks identify the relevant universities.
 
-- The point-cloud geometry is generated for this site without an external 3D model or scanned dataset. The flower is an illustration, not a 3D reconstruction. Baymax is a fan-art interpretation of the character from Disney’s Big Hero 6, included at Zhilin’s request.
+- The point-cloud geometry is generated for this site without an external 3D model or scanned dataset. The flower is an illustration, not a 3D reconstruction. The Baymax point cloud and camera logo are fan-art interpretations of the character from Disney’s Big Hero 6, included at Zhilin’s request.
