@@ -69,3 +69,7 @@ Site implementation and point-cloud renderer written from scratch for Zhilin Ou.
 `data/exhibitions.json` is the growing visit catalogue at `/exhibitions/`. Add a visit with a unique URL-safe `id`, `date` (YYYY-MM-DD), `venue`, bilingual `city`, confirmed `exhibitions`, `preview`, and `photos`. The builder creates a separate `/exhibitions/<id>/` gallery per visit and sorts the catalogue newest first. Keep entries factual: dates, venues, verified exhibition names, photographs, and optional verified artwork credits/source URLs. Do not add personal reflections. A visit may include several exhibitions; an incomplete confirmed list must not be treated as the attribution of every photograph.
 
 Images live in `assets/exhibitions/`, preserve the full frame, and are converted to sRGB WebP without EXIF metadata. The gallery supports Chinese/English, keyboard navigation and the existing image dialog. Its language preference is separate from Photography. Museum artwork remains the property of the respective artists and rights holders; linked collection records provide verified artwork information.
+
+The homepage groups Photography, Bookshelf, and Exhibitions under one small “Beyond research” heading. Their parallel descriptions introduce personal interests; one shared click hint covers all three previews. Visit dates remain on the exhibition catalogue and detail pages.
+
+Each homepage exhibition miniature is an independent link. Hover and keyboard focus gently lift only that frame, matching the other personal previews; reduced motion disables movement.
