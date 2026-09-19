@@ -63,3 +63,9 @@ Site implementation and point-cloud renderer written from scratch for Zhilin Ou.
 - The GitHub mark is from Simple Icons (CC0); the remaining interface icons are original inline SVGs. Institution marks identify the relevant universities.
 
 - The point-cloud geometry is generated for this site without an external 3D model or scanned dataset. The flower is an illustration, not a 3D reconstruction. The Baymax point cloud and camera logo are fan-art interpretations of the character from Disney’s Big Hero 6, included at Zhilin’s request.
+
+## Exhibitions
+
+`data/exhibitions.json` is the growing visit catalogue at `/exhibitions/`. Add a visit with a unique URL-safe `id`, `date` (YYYY-MM-DD), `venue`, bilingual `city`, confirmed `exhibitions`, `preview`, and `photos`. The builder creates a separate `/exhibitions/<id>/` gallery per visit and sorts the catalogue newest first. Keep entries factual: dates, venues, verified exhibition names, photographs, and optional verified artwork credits/source URLs. Do not add personal reflections. A visit may include several exhibitions; an incomplete confirmed list must not be treated as the attribution of every photograph.
+
+Images live in `assets/exhibitions/`, preserve the full frame, and are converted to sRGB WebP without EXIF metadata. The gallery supports Chinese/English, keyboard navigation and the existing image dialog. Its language preference is separate from Photography. Museum artwork remains the property of the respective artists and rights holders; linked collection records provide verified artwork information.

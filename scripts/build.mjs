@@ -2,8 +2,10 @@ import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {renderBookshelf, renderBookPreviews} from './bookshelf.mjs';
 import {renderPhotography, photoAttributes, photoLanguageToggle, photoStamp} from './photography.mjs';
+import {renderExhibitions,renderVisit} from './exhibitions.mjs';
 const root = new URL('../', import.meta.url);
 const d = JSON.parse(readFileSync(new URL('data/site.json', root)));
+const visits = JSON.parse(readFileSync(new URL('data/exhibitions.json',root))).sort((a,b)=>b.date.localeCompare(a.date));
 const books = JSON.parse(readFileSync(new URL('data/books.json', root)));
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const link = (url, label) => `<a href="${esc(url)}">${esc(label)}</a>`;
@@ -14,6 +16,7 @@ const shapes = {
   mail: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/>',
   papers: '<path d="M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h5"/>',
   book: '<path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1ZM12 5v15"/>',
+  gallery: '<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M8 3v18M8 14l4-4 6 7"/>',
   camera: '<path d="M3 7h5l2-3h4l2 3h5v14H3z"/><circle cx="12" cy="14" r="4"/>',
   expand: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
   arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
@@ -41,9 +44,9 @@ function section(id,title,body,extra='') {
 }
 function layout(title,path,body) {
  const isError = path==='404.html';
- const base = isError?'/':path.includes('/')?'../':'./';
- const home = isError?'/':path?'../':'./';
- const desc = isError?'This page wandered off. Return to Zhilin Ou’s academic homepage.':path==='bookshelf/'?'A few books Zhilin Ou loves, beyond research.':path==='photography/'?'Photography by Zhilin Ou.':'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Research in 3D vision, embodied AI, and robot learning.';
+ const base = isError?'/':path.includes('/')?'../'.repeat(path.split('/').filter(Boolean).length):'./';
+ const home = base;
+ const desc = isError?'This page wandered off. Return to Zhilin Ou’s academic homepage.':path.startsWith('exhibitions/')?'Exhibition visits by Zhilin Ou: dates, places, and photographs.':path==='bookshelf/'?'A few books Zhilin Ou loves, beyond research.':path==='photography/'?'Photography by Zhilin Ou.':'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Research in 3D vision, embodied AI, and robot learning.';
  const socialImage = `${d.url}/assets/social-card.png?v=${revision('social-card.png')}`;
  const socialAlt = 'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Embodied AI, Robot Learning, and 3D Vision. White-background portrait and a small Baymax camera logo.';
  return `<!doctype html>
@@ -53,10 +56,11 @@ function layout(title,path,body) {
 <link rel="canonical" href="${d.url}/${path}"><meta property="og:type" content="website"><meta property="og:site_name" content="Zhilin Ou"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${d.url}/${path}"><meta property="og:image" content="${socialImage}"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${esc(socialAlt)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${esc(socialAlt)}">
 <link rel="icon" href="${base}assets/favicon.svg?v=${revision('favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="${base}assets/site.css?v=${revision('site.css')}"><script src="${base}assets/preview-motion.js?v=${revision('preview-motion.js')}" defer></script><script src="${base}assets/site.js?v=${revision('site.js')}" defer></script>${body.includes('id="point-field"')?`<script src="${base}assets/research-scene.js?v=${revision('research-scene.js')}" defer></script>`:''}
 ${(path==='bookshelf/' || body.includes('data-book-preview'))?`<link rel="stylesheet" href="${base}assets/bookshelf.css?v=${revision('bookshelf.css')}"><script src="${base}assets/bookshelf.js?v=${revision('bookshelf.js')}" defer></script>`:''}
+${path.startsWith('exhibitions/')?`<link rel="stylesheet" href="${base}assets/exhibitions.css?v=${revision('exhibitions.css')}">`:''}
 ${!path?`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'Person',name:d.name,url:d.url,jobTitle:d.role,affiliation:{'@type':'CollegeOrUniversity',name:d.affiliation},sameAs:Object.values(d.links).filter(url=>/^https:\/\//.test(url)),knowsAbout:d.interests})}</script>`:''}
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><nav class="navigation shell" aria-label="Main navigation"><a class="wordmark" href="${home}" aria-label="Zhilin Ou">${baymaxMark}<span class="wordmark-name">Zhilin Ou<span class="wordmark-dot" aria-hidden="true">.</span></span></a><div class="nav-links">${navItems.map(n=>`<a href="${home}#${n.toLowerCase()}">${n}</a>`).join('')}<details><summary>More</summary><div class="dropdown"><a href="${home}photography/"${path==='photography/'?' aria-current="page"':''}>${icon('camera')}Photography</a><a href="${home}bookshelf/"${path==='bookshelf/'?' aria-current="page"':''}>${icon('book')}Bookshelf</a></div></details></div></nav></header>
+<header class="site-header"><nav class="navigation shell" aria-label="Main navigation"><a class="wordmark" href="${home}" aria-label="Zhilin Ou">${baymaxMark}<span class="wordmark-name">Zhilin Ou<span class="wordmark-dot" aria-hidden="true">.</span></span></a><div class="nav-links">${navItems.map(n=>`<a href="${home}#${n.toLowerCase()}">${n}</a>`).join('')}<details><summary>More</summary><div class="dropdown"><a href="${home}photography/"${path==='photography/'?' aria-current="page"':''}>${icon('camera')}Photography</a><a href="${home}bookshelf/"${path==='bookshelf/'?' aria-current="page"':''}>${icon('book')}Bookshelf</a><a href="${home}exhibitions/"${path.startsWith('exhibitions/')?' aria-current="page"':''}>${icon('gallery')}Exhibitions</a></div></details></div></nav></header>
 <main class="shell" id="main">${body}</main>
 <dialog class="figure-dialog" aria-label="Image preview">${photoLanguageToggle()}<button class="figure-close" autofocus type="button" aria-label="Close framework preview">Close <span aria-hidden="true">×</span></button><img alt="Enlarged paper framework" width="2027" height="1225"><div class="figure-bottom" hidden><div class="figure-caption"><h2 data-photo-title></h2><p data-photo-meta hidden></p><p data-photo-caption></p></div><div class="figure-paging" role="group" aria-label="Photograph navigation" hidden><button type="button" data-photo-previous aria-label="Previous photograph">${icon('arrow')}</button><span data-photo-counter aria-live="polite"></span><button type="button" data-photo-next aria-label="Next photograph">${icon('arrow')}</button></div></div></dialog>
 <footer class="footer shell${!path?' footer-home':''}">${!path?`<div class="footer-invitation"><p>Always happy to talk about robots, 3D vision, books, photography, or anything you’d like to ask.</p><a href="${esc(d.links.Email)}">Say hello ${icon('arrow')}</a></div><div class="footer-meta">`:''}<span>© 2026 Zhilin Ou</span><a href="${path?home:home+'photography/'}">${path?'Academic homepage':'Photography'} ${icon('arrow')}</a>${!path?'</div>':''}</footer>
@@ -84,12 +88,19 @@ const photoPreviews = d.photographyPreview.map(src=>d.photographs.find(p=>p.src=
 const photography = `<aside class="photo-note"><div><p class="eyebrow">Beyond research</p><a href="./photography/">${icon('camera')}Photography ${icon('arrow')}</a><p class="preview-hint">Click a photo for its story.</p></div><div class="photo-strip" role="group" aria-label="Selected photographs">${photoPreviews.map(p=>`<a class="photo-print" href="./${p.src}" data-figure data-album="home" ${photoAttributes(p)} aria-label="View photograph: ${esc(p.title||p.alt)}"><span class="photo-print-paper"><img src="./${p.src}" width="${p.width}" height="${p.height}" alt="${esc(p.alt)}" loading="lazy">${photoStamp(p)}</span><span class="preview-caption" aria-hidden="true">${esc(p.title||p.alt)}</span></a>`).join('')}</div></aside>`;
 const previewBooks = d.bookshelfPreview.map(id=>books.find(book=>book.id===id)).filter(Boolean);
 const bookPreview = `<aside class="photo-note book-note"><div><p class="eyebrow">On my shelf</p><a href="./bookshelf/">${icon('book')}Bookshelf ${icon('arrow')}</a><p class="preview-hint">Click a cover to explore the book.</p></div>${renderBookPreviews(previewBooks)}</aside>`;
-writeFileSync(new URL('index.html',root),layout('Zhilin Ou — 3D Vision & Embodied AI','',hero+about+news()+papers+experience+education+awards+`<div class="personal-previews">${photography}${bookPreview}</div>`));
+writeFileSync(new URL('index.html',root),layout('Zhilin Ou — 3D Vision & Embodied AI','',hero+about+news()+papers+experience+education+awards+`<div class="personal-previews">${photography}${bookPreview}<aside class="photo-note exhibition-note"><div><p class="eyebrow">In the galleries</p><a href="./exhibitions/">${icon('gallery')}Exhibitions ${icon('arrow')}</a><p class="preview-hint">${esc(visits[0].venue)} · ${esc(visits[0].city.en)} · ${visits[0].date.replaceAll('-','.')}</p></div><div class="exhibition-strip"><a class="exhibition-home-gallery" href="./exhibitions/${visits[0].id}/" aria-label="Explore ${esc(visits[0].venue)} exhibition photographs"><span class="exhibition-miniatures">${visits[0].photos.slice(0,3).map(p=>`<span><img src="./${p.src}" width="${p.width}" height="${p.height}" alt="${esc(p.alt)}" loading="lazy"></span>`).join('')}</span></a></div></aside></div>`));
 mkdirSync(new URL('photography/',root),{recursive:true});
 writeFileSync(new URL('photography/index.html',root),layout('Photography — Zhilin Ou','photography/',renderPhotography(d.photographs,icon)));
 mkdirSync(new URL('bookshelf/',root),{recursive:true});
 writeFileSync(new URL('bookshelf/index.html',root),layout('Bookshelf — Zhilin Ou','bookshelf/',renderBookshelf(books)));
+mkdirSync(new URL('exhibitions/',root),{recursive:true});
+writeFileSync(new URL('exhibitions/index.html',root),layout('Exhibitions — Zhilin Ou','exhibitions/',renderExhibitions(visits,icon)));
+for (const visit of visits) {
+ const route = `exhibitions/${visit.id}/`;
+ mkdirSync(new URL(route,root),{recursive:true});
+ writeFileSync(new URL(route+'index.html',root),layout(`${visit.venue} — Exhibitions — Zhilin Ou`,route,renderVisit(visit,icon)));
+}
 writeFileSync(new URL('photography.html',root),'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=./photography/"><link rel="canonical" href="'+d.url+'/photography/"><title>Photography — Zhilin Ou</title></head><body><a href="./photography/">View photography</a></body></html>\n');
 writeFileSync(new URL('404.html',root),layout('Page not found — Zhilin Ou','404.html',`<section class="error-page" aria-labelledby="error-title"><img class="error-mascot" src="/assets/baymax-camera.svg" width="112" height="112" alt="Baymax holding a camera"><div><p class="error-code">404</p><h1 id="error-title">This page wandered off.</h1><p class="error-note" lang="zh-Hant">這一頁走丟了。</p><a class="error-home" href="/">${icon('arrow')}Back to the homepage</a></div></section>`).replace('<meta name="author"','<meta name="robots" content="noindex"><meta name="author"'));
-writeFileSync(new URL('sitemap.xml',root),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${d.url}/</loc></url><url><loc>${d.url}/photography/</loc></url><url><loc>${d.url}/bookshelf/</loc></url></urlset>\n`);
-console.log('Built homepage, photography, bookshelf, compatibility redirect, 404, and sitemap.');
+writeFileSync(new URL('sitemap.xml',root),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${d.url}/</loc></url><url><loc>${d.url}/photography/</loc></url><url><loc>${d.url}/bookshelf/</loc></url><url><loc>${d.url}/exhibitions/</loc></url>${visits.map(v=>`<url><loc>${d.url}/exhibitions/${v.id}/</loc></url>`).join('')}</urlset>\n`);
+console.log('Built homepage, photography, bookshelf, exhibitions, compatibility redirect, 404, and sitemap.');

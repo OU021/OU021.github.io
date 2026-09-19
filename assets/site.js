@@ -11,7 +11,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const dialogImage = figureDialog.querySelector('img');
   const closeButton = figureDialog.querySelector('.figure-close');
   const links = [...document.querySelectorAll('[data-figure]')];
-  const page = document.querySelector('.photography-page');
+  const page = document.querySelector('[data-photo-region]');
   const languageButtons = [...document.querySelectorAll('[data-set-photo-lang]')];
   const dialogLanguage = figureDialog.querySelector('.photo-language');
   const bottom = figureDialog.querySelector('.figure-bottom');
@@ -65,9 +65,10 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     else figureDialog.style.removeProperty('--photo-backdrop');
   };
   dialogImage.addEventListener('load',updatePhotoLight);
+  const languageKey = page?.classList.contains('exhibitions-page') ? 'zhilin-exhibitions-language' : 'zhilin-photography-language';
   let language = page ? 'zh' : 'en';
   try {
-    const saved = localStorage.getItem('zhilin-photography-language');
+    const saved = localStorage.getItem(languageKey);
     if (saved === 'zh' || saved === 'en') language = saved;
   } catch {}
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
@@ -103,7 +104,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const updateLanguage = () => {
     if (page) { page.dataset.lang = language; page.lang = language === 'zh' ? 'zh-Hant' : 'en'; }
     languageButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.setPhotoLang === language)));
-    document.querySelectorAll('.photo-language').forEach(group => group.setAttribute('aria-label',language === 'zh' ? '攝影頁語言' : 'Photography language'));
+    document.querySelectorAll('.photo-language').forEach(group => group.setAttribute('aria-label',language === 'zh' ? '語言' : 'Language'));
     links.filter(link => link.dataset.album).forEach(link => {
       link.setAttribute('aria-label',(language === 'zh' ? '查看照片：' : 'View photograph: ') + textFor(link,'title'));
       link.querySelector('img').alt = textFor(link,'alt');
@@ -113,7 +114,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   if (page) page.querySelector('.photo-language').hidden = false;
   languageButtons.forEach(button => button.addEventListener('click', () => {
     language = button.dataset.setPhotoLang === 'en' ? 'en' : 'zh';
-    try { localStorage.setItem('zhilin-photography-language',language); } catch {}
+    try { localStorage.setItem(languageKey,language); } catch {}
     updateLanguage();
   }));
   updateLanguage();

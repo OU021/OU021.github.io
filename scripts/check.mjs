@@ -17,6 +17,17 @@ for(const book of books){
  assert(book.cover.src.startsWith('assets/books/'),'Book cover must be a local asset');
  assert(shelf.includes(book.title),'A book is missing from the generated shelf');
 }
+const visits=JSON.parse(readFileSync(resolve(root,'data/exhibitions.json')));
+assert.equal(new Set(visits.map(v=>v.id)).size,visits.length,'Visit URLs must be unique');
+for (const visit of visits) {
+ assert(/^[a-z0-9-]+$/.test(visit.id),'Unsafe visit URL');
+ assert(/^\d{4}-\d{2}-\d{2}$/.test(visit.date),'Visit date must include the day');
+ assert(visit.venue && visit.city.zh && visit.city.en && visit.photos.length,'Incomplete visit');
+ assert(!('personalNote' in visit),'Exhibitions must not contain personal reflections');
+ const page=readFileSync(resolve(root,`exhibitions/${visit.id}/index.html`),'utf8');
+ assert.equal((page.match(/data-figure /g)||[]).length,visit.photos.length,'Every visit photograph must be accessible');
+ for (const photo of visit.photos) assert(photo.alt && photo.altZh,'Visit photographs need bilingual descriptions');
+}
 const newsVisible=data.news.enabled && data.news.items.length>0;
 assert.equal(home.includes('id="news"'),newsVisible);
 assert.equal(home.includes('>News<'),newsVisible);

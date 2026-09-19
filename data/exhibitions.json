@@ -1,0 +1,83 @@
+[
+  {
+    "id": "mplus-2026-09",
+    "date": "2026-09-19",
+    "venue": "M+",
+    "city": {
+      "zh": "香港",
+      "en": "Hong Kong"
+    },
+    "exhibitions": [
+      {
+        "zh": "M+希克藏品：心靈圖景",
+        "en": "M+ Sigg Collection: Inner Worlds",
+        "url": "https://www.mplus.org.hk/en/exhibitions/m-sigg-collection-inner-worlds/"
+      }
+    ],
+    "photos": [
+      {
+        "id": "2000-ad",
+        "src": "assets/exhibitions/mplus-2000-ad.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Rows of laughing figures in the M+ galleries",
+        "altZh": "M+ 展廳內排列的笑臉人像雕塑",
+        "artwork": {
+          "zh": "岳敏君 ·《西元2000年》· 2000",
+          "en": "Yue Minjun · 2000 A.D. · 2000",
+          "source": "https://audioguide.mplus.org.hk/tc/locations/2000-a-d/"
+        }
+      },
+      {
+        "id": "painting",
+        "src": "assets/exhibitions/mplus-painting.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "A framed painting of a seated primate",
+        "altZh": "描繪坐著的靈長類動物的畫作",
+        "artwork": {
+          "zh": "邵帆 ·《你》· 2011",
+          "en": "Shao Fan · You · 2011",
+          "source": "https://www.mplus.org.hk/en/collection/objects/you-2012882/"
+        }
+      },
+      {
+        "id": "gallery",
+        "src": "assets/exhibitions/mplus-gallery.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Sculpture and painting in the M+ galleries",
+        "altZh": "M+ 展廳中的雕塑與繪畫"
+      },
+      {
+        "id": "drawings",
+        "src": "assets/exhibitions/mplus-drawings.webp",
+        "width": 1200,
+        "height": 1600,
+        "alt": "Sheets of drawings casting shadows on a gallery wall",
+        "altZh": "展牆上的素描紙張與投影"
+      },
+      {
+        "id": "album",
+        "src": "assets/exhibitions/mplus-album.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "An open book with braille in a display case",
+        "altZh": "展櫃中翻開的盲文書"
+      },
+      {
+        "id": "screens",
+        "src": "assets/exhibitions/mplus-screens.webp",
+        "width": 1600,
+        "height": 1200,
+        "alt": "A three-screen video installation in a dark gallery",
+        "altZh": "暗室中的三屏影像裝置"
+      }
+    ],
+    "preview": {
+      "src": "assets/exhibitions/mplus-preview.webp",
+      "width": 480,
+      "height": 640
+    }
+  }
+]
