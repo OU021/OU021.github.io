@@ -72,4 +72,4 @@ Images live in `assets/exhibitions/`, preserve the full frame, and are converted
 
 The homepage groups Photography, Bookshelf, and Exhibitions under one small “Beyond research” heading. Their parallel descriptions introduce personal interests; one shared click hint covers all three previews. Visit dates remain on the exhibition catalogue and detail pages.
 
-Each homepage exhibition miniature is an independent link. Hover and keyboard focus gently lift only that frame, matching the other personal previews; reduced motion disables movement.
+The homepage exhibition entry is deliberately smaller than the photo and book previews. It shows only the M+ wordmark, linking to the M+ visit; exhibition photographs remain inside the gallery. Hover and keyboard focus subtly increase opacity without moving the logo. The official wordmark geometry comes from https://www.mplus.org.hk/_nuxt/35f815e679484117c2a3bd0f8463ca4b.svg#i-logo, displayed in charcoal. The M+ mark belongs to its rights holder and identifies the visited museum; it does not imply affiliation or endorsement.
