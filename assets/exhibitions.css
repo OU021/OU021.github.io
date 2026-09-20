@@ -21,3 +21,5 @@
 @media(max-width:700px){.exhibitions-page{padding-top:32px}.exhibition-heading{margin-bottom:28px}.exhibition-entry{gap:24px;padding:28px 0;grid-template-columns:1fr}.exhibition-cover{padding:18px}.exhibition-cover img{height:340px}.exhibition-entry-copy>.exhibition-number{margin-bottom:18px}.exhibition-entry h2{font-size:28px;margin:12px 0}.visit-open{margin-top:12px}.exhibition-wall{grid-template-columns:1fr;gap:40px}.exhibition-image{min-height:0;padding:12px}.exhibition-image img{max-height:560px}.visit-information{margin-bottom:32px}.exhibition-wall figcaption{min-height:0}}
 
 .exhibition-list-label{font-size:11px;color:var(--muted);letter-spacing:.04em;margin:24px 0 6px}.exhibition-list-label+.visit-exhibition-list{margin-top:0}
+
+.exhibition-intro{max-width:760px;margin:18px 0 0;color:var(--muted);font-size:14px;line-height:1.8}

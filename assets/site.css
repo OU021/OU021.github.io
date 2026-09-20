@@ -1625,7 +1625,7 @@ h1 {
 @media(prefers-reduced-motion:reduce) {.preview-departing::backdrop {animation:none;}}
 
 /* Quiet personal links at the end of the academic homepage. */
-.personal-previews{margin-bottom:24px}
+.personal-previews{margin-bottom:0}
 .personal-previews>.photo-note{grid-template-columns:minmax(0,1fr) 280px;margin:0;padding:12px 0;gap:12px 24px}
 .personal-previews .photo-note>div:first-child>a{margin-top:0;font-size:18px;line-height:1.4;gap:8px}
 .personal-previews .photo-note>div:first-child>a>.icon{width:16px;height:16px}
@@ -1635,10 +1635,10 @@ h1 {
 .personal-previews .photo-strip .photo-stamp{font-size:7px;min-height:18px;padding-block:3px}
 .personal-previews .book-strip{gap:7px;padding:2px 3px 4px}
 .personal-previews .book-strip img{height:68px;max-width:51px}
-.personal-previews .exhibition-note{padding:5px 0}
+.personal-previews .exhibition-note{padding:12px 0}
 .personal-previews .exhibition-note>div:first-child>a{font-size:16px}
 .exhibition-strip{display:flex;align-items:center}
-.exhibition-museum-link{display:inline-flex;align-items:center;justify-content:center;min-width:64px;min-height:44px;padding:7px;opacity:.65;transition:opacity .2s ease}
+.exhibition-museum-link{display:inline-flex;align-items:center;justify-content:center;min-width:64px;min-height:32px;padding:3px 7px;opacity:.65;transition:opacity .2s ease}
 .exhibition-museum-link img{display:block;width:48px;height:auto;object-fit:contain}
 .exhibition-museum-link:hover,.exhibition-museum-link:focus-visible{opacity:1}
 .exhibition-museum-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -1646,12 +1646,12 @@ h1 {
 .personal-previews-heading h2{margin:0;font-family:var(--sans);font-size:10px;font-weight:600;line-height:1.5;letter-spacing:.14em}
 .personal-previews-heading .preview-hint{margin:0;font-size:10px}
 @media(max-width:600px){
-  .personal-previews{margin-bottom:18px}
+  .personal-previews{margin-bottom:0}
   .personal-previews-heading{display:block}
   .personal-previews-heading .preview-hint{margin-top:5px}
   .personal-previews>.photo-note{grid-template-columns:minmax(0,1fr);gap:10px;padding:12px 0}
   .personal-previews .photo-strip,.personal-previews .book-strip{max-width:260px}
   .personal-previews .book-strip img{height:62px;max-width:46px}
-  .personal-previews .exhibition-note{grid-template-columns:minmax(0,1fr) auto;padding:4px 0}
+  .personal-previews .exhibition-note{grid-template-columns:minmax(0,1fr) auto;padding:9px 0}
 }
 @media(prefers-reduced-motion:reduce){.exhibition-museum-link{transition:none}}
