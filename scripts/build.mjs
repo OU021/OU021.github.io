@@ -30,7 +30,7 @@ const icon = name => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="
 const githubMark = readFileSync(new URL('assets/github.svg',root),'utf8').replace('role="img"','class="icon" aria-hidden="true"').replace('<title>GitHub</title>','').replace('<path ','<path fill="currentColor" ');
 const linkedInMark = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="4.7" r="2.1" fill="currentColor"/><path fill="currentColor" d="M3.2 8.5h3.6V21H3.2zM10 8.5h3.5v1.8c.9-1.4 2.2-2.1 3.8-2.1 3.1 0 4.5 2 4.5 5.4V21h-3.6v-6.5c0-1.9-.6-3-2-3-1.6 0-2.6 1.2-2.6 3.1V21H10z"/></svg>';
 const baymaxMark = readFileSync(new URL('assets/baymax-camera.svg',root),'utf8').replace('<svg ', '<svg class="brand-mark" width="48" height="48" aria-hidden="true" focusable="false" ');
-const withLabLink = text => esc(text).replace('PLAN Lab',link(d.researchLinks.planLab,'PLAN Lab'));
+const withLabLink = text => esc(text).replace('PLAN Lab',link(d.researchLinks.planLab,'PLAN Lab')).replace('GAP Lab',link(d.researchLinks.gapLab,'GAP Lab'));
 const aboutText = text => withLabLink(text)
  .replace(esc(d.affiliation),`<strong>${esc(d.affiliation)}</strong>`)
  .replace('Dalian University of Technology','<strong>Dalian University of Technology</strong>')
@@ -46,9 +46,9 @@ function layout(title,path,body) {
  const isError = path==='404.html';
  const base = isError?'/':path.includes('/')?'../'.repeat(path.split('/').filter(Boolean).length):'./';
  const home = base;
- const desc = isError?'This page wandered off. Return to Zhilin Ou’s academic homepage.':path.startsWith('exhibitions/')?'Exhibition visits by Zhilin Ou: dates, places, and photographs.':path==='bookshelf/'?'A few books Zhilin Ou loves, beyond research.':path==='photography/'?'Photography by Zhilin Ou.':'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Research in 3D vision, embodied AI, and robot learning.';
+ const desc = isError?'This page wandered off. Return to Zhilin Ou’s academic homepage.':path.startsWith('exhibitions/')?'Exhibition visits by Zhilin Ou: dates, places, and photographs.':path==='bookshelf/'?'A few books Zhilin Ou loves, beyond research.':path==='photography/'?'Photography by Zhilin Ou.':'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Research in 3D vision, embodied AI, and multimodal learning.';
  const socialImage = `${d.url}/assets/social-card.png?v=${revision('social-card.png')}`;
- const socialAlt = 'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Embodied AI, Robot Learning, and 3D Vision. White-background portrait and a small Baymax camera logo.';
+ const socialAlt = 'Zhilin Ou, MPhil student in Artificial Intelligence at CUHK-Shenzhen. Embodied AI, Multimodal, and 3D Vision. White-background portrait and a small Baymax camera logo.';
  return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
