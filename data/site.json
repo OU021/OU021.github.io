@@ -14,7 +14,7 @@
     "LinkedIn": "https://www.linkedin.com/in/zhilin-ou-348603366/"
   },
   "about": [
-    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in 3D vision, embodied AI, and multimodal learning.",
+    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. I also collaborate with Prof. Xiaoguang Han at GAP Lab. My research interests lie in 3D vision, embodied AI, and multimodal learning.",
     "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I conducted research with Prof. Zhihui Wang on computer vision and multimodal learning. I have also collaborated with the PLAN Lab at UIUC on embodied AI and 3D vision research."
   ],
   "papers": [
@@ -49,19 +49,31 @@
       "institution": "The Chinese University of Hong Kong, Shenzhen",
       "role": "Research Collaborator · GAP Lab",
       "dates": "Sep 2026 – Present",
-      "detail": "Embodied AI and 3D vision research"
+      "detail": "Embodied AI and 3D vision research",
+      "host": {
+        "name": "Xiaoguang Han",
+        "url": "https://sse.cuhk.edu.cn/en/faculty/hanxiaoguang"
+      }
     },
     {
       "institution": "University of Illinois Urbana-Champaign",
       "role": "Research Collaborator · PLAN Lab",
       "dates": "May 2026 – Sep 2026",
-      "detail": "Embodied AI and 3D vision research"
+      "detail": "Embodied AI and 3D vision research",
+      "host": {
+        "name": "Ismini Lourentzou",
+        "url": "https://isminoula.github.io/"
+      }
     },
     {
       "institution": "Dalian University of Technology",
       "role": "Research Assistant · SSDUT-AI4SE Lab",
       "dates": "Nov 2025 – Jun 2026",
-      "detail": "Computer vision and multimodal learning"
+      "detail": "Computer vision and multimodal learning",
+      "host": {
+        "name": "Zhihui Wang",
+        "url": "https://faculty.dlut.edu.cn/2010015018/zh_CN/index.htm"
+      }
     }
   ],
   "education": [

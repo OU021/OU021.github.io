@@ -36,7 +36,8 @@ const aboutText = text => withLabLink(text)
  .replace('Dalian University of Technology','<strong>Dalian University of Technology</strong>')
  .replace('at UIUC','at <strong>UIUC</strong>')
  .replace('Prof. Wenjing Ma',link('https://marvinquiet.github.io/','Prof. Wenjing Ma'))
- .replace('Prof. Zhihui Wang',link('https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&hl=en','Prof. Zhihui Wang'));
+ .replace('Prof. Zhihui Wang',link('https://faculty.dlut.edu.cn/2010015018/zh_CN/index.htm','Prof. Zhihui Wang'))
+ .replace('Prof. Xiaoguang Han',link('https://sse.cuhk.edu.cn/en/faculty/hanxiaoguang','Prof. Xiaoguang Han'));
 const navItems = ['About','Papers','Experience','Education','Awards'];
 if(d.news.enabled && d.news.items.length) navItems.splice(1,0,'News');
 function section(id,title,body,extra='') {
@@ -78,7 +79,7 @@ const papers = section('papers','Papers',d.papers.filter(p=>p.public && /^https:
 const logo = name => name.includes('Illinois')?'uiuc.svg':name.includes('Dalian')?'dut.webp':'cuhk.webp';
 const mark = name => `<img class="institution-logo${name.includes('Illinois')?' institution-logo-uiuc':''}" src="./assets/institutions/${logo(name)}" width="48" height="48" alt="${esc(name)} logo" loading="lazy">`;
 function timelineEntry(e, education=false) {
- return `<article class="entry"><p class="date">${esc(e.dates)}</p><span class="timeline-node" aria-hidden="true"></span>${mark(e.institution)}<div class="entry-copy"><h3>${esc(e.institution)}</h3><p>${education?esc(e.degree):withLabLink(e.role)}</p>${e.detail?`<p class="detail">${esc(e.detail)}</p>`:''}</div></article>`;
+ return `<article class="entry"><p class="date">${esc(e.dates)}</p><span class="timeline-node" aria-hidden="true"></span>${mark(e.institution)}<div class="entry-copy"><h3>${esc(e.institution)}</h3><p>${education?esc(e.degree):withLabLink(e.role)}</p>${!education && e.host?`<p class="entry-host">Host: ${link(e.host.url,`Prof. ${e.host.name}`)}</p>`:''}${e.detail?`<p class="detail">${esc(e.detail)}</p>`:''}</div></article>`;
 }
 const experience = section('experience','Experience',`<div class="entries">${d.experience.map(e=>timelineEntry(e)).join('')}</div>`);
 const education = section('education','Education',`<div class="entries">${d.education.map(e=>timelineEntry(e,true)).join('')}</div>`);

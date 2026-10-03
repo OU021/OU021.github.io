@@ -857,6 +857,10 @@ h1 {
   font-size:14px;
   line-height:1.8;
 }
+.entry p.entry-host {
+  color:var(--muted);
+  font-size:13px;
+}
 .entry .detail {
   color:var(--muted);
   margin-top:3px;
