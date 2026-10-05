@@ -6,6 +6,14 @@
   const toggle=art.querySelector('.motion-toggle');
   const controls=art.querySelector('.scene-controls');
   const chapters=[...art.querySelectorAll('[data-scene-chapter]')];
+  const notes=[...art.querySelectorAll('[data-scene-note]')];
+  function showNote(phase){
+    notes.forEach(note=>{
+      const active=note.dataset.sceneNote===phase;
+      note.classList.toggle('is-active',active);
+      note.setAttribute('aria-hidden',String(!active));
+    });
+  }
   const chapterTimes={camera:0,photo:9200,flower:16200,baymax:23800,hold:31200};
   const photograph=art.querySelector('.scene-photograph');
   const photoOpacity=.82;
@@ -92,7 +100,7 @@
       bind('position',states[pose.from].position);bind('destination',states[pose.to].position);
       bind('color',states[pose.from].color);bind('nextColor',states[pose.to].color);pair=key;
     }
-    if(canvas.dataset.phase!==pose.phase)canvas.dataset.phase=pose.phase;
+    if(canvas.dataset.phase!==pose.phase){canvas.dataset.phase=pose.phase;showNote(pose.phase);}
     const t=time%42000;
     const ranges={camera:t<5200?[0,5200]:[37400,42000],photo:[5200,12600],flower:[12600,20400],baymax:[20400,28600],hold:[28600,37400]};
     const [start,end]=ranges[pose.phase];
@@ -177,8 +185,8 @@
       media.addEventListener('change',()=>{paused=media.matches;if(paused){time=0;mouseX=mouseY=targetX=targetY=0;draw();}sync();});
       canvas.addEventListener('pointermove',e=>{if(paused||e.pointerType==='touch')return;const r=canvas.getBoundingClientRect();targetX=((e.clientX-r.left)/r.width-.5)*.05;targetY=((e.clientY-r.top)/r.height-.5)*.025;});
       canvas.addEventListener('pointerleave',()=>{targetX=targetY=0;});
-      canvas.addEventListener('webglcontextlost',()=>{count=0;sync();art.classList.remove('scene-ready');toggle.hidden=true;if(controls)controls.hidden=true;if(photograph)photograph.style.opacity='0';});
-    }catch{art.classList.remove('scene-ready');toggle.hidden=true;if(controls)controls.hidden=true;}
+      canvas.addEventListener('webglcontextlost',()=>{count=0;sync();art.classList.remove('scene-ready');showNote('camera');toggle.hidden=true;if(controls)controls.hidden=true;if(photograph)photograph.style.opacity='0';});
+    }catch{art.classList.remove('scene-ready');showNote('camera');toggle.hidden=true;if(controls)controls.hidden=true;}
   }
   init();
 })();

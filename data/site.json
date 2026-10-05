@@ -14,8 +14,8 @@
     "LinkedIn": "https://www.linkedin.com/in/zhilin-ou-348603366/"
   },
   "about": [
-    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My research interests lie in 3D vision, embodied AI, and multimodal learning.",
-    "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I worked with Prof. Zhihui Wang on computer vision and multimodal learning. My work with the PLAN Lab at UIUC focused on embodied AI and 3D vision, which I continue to explore with Prof. Xiaoguang Han at GAP Lab."
+    "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen. My research interests lie in 3D vision, embodied AI, and multimodal learning.",
+    "I received my B.Eng. in Digital Media Technology from Dalian University of Technology, where I worked with Prof. Zhihui Wang on computer vision and multimodal learning. My collaboration with Prof. Ismini Lourentzou and the PLAN Lab at UIUC focused on embodied AI and 3D vision, which I continue to explore with Prof. Xiaoguang Han at GAP Lab."
   ],
   "papers": [
     {
@@ -80,7 +80,11 @@
     {
       "institution": "The Chinese University of Hong Kong, Shenzhen",
       "degree": "MPhil in Artificial Intelligence",
-      "dates": "2026–2028"
+      "dates": "2026–2028",
+      "advisor": {
+        "name": "Wenjing Ma",
+        "url": "https://marvinquiet.github.io/"
+      }
     },
     {
       "institution": "Dalian University of Technology",
@@ -647,8 +651,6 @@
   },
   "photoStoryAlt": "A red kapok flower from a day picking panzhihua with my mother in Panzhihua, my hometown",
   "researchVision": "Through research in 3D understanding, generation, and embodied AI, I hope to advance AI that continually learns and improves through experience, while supporting people with warmth and care.",
-  "sceneReference": "I’m also a photographer. This animation brings together my photography and my vision for AI, with Baymax giving a familiar face to warmth and care.",
-  "sceneCaption": "In the photograph: picking panzhihua with my mother in Panzhihua.",
   "greeting": "Hello, I’m",
   "photographyPreview": [
     "assets/photos/digital3.webp",
@@ -661,5 +663,32 @@
     "kitchen",
     "animal-farm",
     "taipei-people"
+  ],
+  "sceneNotes": [
+    {
+      "id": "camera",
+      "label": "Photography",
+      "text": "I’m also a photographer. This story begins with my camera."
+    },
+    {
+      "id": "photo",
+      "label": "A memory from home",
+      "text": "In this photograph, my mother and I are picking fallen kapok flowers in Panzhihua, my hometown and birthplace."
+    },
+    {
+      "id": "flower",
+      "label": "Where I come from",
+      "text": "Panzhihua is also the Chinese name for this flower. Here, it represents my roots—the place I come from."
+    },
+    {
+      "id": "baymax",
+      "label": "What I hope for",
+      "text": "I love Baymax’s warmth and gentleness. To me, it gives a familiar face to the embodied intelligence I hope for."
+    },
+    {
+      "id": "hold",
+      "label": "Where they meet",
+      "text": "As Baymax holds the flower, I imagine it holding a part of me—bringing my roots and my hopes for AI together."
+    }
   ]
 }

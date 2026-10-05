@@ -80,8 +80,9 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
   const toggle = {...element(), hidden: true};
   const controls = {...element(), hidden: true};
   const chapters = ['camera','photo','flower','baymax','hold'].map(name => ({...element(), dataset:{sceneChapter:name}}));
+  const notes = ['camera','photo','flower','baymax','hold'].map(name => ({...element(), dataset:{sceneNote:name}}));
   const photograph = {...element(), complete: true, naturalWidth: 1500, naturalHeight: 1000};
-  const art = {...element(), querySelector: selector => selector === '.scene-photograph' ? photograph : selector === '.scene-controls' ? controls : toggle, querySelectorAll: () => chapters};
+  const art = {...element(), querySelector: selector => selector === '.scene-photograph' ? photograph : selector === '.scene-controls' ? controls : toggle, querySelectorAll: selector => selector === '[data-scene-note]' ? notes : chapters};
   let drawings = 0, visibility, now = 0, nextId = 0;
   const frames = new Map(), fetched = new Set();
   const gl = new Proxy({
@@ -122,7 +123,7 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
   });
   await new Promise(resolve => setImmediate(resolve));
   return {
-    toggle, controls, chapters, photograph, media, document, canvas, frames, fetched, art,
+    toggle, controls, chapters, notes, photograph, media, document, canvas, frames, fetched, art,
     get drawings() { return drawings; },
     visible(value) { visibility([{isIntersecting: value}]); },
     advance(milliseconds, render = true) {
@@ -151,6 +152,7 @@ assert(!normal.controls.hidden, 'Chapter controls appear only with a working ren
 const phases = [normal.canvas.dataset.phase];
 for (let elapsed = 0; elapsed < 60000 && phases.length < 6; elapsed += 40) {
   normal.advance(40);
+  assert.equal(normal.notes.find(note=>note.classes.has('is-active')).dataset.sceneNote,normal.canvas.dataset.phase,'Automatic playback keeps the explanation synchronized');
   if (normal.canvas.dataset.phase !== phases.at(-1)) phases.push(normal.canvas.dataset.phase);
 }
 assert.deepEqual(phases, ['camera', 'photo', 'flower', 'baymax', 'hold', 'camera'], 'Story completes its ordered loop');
@@ -159,6 +161,8 @@ for (const chapter of normal.chapters) {
   chapter.dispatch('click');
   assert.equal(normal.canvas.dataset.phase,chapter.dataset.sceneChapter,'Selecting a chapter displays its recognizable form');
   assert.equal(chapter.attrs['aria-current'],'step');
+  assert.equal(normal.notes.filter(note=>note.classes.has('is-active')).length,1,'Exactly one explanatory note is visible');
+  assert.equal(normal.notes.find(note=>note.attrs['aria-hidden']==='false').dataset.sceneNote,chapter.dataset.sceneChapter,'The visible note matches the selected chapter');
   assert.equal(normal.chapters.filter(button => button.attrs['aria-current']).length,1,'Only one chapter is current');
   assert.equal(normal.frames.size,0,'Chapter selection preserves an explicit pause');
 }
@@ -195,6 +199,7 @@ assert.equal(normal.frames.size, 0);
 assert(!normal.art.classes.has('scene-ready'), 'Lost graphics context restores the still');
 assert(normal.toggle.hidden);
 assert(normal.controls.hidden);
+assert(normal.notes[0].classes.has('is-active'),'Graphics loss restores the camera explanation with the camera still');
 
 const still = await scene({reduced: true});
 assert(still.drawings > 0);
@@ -202,6 +207,7 @@ assert.equal(still.canvas.dataset.phase, 'camera');
 assert.equal(still.frames.size, 0, 'Reduced motion starts with a static camera');
 still.chapters[3].dispatch('click');
 assert.equal(still.canvas.dataset.phase,'baymax','Reduced motion permits a static chapter selection');
+assert(still.notes[3].classes.has('is-active'),'Reduced-motion readers can select each explanation');
 assert.equal(still.frames.size,0,'Chapter navigation does not override reduced motion');
 still.chapters[0].dispatch('click');
 still.toggle.dispatch('click');
