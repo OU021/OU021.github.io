@@ -36,9 +36,9 @@ const aboutText = text => withLabLink(text)
  .replace('Dalian University of Technology','<strong>Dalian University of Technology</strong>')
  .replace('at UIUC','at <strong>UIUC</strong>')
  .replace('Prof. Wenjing Ma',link('https://marvinquiet.github.io/','Prof. Wenjing Ma'))
- .replace('Prof. Zhihui Wang',link('https://faculty.dlut.edu.cn/2010015018/zh_CN/index.htm','Prof. Zhihui Wang'))
+ .replace('Prof. Zhihui Wang',link('https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&hl=en','Prof. Zhihui Wang'))
  .replace('Prof. Ismini Lourentzou',link('https://isminoula.github.io/','Prof. Ismini Lourentzou'))
- .replace('Prof. Xiaoguang Han',link('https://sse.cuhk.edu.cn/en/faculty/hanxiaoguang','Prof. Xiaoguang Han'));
+ .replace('Prof. Xiaoguang Han',link('https://scholar.google.com/citations?user=z-rqsR4AAAAJ&hl=en','Prof. Xiaoguang Han'));
 const navItems = ['About','Papers','Experience','Education','Awards'];
 if(d.news.enabled && d.news.items.length) navItems.splice(1,0,'News');
 function section(id,title,body,extra='') {
