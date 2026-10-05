@@ -5,6 +5,7 @@ Baymax is fan art of the character from Disney's Big Hero 6.
 """
 from pathlib import Path
 import struct
+import sys
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -93,8 +94,17 @@ def build_camera():
     c.add(p,[0,0,1],[100,103,98]);ring(c,1.279,.25,.265,[162,150,127],140)
     rounded_box(c,[-.86,.49,.405],[.31,.15,.025],.011,[76,73,67],250)
     rounded_box(c,[.91,-.33,.425],[.1,.17,.05],.023,[178,161,138],150)
+    # A recessed rear display with a thin surround remains recognizable during
+    # the turn. Its 3:2 opening receives the photograph in the WebGL renderer.
+    rounded_box(c,[-.24,-.01,-.403],[1.88,1.30,.035],.045,[78,74,69],1200)
+    n=1800
+    c.add(np.column_stack((rng.uniform(-1.10,.62,n),rng.uniform(-.585,.565,n),np.full(n,-.430))),[0,0,-1],[54,55,52])
+    for x,y in [(1.13,.35),(1.13,-.05),(1.13,-.40)]:
+        q=random_sphere(100);c.add(q*[.075,.075,.03]+[x,y,-.415],q,[101,94,84])
     p,col=c.arrays();idx=rng.choice(len(p),N,replace=False);p,col=p[idx],col[idx]
-    p=orientation(p,.43,.23);p-=(p.min(0)+p.max(0))/2;p*=1.86/np.ptp(p[:,0])
+    # Keep object coordinates: camera and its shutter now move as objects.
+    # Rear display center=(.1248,-.0572,.2278) after the half-turn.
+    p*=.52;p[:,1]-=.052
     return p,col
 
 def build_photo():
@@ -276,6 +286,12 @@ def reorder(state,order=None):
     if order is None:order=morton_order(p)
     return p[order],c[order]
 
+if '--camera-only' in sys.argv:
+    camera=reorder(build_camera())
+    save('camera',*camera)
+    preview(orientation(camera[0],.38,.17),camera[1]).save(OUT/'camera.webp',quality=90)
+    sys.exit(0)
+
 camera=build_camera();photo=build_photo();flower=build_flower();baymax,hold,hold2=build_baymax(flower)
 camera,photo,flower=map(reorder,[camera,photo,flower])
 character_order=morton_order(baymax[0])
@@ -284,7 +300,7 @@ states={'camera':camera,'photo':photo,'flower':flower,'baymax':baymax,'hold':hol
 sheet=Image.new('RGB',(1920,2040),tuple(BG))
 for i,(name,(p,c)) in enumerate(states.items()):
     save(name,p,c);image=preview(p,c)
-    if name=='camera':image.save(OUT/'camera.webp',quality=90)
+    if name=='camera':preview(orientation(p,.38,.17),c).save(OUT/'camera.webp',quality=90)
     image.save(PREVIEW/f'{name}.png');sheet.paste(image,(i%2*960,i//2*680),image)
     ImageDraw.Draw(sheet).text((i%2*960+30,i//2*680+25),name,fill=(65,57,50))
 sheet.save(PREVIEW/'contact.png')

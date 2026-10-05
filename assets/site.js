@@ -65,11 +65,17 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     else figureDialog.style.removeProperty('--photo-backdrop');
   };
   dialogImage.addEventListener('load',updatePhotoLight);
-  const languageKey = page?.classList.contains('exhibitions-page') ? 'zhilin-exhibitions-language' : 'zhilin-photography-language';
-  let language = page ? 'zh' : 'en';
+  const languageKey = page?.classList.contains('exhibitions-page') ? 'zhilin-exhibitions-language-choice' : 'zhilin-photography-language-choice';
+  const normalizeLanguage = value => value === 'zh' ? 'zh-Hant' : ['en','zh-Hans','zh-Hant'].includes(value) ? value : 'en';
+  const photoLabels = {
+    en: {language:'Language',view:'View photograph: ',close:'Put the photo away',previous:'Previous photograph',next:'Next photograph',paging:'Photograph navigation'},
+    'zh-Hans': {language:'语言',view:'查看照片：',close:'收起照片',previous:'上一张照片',next:'下一张照片',paging:'翻阅照片'},
+    'zh-Hant': {language:'語言',view:'查看照片：',close:'收起照片',previous:'上一張照片',next:'下一張照片',paging:'翻閱照片'},
+  };
+  let language = 'en';
   try {
-    const saved = localStorage.getItem(languageKey);
-    if (saved === 'zh' || saved === 'en') language = saved;
+    const saved = page ? localStorage.getItem(languageKey) : null;
+    language = normalizeLanguage(saved);
   } catch {}
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
   const showImage = link => {
@@ -83,8 +89,8 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     dialogImage.width = Number(preview.getAttribute('width'));
     dialogImage.height = Number(preview.getAttribute('height'));
     figureDialog.setAttribute('aria-label',dialogImage.alt);
-    figureDialog.lang = isPhoto && language === 'zh' ? 'zh-Hant' : 'en';
-    dialogLanguage.hidden = !isPhoto;
+    figureDialog.lang = isPhoto ? language : 'en';
+    dialogLanguage.hidden = !isPhoto || !page;
     title.textContent = isPhoto ? textFor(link,'title') : '';
     caption.textContent = isPhoto ? textFor(link,'caption') : '';
     metadata.textContent = isPhoto ? textFor(link,'meta') : '';
@@ -93,27 +99,32 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     paging.hidden = album.length < 2;
     counter.textContent = `${current + 1} / ${album.length}`;
     figureDialog.classList.toggle('has-caption',isPhoto);
-    const chinese = isPhoto && language === 'zh';
-    const closeLabel = isPhoto ? (chinese ? '收起照片' : 'Put the photo away') : 'Close';
+    const labels = photoLabels[isPhoto ? language : 'en'];
+    const closeLabel = isPhoto ? labels.close : 'Close';
     closeButton.firstChild.textContent = closeLabel + ' ';
     closeButton.setAttribute('aria-label',isPhoto ? closeLabel : 'Close framework preview');
-    previous.setAttribute('aria-label',chinese ? '上一張照片' : 'Previous photograph');
-    next.setAttribute('aria-label',chinese ? '下一張照片' : 'Next photograph');
-    paging.setAttribute('aria-label',chinese ? '翻閱照片' : 'Photograph navigation');
+    previous.setAttribute('aria-label',labels.previous);
+    next.setAttribute('aria-label',labels.next);
+    paging.setAttribute('aria-label',labels.paging);
   };
   const updateLanguage = () => {
-    if (page) { page.dataset.lang = language; page.lang = language === 'zh' ? 'zh-Hant' : 'en'; }
+    const labels = photoLabels[language];
+    if (page) { page.dataset.lang = language; page.lang = language; }
     languageButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.setPhotoLang === language)));
-    document.querySelectorAll('.photo-language').forEach(group => group.setAttribute('aria-label',language === 'zh' ? '語言' : 'Language'));
+    document.querySelectorAll('.photo-language').forEach(group => group.setAttribute('aria-label',labels.language));
     links.filter(link => link.dataset.album).forEach(link => {
-      link.setAttribute('aria-label',(language === 'zh' ? '查看照片：' : 'View photograph: ') + textFor(link,'title'));
+      link.setAttribute('aria-label',labels.view + textFor(link,'title'));
       link.querySelector('img').alt = textFor(link,'alt');
+    });
+    page?.querySelectorAll('img[data-alt-en]').forEach(image => {
+      image.alt = image.getAttribute(`data-alt-${language}`);
     });
     if (figureDialog.open && album[current]?.dataset.album) showImage(album[current]);
   };
   if (page) page.querySelector('.photo-language').hidden = false;
   languageButtons.forEach(button => button.addEventListener('click', () => {
-    language = button.dataset.setPhotoLang === 'en' ? 'en' : 'zh';
+    if (!page) return;
+    language = normalizeLanguage(button.dataset.setPhotoLang);
     try { localStorage.setItem(languageKey,language); } catch {}
     updateLanguage();
   }));

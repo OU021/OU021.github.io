@@ -5,16 +5,19 @@
   const shelf = homepage ? page : document.querySelector('.bookshelf-grid');
   if (!page) return;
   const regions = [page,dialog].filter(Boolean);
-  let language = 'zh';
+  // The old key was written on every load, so it cannot identify a reader's choice.
+  const languageKey = 'zhilin-bookshelf-language-choice';
+  const normalizeLanguage = value => value === 'zh' ? 'zh-Hant' : ['en','zh-Hans','zh-Hant'].includes(value) ? value : 'en';
+  let language = 'en';
   const updateRegion = region => {
     region.dataset.lang = language;
-    region.lang = language === 'en' ? 'en' : 'zh-Hant';
-    const labels = [region,...region.querySelectorAll('[data-aria-zh]')];
+    region.lang = language;
+    const labels = [region,...region.querySelectorAll('[data-aria-en]')];
     labels.forEach(element => {
       const value = element.getAttribute(`data-aria-${language}`);
       if (value) element.setAttribute('aria-label',value);
     });
-    region.querySelectorAll('[data-alt-zh]').forEach(image => {
+    region.querySelectorAll('[data-alt-en]').forEach(image => {
       image.alt = image.getAttribute(`data-alt-${language}`);
     });
     region.querySelectorAll('[data-set-lang]').forEach(button => {
@@ -22,17 +25,23 @@
     });
   };
   const setLanguage = value => {
-    language = value === 'en' ? 'en' : 'zh';
+    language = normalizeLanguage(value);
     regions.forEach(updateRegion);
-    try { localStorage.setItem('zhilin-bookshelf-language',language); } catch {}
   };
   regions.forEach(region => {
-    region.querySelectorAll('.bookshelf-language').forEach(toggle => { toggle.hidden = false; });
+    region.querySelectorAll('.bookshelf-language').forEach(toggle => { toggle.hidden = homepage; });
     region.querySelectorAll('[data-set-lang]').forEach(button => {
-      button.addEventListener('click', () => setLanguage(button.dataset.setLang));
+      button.addEventListener('click', () => {
+        if (homepage) return;
+        setLanguage(button.dataset.setLang);
+        try { localStorage.setItem(languageKey,language); } catch {}
+      });
     });
   });
-  try { language = localStorage.getItem('zhilin-bookshelf-language') === 'en' ? 'en' : 'zh'; } catch {}
+  try {
+    const saved = homepage ? null : localStorage.getItem(languageKey);
+    language = normalizeLanguage(saved);
+  } catch {}
   setLanguage(language);
   if (!dialog || !shelf || typeof dialog.showModal !== 'function') return;
   const content = dialog.querySelector('[data-book-content]');

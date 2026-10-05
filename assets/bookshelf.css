@@ -35,10 +35,9 @@
   border-bottom-color:var(--accent);
 }
 .bookshelf-language button:hover {color:var(--ink);}
-.bookshelf-page[data-lang=zh] [data-book-lang=en],
-.bookshelf-dialog[data-lang=zh] [data-book-lang=en],
-.bookshelf-page[data-lang=en] [data-book-lang=zh],
-.bookshelf-dialog[data-lang=en] [data-book-lang=zh] {display:none;}
+:is(.bookshelf-page,.bookshelf-dialog)[data-lang="en"] [data-book-lang]:not([data-book-lang="en"]),
+:is(.bookshelf-page,.bookshelf-dialog)[data-lang="zh-Hans"] [data-book-lang]:not([data-book-lang="zh-Hans"]),
+:is(.bookshelf-page,.bookshelf-dialog)[data-lang="zh-Hant"] [data-book-lang]:not([data-book-lang="zh-Hant"]) {display:none;}
 .bookshelf-back {
   display:inline-flex;
   align-items:center;

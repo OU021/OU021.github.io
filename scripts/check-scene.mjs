@@ -76,7 +76,7 @@ function element() {
   };
 }
 
-async function scene({reduced = false, badData = false, failedFetch = false, noWebGL = false} = {}) {
+async function scene({reduced = false, badData = false, failedFetch = false, noWebGL = false, failedTexture = false} = {}) {
   const toggle = {...element(), hidden: true};
   const controls = {...element(), hidden: true};
   const chapters = ['camera','photo','flower','baymax','hold'].map(name => ({...element(), dataset:{sceneChapter:name}}));
@@ -84,14 +84,16 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
   const photograph = {...element(), complete: true, naturalWidth: 1500, naturalHeight: 1000};
   const art = {...element(), querySelector: selector => selector === '.scene-photograph' ? photograph : selector === '.scene-controls' ? controls : toggle, querySelectorAll: selector => selector === '[data-scene-note]' ? notes : chapters};
   let drawings = 0, visibility, now = 0, nextId = 0;
+  const drawCounts = [];
   const frames = new Map(), fetched = new Set();
   const gl = new Proxy({
     getShaderParameter: () => true, getProgramParameter: () => true,
     getAttribLocation: () => 0,
+    texImage2D() { if (failedTexture) throw new Error("Photo texture unavailable"); },
     drawArrays(_mode, first, count) {
       assert.equal(first, 0);
-      assert.equal(count, 16000, 'A complete particle target is drawn');
-      drawings++;
+      assert([16000,14550,6].includes(count), 'A full object or photograph plane is drawn');
+      drawings++;drawCounts.push(count);
     },
   }, {get(object, key) {
     if (key in object) return object[key];
@@ -125,6 +127,7 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
   return {
     toggle, controls, chapters, notes, photograph, media, document, canvas, frames, fetched, art,
     get drawings() { return drawings; },
+    drawCounts,
     visible(value) { visibility([{isIntersecting: value}]); },
     advance(milliseconds, render = true) {
       // Normal browser frames, rather than one enormous time jump, exercise
@@ -143,7 +146,7 @@ async function scene({reduced = false, badData = false, failedFetch = false, noW
 
 const normal = await scene();
 assert(normal.art.classes.has('scene-ready'), 'Animation replaces the still after loading');
-assert.equal(normal.fetched.size, names.length, 'All morph targets load');
+assert.equal(normal.fetched.size, names.length, 'All original geometry targets load');
 assert(normal.drawings > 0);
 assert.equal(normal.frames.size, 1);
 assert.equal(normal.canvas.dataset.phase, 'camera');
@@ -169,7 +172,7 @@ for (const chapter of normal.chapters) {
 normal.toggle.dispatch('click');
 normal.chapters[1].dispatch('click');
 assert.equal(normal.frames.size,1,'Chapter selection during playback keeps a single running loop');
-normal.advance(4000);
+normal.advance(4500);
 assert.equal(normal.canvas.dataset.phase,'flower','Replay continues naturally into the next chapter');
 
 function assertSuspended(message, suspend, resume) {
@@ -214,11 +217,18 @@ still.toggle.dispatch('click');
 assert.equal(still.frames.size, 1, 'A deliberate play action can enable motion');
 still.advance(10000);
 assert.equal(still.canvas.dataset.phase, 'photo');
-assert(Number(still.photograph.style.opacity) > .75 && Number(still.photograph.style.opacity) < .9, 'Particles resolve into a softly translucent photograph');
+assert.equal(Number(still.photograph.style.opacity), 0, 'The photograph uses shared WebGL depth rather than a duplicate DOM overlay');
+assert(still.drawCounts.includes(6),'A textured photograph is drawn during the photo chapter');
 still.media.dispatch('change');
 assert.equal(still.frames.size, 0);
 assert.equal(still.canvas.dataset.phase, 'camera', 'Reduced-motion preference returns to the camera');
 assert.equal(Number(still.photograph.style.opacity), 0, 'Reduced motion clears the photograph overlay');
+
+const photoFallback=await scene({failedTexture:true,reduced:true});
+photoFallback.chapters[1].dispatch('click');
+assert(photoFallback.art.classes.has('scene-ready'),'Texture failure keeps the point-cloud story available');
+assert.equal(photoFallback.canvas.dataset.phase,'photo');
+assert.equal(photoFallback.drawCounts.at(-1),16000,'An unavailable texture falls back to the existing particle photograph');
 
 for (const options of [{badData: true}, {failedFetch: true}, {noWebGL: true}]) {
   const fallback = await scene(options);
@@ -227,4 +237,29 @@ for (const options of [{badData: true}, {failedFetch: true}, {noWebGL: true}]) {
   assert(fallback.controls.hidden);
   assert.equal(fallback.frames.size, 0);
 }
-console.log('Passed: six point targets, irregular spatial sampling, complete story loop, chapter replay, pause/resume, offscreen/background suspension, reduced motion, and graphics/data fallback.');
+// Choreography-level invariants catch discontinuities that valid rendering alone
+// cannot: a flower must stay one object, and the catch must meet the same hands.
+const choreo = source.slice(source.indexOf('  const catchPosition='),source.indexOf('  function bind('));
+const poseAt = vm.runInNewContext(`const duration=42000; const clamp=x=>Math.max(0,Math.min(1,x)); const ease=x=>{x=clamp(x);return x*x*x*(x*(x*6.-15.)+10.);}; const lerp=(a,b,t)=>a+(b-a)*t; const mix3=(a,b,t)=>a.map((v,i)=>lerp(v,b[i],t)); ${choreo}; poseAt`);
+assert(poseAt(3650).press>.9,'The shutter visibly depresses before the turn');
+assert.equal(poseAt(8000).cameraYaw,-Math.PI,'The camera turns all the way to its rear display');
+assert(poseAt(8000).photo>0 && poseAt(8000).camera>0,'The photograph first appears on the rear of the camera');
+assert(poseAt(11500).photoSize[0]>poseAt(8000).photoSize[0]*1.9,'The rear-screen photograph expands into the main scene');
+assert(poseAt(17200).photo>0 && poseAt(17200).flower>0,'Flower emerges while its source photograph remains visible');
+for(let t=17500;t<38800;t+=100)assert(poseAt(t).flower>.8,'Flower remains the same visible object through orbit and catch');
+assert(poseAt(27800).robot===1 && poseAt(27800).flower===1,'The flower orbits an independently visible Baymax');
+const orbitSamples=Array.from({length:60},(_,i)=>poseAt(25000+i*95).flowerOffset);
+assert(orbitSamples.some(p=>p[2]<-.4)&&orbitSamples.some(p=>p[2]>.4),'The flower passes both behind and in front of Baymax');
+for(const t of [11200,15500,19500,22500,25000,30800,33800,38800]){
+ const a=poseAt(t-.1),b=poseAt(t+.1);
+ for(const key of ['camera','photo','flower','robot'])assert(Math.abs(a[key]-b[key])<.002,`${key} remains continuous at ${t}`);
+ if(Math.max(a.flower,b.flower)>.01){
+   assert(Math.abs(a.flowerScale-b.flowerScale)<.002,`Flower scale remains continuous at ${t}`);
+   for(let i=0;i<3;i++)assert(Math.abs(a.flowerOffset[i]-b.flowerOffset[i])<.002,`Flower position remains continuous at ${t}`);
+ }
+ if(Math.max(a.robot,b.robot)>.01)assert(Math.abs(a.robotPose-b.robotPose)<.002,`Arms remain continuous at ${t}`);
+}
+const aligned=[];
+for(let i=0;i<16000;i++)if(blobs.baymax.subarray(14+i*9,17+i*9).equals(blobs.hold.subarray(14+i*9,17+i*9)))aligned.push(i);
+assert.equal(aligned.length,14550,'All embedded flower particles are excluded from the articulated robot');
+console.log('Passed: six point targets, independent object choreography, shutter/rear screen, flower emergence/orbit/catch continuity, chapter replay, pause/resume, suspension, reduced motion, and fallback.');
