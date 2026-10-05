@@ -6,6 +6,33 @@ if (more) {
   });
 }
 
+const copyEmail = document.querySelector('[data-copy-email]');
+if (copyEmail && navigator.clipboard?.writeText) {
+  const status = document.querySelector('[data-copy-status]');
+  let resetFeedback;
+  copyEmail.hidden = false;
+  copyEmail.addEventListener('click', async () => {
+    clearTimeout(resetFeedback);
+    copyEmail.classList.remove('is-copy-error');
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(copyEmail.dataset.copyEmail);
+      copyEmail.dataset.copyLabel = 'Copied';
+      copyEmail.classList.add('is-copied');
+      status.textContent = 'Email address copied.';
+      resetFeedback = setTimeout(() => {
+        copyEmail.classList.remove('is-copied');
+        copyEmail.dataset.copyLabel = 'Copy email';
+      }, 2200);
+    } catch {
+      copyEmail.classList.remove('is-copied');
+      copyEmail.classList.add('is-copy-error');
+      copyEmail.dataset.copyLabel = copyEmail.dataset.copyEmail;
+      status.textContent = `Could not copy. Email address: ${copyEmail.dataset.copyEmail}`;
+    }
+  });
+}
+
 const figureDialog = document.querySelector('.figure-dialog');
 if (figureDialog && typeof figureDialog.showModal === 'function') {
   const dialogImage = figureDialog.querySelector('img');

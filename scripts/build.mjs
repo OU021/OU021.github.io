@@ -20,6 +20,8 @@ const shapes = {
   camera: '<path d="M3 7h5l2-3h4l2 3h5v14H3z"/><circle cx="12" cy="14" r="4"/>',
   expand: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
   arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
+  copy: '<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
+  check: '<path d="m5 12 4 4L19 6"/>',
   pause: '<path d="M9 5v14M15 5v14"/>',
   play: '<path d="m8 4 12 8-12 8z"/>',
   cap: '<path d="m2 8 10-5 10 5-10 5zM6 10v7q6 6 12 0v-7M22 8v8"/>',
@@ -60,12 +62,12 @@ function layout(title,path,body) {
 ${(path==='bookshelf/' || body.includes('data-book-preview'))?`<link rel="stylesheet" href="${base}assets/bookshelf.css?v=${revision('bookshelf.css')}"><script src="${base}assets/bookshelf.js?v=${revision('bookshelf.js')}" defer></script>`:''}
 ${path.startsWith('exhibitions/')?`<link rel="stylesheet" href="${base}assets/exhibitions.css?v=${revision('exhibitions.css')}">`:''}
 ${!path?`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'Person',name:d.name,url:d.url,jobTitle:d.role,affiliation:{'@type':'CollegeOrUniversity',name:d.affiliation},sameAs:Object.values(d.links).filter(url=>/^https:\/\//.test(url)),knowsAbout:d.interests})}</script>`:''}
-</head><body>
+</head><body id="top" tabindex="-1">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><nav class="navigation shell" aria-label="Main navigation"><a class="wordmark" href="${home}" aria-label="Zhilin Ou">${baymaxMark}<span class="wordmark-name">Zhilin Ou<span class="wordmark-dot" aria-hidden="true">.</span></span></a><div class="nav-links">${navItems.map(n=>`<a href="${home}#${n.toLowerCase()}">${n}</a>`).join('')}<details><summary>More</summary><div class="dropdown"><a href="${home}photography/"${path==='photography/'?' aria-current="page"':''}>${icon('camera')}Photography</a><a href="${home}bookshelf/"${path==='bookshelf/'?' aria-current="page"':''}>${icon('book')}Bookshelf</a><a href="${home}exhibitions/"${path.startsWith('exhibitions/')?' aria-current="page"':''}>${icon('gallery')}Exhibitions</a></div></details></div></nav></header>
 <main class="shell" id="main">${body}</main>
 <dialog class="figure-dialog" aria-label="Image preview">${photoLanguageToggle()}<button class="figure-close" autofocus type="button" aria-label="Close framework preview">Close <span aria-hidden="true">×</span></button><img alt="Enlarged paper framework" width="2027" height="1225"><div class="figure-bottom" hidden><div class="figure-caption"><h2 data-photo-title></h2><p data-photo-meta hidden></p><p data-photo-caption></p></div><div class="figure-paging" role="group" aria-label="Photograph navigation" hidden><button type="button" data-photo-previous aria-label="Previous photograph">${icon('arrow')}</button><span data-photo-counter aria-live="polite"></span><button type="button" data-photo-next aria-label="Next photograph">${icon('arrow')}</button></div></div></dialog>
-<footer class="footer shell${!path?' footer-home':''}">${!path?`<div class="footer-invitation"><p>Always happy to talk about robots, 3D vision, books, photography, or anything you’d like to ask.</p><a href="${esc(d.links.Email)}">Say hello ${icon('arrow')}</a></div><div class="footer-meta">`:''}<span>© 2026 Zhilin Ou</span><a href="${path?home:home+'photography/'}">${path?'Academic homepage':'Photography'} ${icon('arrow')}</a>${!path?'</div>':''}</footer>
+<footer class="footer shell${!path?' footer-home':''}">${!path?`<div class="footer-invitation"><p>Always happy to talk about robots, 3D vision, books, photography, or anything you’d like to ask.</p><div class="footer-contact"><a href="${esc(d.links.Email)}">Say hello ${icon('arrow')}</a><button class="copy-email" type="button" data-copy-email="${esc(d.links.Email.replace(/^mailto:/,''))}" data-copy-label="Copy email" aria-label="Copy email address" hidden><span class="copy-symbol">${icon('copy')}</span><span class="copy-check">${icon('check')}</span></button><span class="sr-only" data-copy-status role="status"></span></div></div><div class="footer-meta">`:''}<span>© 2026 Zhilin Ou</span><a${!path?' class="back-to-top"':''} href="${path?home:'#top'}">${path?'Academic homepage':'Back to top'} ${icon('arrow')}</a>${!path?'</div>':''}</footer>
 </body></html>\n`;
 }
 const storyAssets = Object.fromEntries(['camera','photo','flower','baymax','hold','hold2'].map(name=>[name,`./assets/scene/${name}.bin?v=${revision(`scene/${name}.bin`)}`]));
