@@ -858,6 +858,34 @@ h1 {
   text-align:right;
   white-space:nowrap;
 }
+#experience .entry .date {
+  border-radius:3px;
+  transition:color .24s ease,background-color .24s ease;
+}
+#experience .timeline-node::before {
+  transition:background-color .24s ease,box-shadow .24s ease;
+}
+#experience .entry:focus-within .date {
+  color:#765a1d;
+  background-color:rgba(238,217,150,.22);
+}
+#experience .entry:focus-within .timeline-node::before {
+  background-color:#b58d25;
+  box-shadow:0 0 0 4px rgba(237,213,132,.55);
+}
+@media(hover:hover) and (pointer:fine) {
+  #experience .entry:hover .date {
+    color:#765a1d;
+    background-color:rgba(238,217,150,.22);
+  }
+  #experience .entry:hover .timeline-node::before {
+    background-color:#b58d25;
+    box-shadow:0 0 0 4px rgba(237,213,132,.55);
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  #experience .entry .date,#experience .timeline-node::before {transition:none;}
+}
 .entry h3 {
   font-size:17px;
   font-weight:600;
@@ -1130,7 +1158,14 @@ h1 {
   -webkit-backdrop-filter:blur(7px);
   transition:background-color .4s ease;
 }
-.figure-dialog>img {
+.figure-image-stage {
+  width:fit-content;
+  max-width:100%;
+  margin:auto;
+  outline-offset:3px;
+}
+.figure-image-stage:focus-visible {outline:2px solid var(--accent);}
+.figure-image-stage>img {
   width:auto;
   height:auto;
   max-width:100%;
@@ -1140,8 +1175,49 @@ h1 {
   margin:auto;
 }
 .figure-dialog.has-caption {width:min(880px,94vw);}
-.figure-dialog.has-caption>img {max-height:max(160px,calc(94dvh - 250px));}
-.figure-dialog.has-caption>img {touch-action:pan-y pinch-zoom;}
+.figure-dialog.has-caption .figure-image-stage>img {max-height:max(160px,calc(94dvh - 250px));}
+.figure-dialog.has-caption .figure-image-stage>img {touch-action:pan-y pinch-zoom;}
+.figure-dialog.can-photo-zoom .figure-image-stage>img {cursor:zoom-in;}
+.figure-dialog.is-photo-zoomed .figure-image-stage {
+  width:var(--zoom-frame-width);
+  height:var(--zoom-frame-height);
+  overflow:auto;
+  overscroll-behavior:contain;
+  touch-action:pan-x pan-y pinch-zoom;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(190,154,59,.45) transparent;
+}
+.figure-dialog.is-photo-zoomed .figure-image-stage>img {
+  width:var(--zoom-image-width);
+  height:var(--zoom-image-height);
+  max-width:none;
+  max-height:none;
+  margin:0;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:pan-x pan-y pinch-zoom;
+}
+.figure-dialog.is-photo-zoomed .figure-image-stage>img:active {cursor:grabbing;}
+.figure-tools {display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none;}
+.figure-zoom {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:44px;
+  padding:4px 8px;
+  border:0;
+  border-radius:5px;
+  background:transparent;
+  color:var(--muted);
+  font-size:11px;
+  white-space:nowrap;
+  transition:color .2s,background .2s;
+}
+.figure-zoom[hidden] {display:none;}
+.figure-zoom:hover,.figure-zoom:focus-visible,.figure-zoom[aria-pressed="true"] {color:var(--accent);background:rgba(235,213,145,.14);}
+.figure-zoom>.icon {width:15px;height:15px;}
+.figure-zoom[aria-pressed="true"] .zoom-plus {display:none;}
 .figure-bottom[hidden],.figure-paging[hidden] {display:none;}
 .figure-bottom {display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:15px 8px 3px;}
 .figure-caption {font-size:13px;line-height:1.7;color:var(--ink);text-wrap:pretty;min-width:0;}
@@ -1155,6 +1231,7 @@ h1 {
 .figure-paging span {font-size:10px;color:var(--muted);min-width:36px;text-align:center;font-variant-numeric:tabular-nums;}
 @media(max-width:600px) {
   .figure-bottom {flex-direction:column;align-items:stretch;gap:6px;padding:12px 2px 0;}
+  .figure-tools {flex-direction:row;align-items:center;justify-content:space-between;gap:8px;}
   .figure-paging {align-self:flex-end;}
   .figure-caption h2 {font-size:18px;}
   .figure-caption {font-size:12px;}
@@ -1581,7 +1658,7 @@ h1 {
     padding:43px 8px 8px;
     max-width:96vw;
   }
-  .figure-dialog>img {
+  .figure-image-stage>img {
     max-height:calc(94dvh - 64px);
   }
 }

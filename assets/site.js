@@ -95,10 +95,16 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const languageKey = page?.classList.contains('exhibitions-page') ? 'zhilin-exhibitions-language-choice' : 'zhilin-photography-language-choice';
   const normalizeLanguage = value => value === 'zh' ? 'zh-Hant' : ['en','zh-Hans','zh-Hant'].includes(value) ? value : 'en';
   const photoLabels = {
-    en: {language:'Language',view:'View photograph: ',close:'Put the photo away',previous:'Previous photograph',next:'Next photograph',paging:'Photograph navigation'},
-    'zh-Hans': {language:'语言',view:'查看照片：',close:'收起照片',previous:'上一张照片',next:'下一张照片',paging:'翻阅照片'},
-    'zh-Hant': {language:'語言',view:'查看照片：',close:'收起照片',previous:'上一張照片',next:'下一張照片',paging:'翻閱照片'},
+    en: {language:'Language',view:'View photograph: ',close:'Put the photo away',previous:'Previous photograph',next:'Next photograph',paging:'Photograph navigation',zoomIn:'View details',zoomOut:'Full photo',zoomed:'Photo enlarged. Drag or use arrow keys to explore; click the photo again to fit.',imageRegion:'Photo detail viewer'},
+    'zh-Hans': {language:'语言',view:'查看照片：',close:'收起照片',previous:'上一张照片',next:'下一张照片',paging:'翻阅照片',zoomIn:'看看细节',zoomOut:'完整照片',zoomed:'照片已放大。拖动或使用方向键查看，再次点击照片还原。',imageRegion:'照片细节浏览'},
+    'zh-Hant': {language:'語言',view:'查看照片：',close:'收起照片',previous:'上一張照片',next:'下一張照片',paging:'翻閱照片',zoomIn:'看看細節',zoomOut:'完整照片',zoomed:'照片已放大。拖動或使用方向鍵查看，再次點擊照片還原。',imageRegion:'照片細節瀏覽'},
   };
+  const photoZoom = window.createPhotoZoom?.({
+    dialog:figureDialog,image:dialogImage,
+    stage:figureDialog.querySelector('.figure-image-stage'),
+    button:figureDialog.querySelector('.figure-zoom'),
+    status:figureDialog.querySelector('[data-zoom-status]'),
+  });
   let language = 'en';
   try {
     const saved = page ? localStorage.getItem(languageKey) : null;
@@ -107,6 +113,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
   const showImage = link => {
     swipe = null;
+    photoZoom?.reset();
     window.previewMotion?.cancel(figureDialog);
     const preview = link.querySelector('img');
     const isPhoto = !!link.dataset.album;
@@ -133,6 +140,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     previous.setAttribute('aria-label',labels.previous);
     next.setAttribute('aria-label',labels.next);
     paging.setAttribute('aria-label',labels.paging);
+    photoZoom?.update({enabled:isPhoto,labels});
   };
   const updateLanguage = () => {
     const labels = photoLabels[language];
@@ -165,7 +173,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const zoomed = () => (window.visualViewport?.scale || 1)>1.01;
   dialogImage.addEventListener('pointerdown',event => {
     if (event.pointerType!=='touch') return;
-    swipe = event.isPrimary && figureDialog.open && album.length>1 && !zoomed()
+    swipe = event.isPrimary && figureDialog.open && album.length>1 && !zoomed() && !photoZoom?.isZoomed
       ? {id:event.pointerId,x:event.clientX,y:event.clientY,time:event.timeStamp} : null;
   },{passive:true});
   figureDialog.addEventListener('pointerdown',event => {
@@ -178,7 +186,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   },{passive:true});
   dialogImage.addEventListener('pointerup',event => {
     const start=swipe; swipe=null;
-    if (!start || event.pointerId!==start.id || zoomed() || !figureDialog.open) return;
+    if (!start || event.pointerId!==start.id || zoomed() || photoZoom?.isZoomed || !figureDialog.open) return;
     const dx=event.clientX-start.x, dy=event.clientY-start.y;
     const threshold=Math.max(42,Math.min(90,dialogImage.clientWidth*.14));
     if (Math.abs(dx)>=threshold && Math.abs(dx)>Math.abs(dy)*1.5 && event.timeStamp-start.time<1000) step(dx<0?1:-1);
@@ -194,22 +202,25 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
       opener = link;
       showImage(link);
       figureDialog.showModal();
+      photoZoom?.refresh();
       document.body.classList.add('modal-open');
       window.previewMotion?.open(figureDialog,link.querySelector('img'),dialogImage);
     });
   });
-  const closeFigure = () => window.previewMotion ? window.previewMotion.close(figureDialog,album[current]?.querySelector('img'),dialogImage) : figureDialog.close();
+  const closeFigure = () => window.previewMotion ? window.previewMotion.close(figureDialog,photoZoom?.isZoomed ? null : album[current]?.querySelector('img'),dialogImage) : figureDialog.close();
   closeButton.addEventListener('click',closeFigure);
   figureDialog.addEventListener('cancel',event => { event.preventDefault(); closeFigure(); });
   previous.addEventListener('click', () => step(-1));
   next.addEventListener('click', () => step(1));
   figureDialog.addEventListener('keydown', event => {
+    if (photoZoom?.handleKey(event)) return;
     if (album.length > 1 && ['ArrowLeft','ArrowRight'].includes(event.key)) {
       event.preventDefault(); step(event.key === 'ArrowLeft' ? -1 : 1);
     }
   });
   figureDialog.addEventListener('close', () => {
     swipe = null;
+    photoZoom?.reset();
     window.previewMotion?.cancel(figureDialog);
     document.body.classList.remove('modal-open');
     if (opener?.isConnected) opener.focus({preventScroll:true});
