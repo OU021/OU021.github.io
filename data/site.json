@@ -43,7 +43,19 @@
         "alt": "CoDA framework: a data engine and action policy co-evolve through shared memory, memory-guided scene generation, rollout diagnoses, and Text2potential training feedback.",
         "source": "https://arxiv.org/html/2610.22362v1/method.png",
         "caption": "CoDA · Framework overview"
-      }
+      },
+      "links": [
+        {
+          "label": "Project",
+          "url": "https://plan-lab.github.io/projects/coda/",
+          "icon": "globe"
+        },
+        {
+          "label": "Hugging Face",
+          "url": "https://huggingface.co/papers/2610.22362",
+          "icon": "link"
+        }
+      ]
     },
     {
       "title": "TCellAlign: Cross-study T-cell Populations Alignment with Nomenclature-Guided Multi-Agent Workflow",
