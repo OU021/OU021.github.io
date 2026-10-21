@@ -16,10 +16,35 @@
   "about": [
     "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My interests span 3D vision, embodied AI, and multimodal learning.",
     "Before that, I received my B.Eng. in Digital Media Technology from Dalian University of Technology. My research journey began there with Prof. Zhihui Wang, who helped me take my first steps in computer vision and learn how to approach research. I am grateful for that foundation.",
-    "Building on that foundation, my collaboration with Prof. Ismini Lourentzou and the PLAN Lab at UIUC marked a turning point in my research journey. It introduced me to 3D vision and sparked a deep interest in the field. I am deeply grateful for this opportunity, which helped shape the direction I want to pursue.",
+    "Building on that foundation, my collaboration with Prof. Ismini Lourentzou and the PLAN Lab at UIUC marked a turning point in my research journey. It introduced me to 3D vision and embodied AI, sparking a deep interest in both fields. I am deeply grateful for this opportunity, which helped shape the direction I want to pursue.",
     "I now continue exploring these interests with Prof. Xiaoguang Han at GAP Lab, and I deeply value the opportunity to collaborate with him."
   ],
   "papers": [
+    {
+      "title": "CoDA: Co-Evolution of Data Engines and Action Policies",
+      "authors": [
+        "Tianjiao Yu",
+        "Zhilin Ou",
+        "Yifan Shen",
+        "Xinzhuo Li",
+        "Yuanzhe Liu",
+        "Onkar Kishor Susladkar",
+        "Fan Wang",
+        "Ismini Lourentzou"
+      ],
+      "source": "arXiv",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2610.22362",
+      "public": true,
+      "figure": {
+        "src": "assets/papers/coda-framework.png",
+        "width": 1495,
+        "height": 647,
+        "alt": "CoDA framework: a data engine and action policy co-evolve through shared memory, memory-guided scene generation, rollout diagnoses, and Text2potential training feedback.",
+        "source": "https://arxiv.org/html/2610.22362v1/method.png",
+        "caption": "CoDA · Framework overview"
+      }
+    },
     {
       "title": "TCellAlign: Cross-study T-cell Populations Alignment with Nomenclature-Guided Multi-Agent Workflow",
       "authors": [
