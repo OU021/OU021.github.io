@@ -670,10 +670,15 @@ h1 {
   font-size:15px;
   line-height:1.85;
 }
+.about-copy p {
+  max-width:86ch;
+  margin-inline:auto;
+}
 .about-copy p+p {
   margin-top:12px;
 }
 .about-copy strong,.about-copy a {font-weight:600;}
+.personal-previews,.photo-note[id] {scroll-margin-top:20px;}
 .about-copy a {
   color:var(--accent);
   text-decoration:underline;
