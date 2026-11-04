@@ -10,6 +10,7 @@ function metadata(p, language) {
 }
 export function photoAttributes(p) {
  const attributes = {};
+ if (p.id && p.src.startsWith('assets/photos/')) attributes['data-photo-id'] = p.id;
  for(const language of ['en','zh-Hans','zh-Hant']) {
   const chinese = language !== 'en';
   const localized = value => language === 'zh-Hans' ? toSimplified(value ?? '') : value;

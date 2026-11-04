@@ -35,6 +35,12 @@
       "source": "arXiv",
       "year": 2026,
       "url": "https://arxiv.org/abs/2610.22362",
+      "summary": "Simulation environments and robot policies improve together through shared memory of failures and learning progress.",
+      "citation": {
+        "key": "yu2026coda",
+        "eprint": "2610.22362",
+        "primaryClass": "cs.RO"
+      },
       "public": true,
       "figure": {
         "src": "assets/papers/coda-framework.png",
@@ -72,6 +78,12 @@
       "source": "arXiv",
       "year": 2026,
       "url": "https://arxiv.org/abs/2607.24093",
+      "summary": "A multi-agent workflow aligns T-cell labels across studies by connecting literature evidence with standardized nomenclature.",
+      "citation": {
+        "key": "xie2026tcellalign",
+        "eprint": "2607.24093",
+        "primaryClass": "q-bio.QM"
+      },
       "public": true,
       "figure": {
         "src": "assets/papers/tcellalign-framework.png",

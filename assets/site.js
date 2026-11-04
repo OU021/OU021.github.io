@@ -49,6 +49,32 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const counter = figureDialog.querySelector('[data-photo-counter]');
   const previous = figureDialog.querySelector('[data-photo-previous]');
   const next = figureDialog.querySelector('[data-photo-next]');
+  const shareButton = figureDialog.querySelector('[data-photo-share]');
+  const shareLabel = figureDialog.querySelector('[data-photo-share-label]');
+  const shareStatus = figureDialog.querySelector('[data-photo-share-status]');
+  const shareFallback = figureDialog.querySelector('.photo-share-fallback');
+  const shareInput = figureDialog.querySelector('#photo-share-url');
+  const shareHelp = figureDialog.querySelector('[data-photo-share-help]');
+  const galleryPage = page?.classList.contains('photography-page');
+  const historyToken = `photo-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  let shareFeedback, shareRequest = 0, closingFigure = false;
+  const photoHash = link => link?.dataset.photoId ? `#photo-${link.dataset.photoId}` : '';
+  const shareURL = link => {
+    if (!link?.dataset.photoId) return '';
+    const url = new URL(document.querySelector('link[rel="canonical"]')?.href || location.href);
+    url.pathname = '/photography/';
+    url.search = '';
+    url.hash = photoHash(link);
+    return url.href;
+  };
+  const setPhotoHash = (link, push = false) => {
+    if (!galleryPage || !link?.dataset.photoId) return;
+    const url = new URL(location.href);
+    url.hash = photoHash(link);
+    if (url.href === location.href) return;
+    const state = push ? {...history.state,photoStoryToken:historyToken} : history.state;
+    history[push ? 'pushState' : 'replaceState'](state,'',url);
+  };
   let album = [], current = 0, opener = null, backdropDown = false, swipe = null;
   const photoTones = new Map();
   const photoTone = image => {
@@ -95,9 +121,9 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   const languageKey = page?.classList.contains('exhibitions-page') ? 'zhilin-exhibitions-language-choice' : 'zhilin-photography-language-choice';
   const normalizeLanguage = value => value === 'zh' ? 'zh-Hant' : ['en','zh-Hans','zh-Hant'].includes(value) ? value : 'en';
   const photoLabels = {
-    en: {language:'Language',view:'View photograph: ',close:'Put the photo away',previous:'Previous photograph',next:'Next photograph',paging:'Photograph navigation',zoomIn:'View details',zoomOut:'Full photo',zoomed:'Photo enlarged. Drag or use arrow keys to explore; click the photo again to fit.',imageRegion:'Photo detail viewer'},
-    'zh-Hans': {language:'语言',view:'查看照片：',close:'收起照片',previous:'上一张照片',next:'下一张照片',paging:'翻阅照片',zoomIn:'看看细节',zoomOut:'完整照片',zoomed:'照片已放大。拖动或使用方向键查看，再次点击照片还原。',imageRegion:'照片细节浏览'},
-    'zh-Hant': {language:'語言',view:'查看照片：',close:'收起照片',previous:'上一張照片',next:'下一張照片',paging:'翻閱照片',zoomIn:'看看細節',zoomOut:'完整照片',zoomed:'照片已放大。拖動或使用方向鍵查看，再次點擊照片還原。',imageRegion:'照片細節瀏覽'},
+    en: {language:'Language',view:'View photograph: ',close:'Put the photo away',previous:'Previous photograph',next:'Next photograph',paging:'Photograph navigation',zoomIn:'View details',zoomOut:'Full photo',zoomed:'Photo enlarged. Drag or use arrow keys to explore; click the photo again to fit.',imageRegion:'Photo detail viewer',share:'Copy link',shared:'Link copied',shareSuccess:'Photo link copied.',shareFallback:'Copy this link to share the photo.'},
+    'zh-Hans': {language:'语言',view:'查看照片：',close:'收起照片',previous:'上一张照片',next:'下一张照片',paging:'翻阅照片',zoomIn:'看看细节',zoomOut:'完整照片',zoomed:'照片已放大。拖动或使用方向键查看，再次点击照片还原。',imageRegion:'照片细节浏览',share:'复制链接',shared:'已复制',shareSuccess:'照片链接已复制。',shareFallback:'复制这个链接，分享这张照片。'},
+    'zh-Hant': {language:'語言',view:'查看照片：',close:'收起照片',previous:'上一張照片',next:'下一張照片',paging:'翻閱照片',zoomIn:'看看細節',zoomOut:'完整照片',zoomed:'照片已放大。拖動或使用方向鍵查看，再次點擊照片還原。',imageRegion:'照片細節瀏覽',share:'複製連結',shared:'已複製',shareSuccess:'照片連結已複製。',shareFallback:'複製這個連結，分享這張照片。'},
   };
   const photoZoom = window.createPhotoZoom?.({
     dialog:figureDialog,image:dialogImage,
@@ -112,6 +138,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
   } catch {}
   const textFor = (link,name) => link.getAttribute(`data-photo-${name}-${language}`) || '';
   const showImage = link => {
+    closingFigure = false;
     swipe = null;
     photoZoom?.reset();
     window.previewMotion?.cancel(figureDialog);
@@ -134,6 +161,17 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     counter.textContent = `${current + 1} / ${album.length}`;
     figureDialog.classList.toggle('has-caption',isPhoto);
     const labels = photoLabels[isPhoto ? language : 'en'];
+    clearTimeout(shareFeedback);
+    shareRequest++;
+    if (shareButton) {
+      shareButton.hidden = !link.dataset.photoId;
+      shareLabel.textContent = labels.share;
+      shareStatus.textContent = '';
+      shareFallback.hidden = true;
+      shareInput.value = shareURL(link);
+      shareInput.setAttribute('aria-label',labels.shareFallback);
+      shareHelp.textContent = labels.shareFallback;
+    }
     const closeLabel = isPhoto ? labels.close : 'Close';
     closeButton.firstChild.textContent = closeLabel + ' ';
     closeButton.setAttribute('aria-label',isPhoto ? closeLabel : 'Close framework preview');
@@ -168,6 +206,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     if (album.length < 2) return;
     current = (current + offset + album.length) % album.length;
     showImage(album[current]);
+    setPhotoHash(album[current]);
   };
   // Swiping belongs to the photo surface; text, vertical scrolling and pinch zoom stay native.
   const zoomed = () => (window.visualViewport?.scale || 1)>1.01;
@@ -192,33 +231,88 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     if (Math.abs(dx)>=threshold && Math.abs(dx)>Math.abs(dy)*1.5 && event.timeStamp-start.time<1000) step(dx<0?1:-1);
   },{passive:true});
   for (const event of ['pointercancel','lostpointercapture']) dialogImage.addEventListener(event,()=>{swipe=null;},{passive:true});
+  const openFigure = link => {
+    album = link.dataset.album ? links.filter(item => item.dataset.album === link.dataset.album) : [link];
+    current = album.indexOf(link);
+    opener = link;
+    showImage(link);
+    if (!figureDialog.open) figureDialog.showModal();
+    photoZoom?.refresh();
+    document.body.classList.add('modal-open');
+    window.previewMotion?.open(figureDialog,link.querySelector('img'),dialogImage);
+  };
   links.forEach(link => {
     link.setAttribute('aria-haspopup','dialog');
     link.addEventListener('click', event => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      album = link.dataset.album ? links.filter(item => item.dataset.album === link.dataset.album) : [link];
-      current = album.indexOf(link);
-      opener = link;
-      showImage(link);
-      figureDialog.showModal();
-      photoZoom?.refresh();
-      document.body.classList.add('modal-open');
-      window.previewMotion?.open(figureDialog,link.querySelector('img'),dialogImage);
+      setPhotoHash(link,true);
+      openFigure(link);
     });
   });
-  const closeFigure = () => window.previewMotion ? window.previewMotion.close(figureDialog,photoZoom?.isZoomed ? null : album[current]?.querySelector('img'),dialogImage) : figureDialog.close();
-  closeButton.addEventListener('click',closeFigure);
+  const closeFigure = (syncHistory = true) => {
+    if (!figureDialog.open || closingFigure) return;
+    closingFigure = true;
+    if (syncHistory && galleryPage && album[current]?.dataset.photoId && location.hash === photoHash(album[current])) {
+      if (history.state?.photoStoryToken === historyToken) history.back();
+      else {
+        const url = new URL(location.href);
+        url.hash = '';
+        history.replaceState(history.state,'',url);
+      }
+    }
+    if (window.previewMotion) window.previewMotion.close(figureDialog,photoZoom?.isZoomed ? null : album[current]?.querySelector('img'),dialogImage);
+    else figureDialog.close();
+  };
+  const syncPhotoFromURL = () => {
+    if (!galleryPage) return;
+    const link = links.find(item => item.dataset.photoId && photoHash(item) === location.hash);
+    if (link) {
+      if (!figureDialog.open || album[current] !== link || closingFigure) openFigure(link);
+    } else if (figureDialog.open && album[current]?.dataset.photoId) closeFigure(false);
+  };
+  window.addEventListener('hashchange',syncPhotoFromURL);
+  closeButton.addEventListener('click',() => closeFigure());
+  shareButton?.addEventListener('click',async () => {
+    const url = shareURL(album[current]);
+    if (!url) return;
+    clearTimeout(shareFeedback);
+    const request = ++shareRequest;
+    shareStatus.textContent = '';
+    const stillCurrent = () => request === shareRequest && figureDialog.open;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(url);
+      if (!stillCurrent()) return;
+      shareLabel.textContent = photoLabels[language].shared;
+      shareStatus.textContent = photoLabels[language].shareSuccess;
+      shareFallback.hidden = true;
+      shareFeedback = setTimeout(() => { shareLabel.textContent = photoLabels[language].share; },2200);
+    } catch {
+      if (!stillCurrent()) return;
+      shareFallback.hidden = false;
+      shareStatus.textContent = photoLabels[language].shareFallback;
+      shareInput.value = url;
+      shareInput.focus();
+      shareInput.select();
+    }
+  });
   figureDialog.addEventListener('cancel',event => { event.preventDefault(); closeFigure(); });
   previous.addEventListener('click', () => step(-1));
   next.addEventListener('click', () => step(1));
   figureDialog.addEventListener('keydown', event => {
+    if (event.target.closest('input,textarea,[contenteditable]')) return;
     if (photoZoom?.handleKey(event)) return;
     if (album.length > 1 && ['ArrowLeft','ArrowRight'].includes(event.key)) {
       event.preventDefault(); step(event.key === 'ArrowLeft' ? -1 : 1);
     }
   });
   figureDialog.addEventListener('close', () => {
+    if (figureDialog.open) return;
+    closingFigure = false;
+    shareRequest++;
+    clearTimeout(shareFeedback);
+    if (shareFallback) shareFallback.hidden = true;
     swipe = null;
     photoZoom?.reset();
     window.previewMotion?.cancel(figureDialog);
@@ -235,6 +329,7 @@ if (figureDialog && typeof figureDialog.showModal === 'function') {
     if (backdropDown && event.target === figureDialog && outside(event)) closeFigure();
     backdropDown = false;
   });
+  syncPhotoFromURL();
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
