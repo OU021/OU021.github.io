@@ -101,7 +101,8 @@ const papers = section('papers','Papers',`<div class="paper-list">${d.papers.fil
 const logo = name => name.includes('Illinois')?'uiuc.svg':name.includes('Dalian')?'dut.webp':'cuhk.webp';
 const mark = name => `<img class="institution-logo${name.includes('Illinois')?' institution-logo-uiuc':''}" src="./assets/institutions/${logo(name)}" width="48" height="48" alt="${esc(name)} logo" loading="lazy">`;
 function timelineEntry(e, education=false) {
- return `<article class="entry"><p class="date">${esc(e.dates)}</p><span class="timeline-node" aria-hidden="true"></span>${mark(e.institution)}<div class="entry-copy"><h3>${esc(e.institution)}</h3><p>${education?esc(e.degree):withLabLink(e.role)}</p>${education && e.advisor?`<p class="entry-host">Advisor: ${link(e.advisor.url,`Prof. ${e.advisor.name}`)}</p>`:''}${!education && e.host?`<p class="entry-host">Host: ${link(e.host.url,`Prof. ${e.host.name}`)}</p>`:''}${e.detail?`<p class="detail">${esc(e.detail)}</p>`:''}</div></article>`;
+ const supervision = [e.host?`Host: ${link(e.host.url,`Prof. ${e.host.name}`)}`:'',e.mentor?`Mentor: ${link(e.mentor.url,e.mentor.name)}`:''].filter(Boolean).join(' · ');
+ return `<article class="entry"><p class="date">${esc(e.dates)}</p><span class="timeline-node" aria-hidden="true"></span>${mark(e.institution)}<div class="entry-copy"><h3>${esc(e.institution)}</h3><p>${education?esc(e.degree):withLabLink(e.role)}</p>${education && e.advisor?`<p class="entry-host">Advisor: ${link(e.advisor.url,`Prof. ${e.advisor.name}`)}</p>`:''}${!education && supervision?`<p class="entry-host">${supervision}</p>`:''}${e.detail?`<p class="detail">${esc(e.detail)}</p>`:''}</div></article>`;
 }
 const experience = section('experience','Experience',`<div class="entries">${d.experience.map(e=>timelineEntry(e)).join('')}</div>`);
 const education = section('education','Education',`<div class="entries">${d.education.map(e=>timelineEntry(e,true)).join('')}</div>`);
