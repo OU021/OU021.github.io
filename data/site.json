@@ -21,6 +21,7 @@
   ],
   "papers": [
     {
+      "id": "coda",
       "title": "CoDA: Co-Evolution of Data Engines and Action Policies",
       "authors": [
         "Tianjiao Yu",
@@ -118,6 +119,10 @@
       "mentor": {
         "name": "Tianjiao Yu",
         "url": "https://tianjiao-yu.github.io/"
+      },
+      "relatedWork": {
+        "paperId": "coda",
+        "label": "CoDA"
       }
     },
     {
