@@ -30,7 +30,7 @@ for (const visit of visits) {
 }
 const newsVisible=data.news.enabled && data.news.items.length>0;
 assert.equal(home.includes('id="news"'),newsVisible);
-assert.equal(home.includes('>News<'),newsVisible);
+assert.equal(home.includes('>News<'),newsVisible && !data.news.compact);
 assert(!home.includes('>CV<'));
 assert(home.includes('<strong>Zhilin Ou</strong>'));
 assert(home.includes('Prof. Wenjing Ma')&&home.includes('Prof. Zhihui Wang'));

@@ -93,6 +93,13 @@
         "alt": "TCellAlign framework: search, information extraction, nomenclature-guided mapping, and evidence-based adjudication agents.",
         "source": "https://arxiv.org/html/2607.24093v1#S1.F1",
         "caption": "TCellAlign · Framework overview"
+      },
+      "id": "tcellalign",
+      "venue": {
+        "name": "KDD",
+        "year": 2027,
+        "track": "AI4Sciences Track",
+        "presentation": "Oral"
       }
     }
   ],
@@ -105,6 +112,15 @@
       "host": {
         "name": "Xiaoguang Han",
         "url": "https://scholar.google.com/citations?user=z-rqsR4AAAAJ&hl=en"
+      }
+    },
+    {
+      "institution": "The Chinese University of Hong Kong, Shenzhen",
+      "role": "Team Member · Ma Lab",
+      "dates": "Sep 2026 – Present",
+      "host": {
+        "name": "Wenjing Ma",
+        "url": "https://marvinquiet.github.io/"
       }
     },
     {
@@ -167,8 +183,16 @@
     }
   ],
   "news": {
-    "enabled": false,
-    "items": []
+    "enabled": true,
+    "compact": true,
+    "items": [
+      {
+        "date": "Nov 2026",
+        "datetime": "2026-11",
+        "text": "TCellAlign accepted to KDD 2027 (AI4Sciences Track) for oral presentation.",
+        "url": "#paper-tcellalign"
+      }
+    ]
   },
   "photographs": [
     {
