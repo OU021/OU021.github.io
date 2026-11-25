@@ -37,7 +37,7 @@ const linkedInMark = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><
 const baymaxMark = readFileSync(new URL('assets/baymax-camera.svg',root),'utf8').replace('<svg ', '<svg class="brand-mark" width="48" height="48" aria-hidden="true" focusable="false" ');
 const withLabLink = text => esc(text).replace('PLAN Lab',link(d.researchLinks.planLab,'PLAN Lab')).replace('GAP Lab',link(d.researchLinks.gapLab,'GAP Lab'));
 const aboutText = text => withLabLink(text)
- .replace('My current research focuses on 3D vision and embodied AI.','My current research focuses on <strong>3D vision and embodied AI</strong>.')
+ .replace('My current research focuses on 3D vision and embodied AI','My current research focuses on <strong>3D vision and embodied AI</strong>')
  .replace(esc(d.affiliation),`<strong>${esc(d.affiliation)}</strong>`)
  .replace('Dalian University of Technology','<strong>Dalian University of Technology</strong>')
  .replace('CoDA', '<a href="#paper-coda">CoDA</a>')
