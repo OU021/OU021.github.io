@@ -40,6 +40,7 @@ const aboutText = text => withLabLink(text)
  .replace('My current research focuses on 3D vision and embodied AI.','My current research focuses on <strong>3D vision and embodied AI</strong>.')
  .replace(esc(d.affiliation),`<strong>${esc(d.affiliation)}</strong>`)
  .replace('Dalian University of Technology','<strong>Dalian University of Technology</strong>')
+ .replace('CoDA', '<a href="#paper-coda">CoDA</a>')
  .replace('at UIUC','at <strong>UIUC</strong>')
  .replace('Prof. Wenjing Ma',link('https://marvinquiet.github.io/','Prof. Wenjing Ma'))
  .replace('Prof. Zhihui Wang',link('https://scholar.google.com/citations?user=r-ZsDRQAAAAJ&hl=en','Prof. Zhihui Wang'))
@@ -81,7 +82,14 @@ const storyAssets = Object.fromEntries(['camera','photo','flower','baymax','hold
 // Temporarily hidden at the owner’s request; the original text remains in data/site.json.
 // const researchVision = d.researchVision ? `<p class="research-vision">${esc(d.researchVision)}</p>` : '';
 const researchVision = '';
-const sceneNotes = `<div class="scene-notes" aria-live="off">${d.sceneNotes.map((note,i)=>`<p class="scene-note${i===0?' is-active':''}" data-scene-note="${esc(note.id)}" aria-hidden="${i!==0}">${esc(note.text).replace('photographer','<a class="scene-photography-link" href="./photography/">photographer</a>')}</p>`).join('')}</div>`;
+const sceneNotes = `<div class="scene-notes" aria-live="off">${d.sceneNotes.map((note, i) => {
+  let text = esc(note.text);
+  if (note.link) {
+    const label = esc(note.link.label);
+    text = text.replace(label, `<a class="scene-photography-link" href="${esc(note.link.url)}">${label}</a>`);
+  }
+  return `<p class="scene-note${i === 0 ? ' is-active' : ''}" data-scene-note="${esc(note.id)}" aria-hidden="${i !== 0}">${text}</p>`;
+}).join('')}</div>`;
 const sceneChapters = d.sceneNotes.map(note=>[note.id,note.label]);
 const sceneControls = `<div class="scene-controls" hidden><div class="scene-chapters" role="group" aria-label="Animation navigation">${sceneChapters.map(([id,label])=>`<button type="button" data-scene-chapter="${id}" aria-label="${label}" title="${label}"><span class="chapter-track" aria-hidden="true"></span></button>`).join('')}</div><button class="motion-toggle" type="button" aria-label="Pause point cloud motion" aria-pressed="false" hidden>${icon('pause')}</button></div>`;
 const hero = `<section class="hero" aria-label="Profile"><div class="hero-copy"><div class="identity"><div class="portrait-frame"><img class="portrait" src="./${esc(d.portrait.src)}" width="${d.portrait.width}" height="${d.portrait.height}" alt="${esc(d.portrait.alt)}" fetchpriority="high"></div><div><p class="greeting">${esc(d.greeting)}</p><h1>Zhilin Ou<span lang="zh">欧芝麟</span></h1></div></div><p class="role">${esc(d.role)}</p><p class="affiliation">${esc(d.affiliation)}</p><p class="interests">${d.interests.map(esc).join('<span aria-hidden="true"> · </span>')}</p>${researchVision}<div class="hero-actions" style="--action-count:${Math.min(4,1+Object.values(d.links).filter(Boolean).length)}"><a class="button primary" href="#papers"><span class="action-icon">${icon('papers')}</span><span class="action-label">Papers</span></a>${Object.entries(d.links).filter(([,v])=>v).map(([k,v])=>`<a class="button" href="${esc(v)}"><span class="action-icon">${k==='GitHub'?githubMark:k==='LinkedIn'?linkedInMark:icon(k==='Email'?'mail':'cap')}</span><span class="action-label">${esc(k)}</span></a>`).join('')}</div></div><div class="hero-art" aria-describedby="scene-description"><div class="scene-view"><img class="scene-fallback" src="./assets/scene/camera.webp?v=${revision('scene/camera.webp')}" width="960" height="680" alt="An original camera-shaped point cloud with a detailed lens, viewfinder and camera body"><canvas id="point-field" data-src="${storyAssets.camera}" data-story="${esc(JSON.stringify(storyAssets))}" aria-hidden="true"></canvas><img class="scene-photograph" src="./assets/photos/digital7.webp" width="1500" height="1000" alt="${esc(d.photoStoryAlt)}" decoding="async" aria-hidden="true"></div><p class="sr-only" id="scene-description">This animation connects my photography, a memory of picking kapok flowers with my mother in my hometown Panzhihua, and Baymax as an image of warm, caring embodied intelligence. Baymax holding the flower brings my roots and my hopes for AI together. The flower geometry is an illustration rather than a reconstruction of the photograph.</p><div class="art-footer">${sceneControls}${sceneNotes}</div></div></section>`;

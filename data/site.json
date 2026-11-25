@@ -16,7 +16,7 @@
   "about": [
     "I am an MPhil student in Artificial Intelligence at The Chinese University of Hong Kong, Shenzhen, advised by Prof. Wenjing Ma. My current research focuses on 3D vision and embodied AI. I have also collaborated with Prof. Ma on agentic workflows for scientific applications.",
     "Before that, I received my B.Eng. in Digital Media Technology from Dalian University of Technology. My research journey began there in Prof. Zhihui Wang’s group, where I worked primarily on computer vision and learned how to approach research. I am grateful for that foundation.",
-    "Building on that foundation, my collaboration with Prof. Ismini Lourentzou and the PLAN Lab at UIUC marked a turning point in my research journey. It introduced me to 3D vision and embodied AI, sparking a deep interest in both fields. I am deeply grateful for this opportunity, which helped shape the direction I want to pursue.",
+    "Building on that foundation, my collaboration with Prof. Ismini Lourentzou and the PLAN Lab at UIUC marked a turning point in my research journey. Through our work on CoDA, I discovered 3D vision and embodied AI. I am deeply grateful for this opportunity, which helped shape the direction I want to pursue.",
     "I now continue exploring these interests with Prof. Xiaoguang Han at GAP Lab, and I deeply value the opportunity to collaborate with him."
   ],
   "papers": [
@@ -756,12 +756,20 @@
     {
       "id": "camera",
       "label": "Photography",
-      "text": "I’m also a photographer. This story begins with my camera."
+      "text": "I’m also a photographer. This story begins with my camera.",
+      "link": {
+        "label": "photographer",
+        "url": "./photography/"
+      }
     },
     {
       "id": "photo",
       "label": "A memory from home",
-      "text": "In this photograph, my mother and I are picking fallen kapok flowers in Panzhihua, my hometown and birthplace."
+      "text": "In this photograph, my mother and I are picking fallen kapok flowers in Panzhihua, my hometown and birthplace.",
+      "link": {
+        "label": "this photograph",
+        "url": "./photography/#photo-panzhihua-with-mum"
+      }
     },
     {
       "id": "flower",
